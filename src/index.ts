@@ -5,8 +5,8 @@ class JobApplication {
     public run():void{
         const server = new Server;
 
-        server.listenServer()
+        server.start()
     }
 }
 const jobApplication: JobApplication = new JobApplication();
-jobApplication.run()
+ 
