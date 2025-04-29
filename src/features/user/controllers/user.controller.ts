@@ -8,7 +8,7 @@ class UserController {
         name: 'test',
         email: 'test@mail.com',
         password: 'test123',
-        role: 'User',
+        // role: 'User',
         status: true
       }
     })

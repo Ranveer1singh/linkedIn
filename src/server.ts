@@ -2,7 +2,8 @@ import express ,{Application,Request,Response, NextFunction} from "express";
 import appRoutes from "./globals/routes/appRoutes";
 import "dotenv/config"
 import { error } from "console";
-import { CustomError } from "./globals/cores/error.core";
+import { CustomError, NotFoundException } from "./globals/cores/error.core";
+import HTTP_STATUS from "./globals/constant/http.constant";
 class Server{
     private app : Application
 
@@ -19,22 +20,25 @@ class Server{
 
     private setupMiddleware():void{
         this.app.use(express.json())
+        this.app.use(express.urlencoded({ extended: true }));
     }
     private setupRoute():void{
         appRoutes(this.app)
     }
     private setupGlobalError():void{
-        this.app.all("*", (req , res, next)=>{
-            res.status(404).json({
-                message : `The URL ${req.originalUrl} not found with Method ${req.method}`
-            })
-        })
+        // this.app.use("*", (req , res, next)=>{
+        //     next(new NotFoundException(`The URl ${req.originalUrl} not found with methode ${req.method}`))
+        // })
         this.app.use((error : any , req : Request, res: Response, next : NextFunction)=>{
             if(error instanceof CustomError){
                 return res.status(error.statusCode).json({
                     message : error.message
                 });
             }
+
+            return res.status(HTTP_STATUS.INTERAL_SERVER).json({
+                message : "something Went Wrong "
+            })
         });
     }
     private  listenServer(){

@@ -19,6 +19,12 @@ model User {
   email    String  @unique
   name     String?
   password String
-  role     String
-  status   Boolean
+  role     Role    @default(CANDIDATE)
+  status   Boolean @default(true)
+}
+
+enum Role {
+  ADMIN
+  RECRUITER
+  CANDIDATE
 }
