@@ -13,8 +13,8 @@ class Server{
 
     public start():void{
         this.setupMiddleware();
-        this.setupGlobalError();
         this.setupRoute();
+        this.setupGlobalError();
         this.listenServer() 
     }
 
@@ -26,9 +26,9 @@ class Server{
         appRoutes(this.app)
     }
     private setupGlobalError():void{
-        // this.app.use("*", (req , res, next)=>{
-        //     next(new NotFoundException(`The URl ${req.originalUrl} not found with methode ${req.method}`))
-        // })
+        this.app.use("*", (req , res, next)=>{
+            next(new NotFoundException(`The URl ${req.originalUrl} not found with methode ${req.method}`))
+        })
         this.app.use((error : any , req : Request, res: Response, next : NextFunction)=>{
             if(error instanceof CustomError){
                 return res.status(error.statusCode).json({
