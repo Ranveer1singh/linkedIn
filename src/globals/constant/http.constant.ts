@@ -2,6 +2,8 @@ import { EXPECTATION_FAILED } from "http-status-codes";
 
 class HTTP_STATUS {
     public static BAD_REQUEST = 400;
+    public static CREATE = 201;
+    public static OK = 200;
     public static NOT_FOUND = 404;
     public static UNAUTHORIZED = 401;
     public static FORBIDOEN = 403;
