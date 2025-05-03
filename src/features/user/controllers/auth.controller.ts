@@ -19,6 +19,20 @@ class AuthController {
             message : "Sign In Successfully",
         })
     }
+
+    public async getCurrentUser(req: Request, res : Response){
+        return res.status(HTTP_STATUS.OK).json({
+            message : 'get current user successfully',
+            data : res.currentUser
+        })
+    }
+
+    public async logOut(req:Request,res:Response){
+        res.clearCookie("accessToken")
+        res.status(HTTP_STATUS.OK).json({
+            message : "Logout Successfully"
+        })
+    }
 }
 
 export const authController : AuthController = new AuthController
