@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { authService } from "../services/auth";
 import HTTP_STATUS from "~/globals/constant/http.constant";
+import { sendTokenToCookie } from "~/globals/helpers/cookie.helper";
 
 class AuthController {
     public async signUp(req:Request , res : Response){
@@ -13,9 +14,9 @@ class AuthController {
 
     public async signIn(req:Request , res : Response){
         const token = await authService.signIn(req.body);
+       sendTokenToCookie(res, token)
         res.status(HTTP_STATUS.OK).json({
             message : "Sign In Successfully",
-            token
         })
     }
 }

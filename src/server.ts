@@ -1,9 +1,9 @@
 import express ,{Application,Request,Response, NextFunction} from "express";
 import appRoutes from "./globals/routes/appRoutes";
 import "dotenv/config"
-import { error } from "console";
 import { CustomError, NotFoundException } from "./globals/cores/error.core";
 import HTTP_STATUS from "./globals/constant/http.constant";
+import cookieParser from "cookie-parser";
 class Server{
     private app : Application
 
@@ -21,6 +21,7 @@ class Server{
     private setupMiddleware():void{
         this.app.use(express.json())
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(cookieParser())
     }
     private setupRoute():void{
         appRoutes(this.app)

@@ -3,8 +3,12 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { BadRequestException, NotFoundException } from "~/globals/cores/error.core";
 import { accessToken } from "~/globals/helpers/jwtToken.helper";
+import { User } from "generated/prisma";
 class AuthService {
 
+    private async findUserByEmail(email:string) : Promise<User | null>{
+       return await prisma.user.findFirst({where : {email}});
+                }
     public async signUp(reqBody : any){
         const {email, name, password} = reqBody
         // add if email is already in data base show error
@@ -24,12 +28,11 @@ class AuthService {
         return token;
     }
 
-    public async signIn(reqBody : any){
+    public async signIn(reqBody : any):Promise<string>{
 
-        try {
             const {email, password} = reqBody;
             // find user
-            const user =  await prisma.user.findFirst({where : {email}});
+            const user =  await this.findUserByEmail(email);
             if(!user) throw new NotFoundException(`User ${email} Not found `);
             
             const isMatch = await bcrypt.compare(password, user.password);
@@ -37,10 +40,9 @@ class AuthService {
     
             const token = accessToken(user)
             return token;
-        } catch (error) {
-            return error
-        }
+        
     }
+    // create one seprate function for findBYemail 
 }
 
 export const authService : AuthService = new AuthService
