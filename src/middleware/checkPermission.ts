@@ -5,14 +5,15 @@ import prisma from "~/prisma";
 export function checkPermission(model : any , foreignField : string){
 
     return async (req : Request, res: Response, next : NextFunction) => {
-    const {id , role } = req.currentUser
-    const entityId = req.params.id
-
-    try {
-        const entity = await( prisma[model] as any).findUnique({
-            where : {id : entityId},
-        });
-
+        const {id , role } = req.currentUser
+        const entityId = req.params.id 
+        
+        try {
+            const entity = await( prisma[model] as any).findUnique({
+                where : {id : entityId},
+            });
+            
+            // console.log("foreignField", entity[foreignField])
         if( role === "ADMIN" || role === "RECRUITER" || id === entity[foreignField]){
             return next()
         }

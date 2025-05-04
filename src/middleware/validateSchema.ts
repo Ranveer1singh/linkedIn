@@ -16,5 +16,6 @@ export function validateSchema(schema : Schema){
                 error : formateErrorMessage(error)
             })
         }
+        return next()
     }
 }
