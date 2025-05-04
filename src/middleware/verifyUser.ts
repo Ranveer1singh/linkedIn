@@ -4,7 +4,7 @@ import { BadRequestException } from "~/globals/cores/error.core";
 
 export async function  verifyUSer(req:Request, res:Response, next : NextFunction){
     if(!req.cookies.accessToken){
-        throw new BadRequestException("Please Provide Access TOken")
+        throw new BadRequestException("Please login again")
     }
     const token = req.cookies.accessToken;
 

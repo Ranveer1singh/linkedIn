@@ -126,6 +126,19 @@ exports.Prisma.UserScalarFieldEnum = {
   status: 'status'
 };
 
+exports.Prisma.CandidateProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  fullName: 'fullName',
+  gender: 'gender',
+  phone: 'phone',
+  cv: 'cv',
+  birthDate: 'birthDate',
+  address: 'address',
+  status: 'status',
+  openToWork: 'openToWork'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -146,8 +159,14 @@ exports.Role = exports.$Enums.Role = {
   CANDIDATE: 'CANDIDATE'
 };
 
+exports.Gender = exports.$Enums.Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
+};
+
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  CandidateProfile: 'CandidateProfile'
 };
 
 /**
