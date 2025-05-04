@@ -38,6 +38,19 @@ public async readOne(req : Request, res:Response , next :NextFunction) {
     data : candiate
   })
 }
+
+
+/**
+ * update
+ */
+public async update(req : Request, res:Response , next :NextFunction) {
+    const{id} = req.params
+    const updateProfile = await candidateProfileService.update(id , req.body)
+    res.status(HTTP_STATUS.OK).json({
+        message : "Profile Update successFully",
+        data : updateProfile
+    })
+}
 }
 
 export const candidateProfileController : CandidateProfileController = new CandidateProfileController()

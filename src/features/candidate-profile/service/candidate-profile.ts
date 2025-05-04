@@ -43,6 +43,21 @@ class CandidateProfileService {
         if(!candiate) throw new BadRequestException("Candidate Not Found")
         return candiate
     }
+
+    /**
+     * update
+     */
+    public async update(id : string, reqBody : any) :Promise<CandidateProfile>{
+
+        await this.readOne(id);
+        const updateProfile : CandidateProfile = await prisma.candidateProfile.update({
+            where : {id},
+            data : reqBody
+        })
+
+        return updateProfile
+        
+    }
 }
 
 export const candidateProfileService: CandidateProfileService = new CandidateProfileService()
