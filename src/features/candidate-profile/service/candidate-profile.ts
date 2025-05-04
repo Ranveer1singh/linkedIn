@@ -70,6 +70,20 @@ class CandidateProfileService {
             where : {id}
         })
     }
+
+    /**
+     * toggelOpenToWork
+     */
+    public async toggelOpenToWork(id : string, openToWork : boolean){
+        await this.readOne(id);
+        
+        await prisma.candidateProfile.update({
+            where : {id},
+            data : {openToWork}
+        })
+        if(openToWork) return "Open to work"
+        return "Currently not Open to work"
+    }
 }
 
 export const candidateProfileService: CandidateProfileService = new CandidateProfileService()
