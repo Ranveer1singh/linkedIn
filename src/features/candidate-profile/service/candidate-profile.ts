@@ -1,12 +1,13 @@
 import { CandidateProfile } from "generated/prisma"
 import { BadRequestException } from "~/globals/cores/error.core"
 import prisma from "~/prisma"
+import { IcandidateProfile } from "../interface/cnadidate-profile.interface"
 
 class CandidateProfileService {
     /**
      * create
      */
-    public async create(reqBody: any, currentUser : UserPayload) {
+    public async create(reqBody: IcandidateProfile, currentUser : UserPayload) {
         // validate reqBody for more safty and error handling
         try {
             const { fullName, gender, phone, cv, birthDate, address } = reqBody
@@ -47,7 +48,7 @@ class CandidateProfileService {
     /**
      * update
      */
-    public async update(id : string, reqBody : any) :Promise<CandidateProfile>{
+    public async update(id : string, reqBody : IcandidateProfile) :Promise<CandidateProfile>{
 
         await this.readOne(id);
         const updateProfile : CandidateProfile = await prisma.candidateProfile.update({
