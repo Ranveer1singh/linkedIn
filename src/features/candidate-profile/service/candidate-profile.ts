@@ -1,3 +1,5 @@
+import { CandidateProfile } from "generated/prisma"
+import { BadRequestException } from "~/globals/cores/error.core"
 import prisma from "~/prisma"
 
 class CandidateProfileService {
@@ -19,6 +21,27 @@ class CandidateProfileService {
             console.log(error)
         }
 
+    }
+
+    /**
+     * readAll
+     */
+    public async readAll():Promise<CandidateProfile[]> {
+        const allProfiles : CandidateProfile[] = await prisma.candidateProfile.findMany();
+        if(!allProfiles) throw new BadRequestException("Candidates Not found")
+        return allProfiles
+    }
+
+    /**
+     * readOne
+     */
+    public async readOne(id : string):Promise<CandidateProfile>  {
+        const candiate : CandidateProfile | null =  await prisma.candidateProfile.findUnique({
+            where : {id}
+        })
+        
+        if(!candiate) throw new BadRequestException("Candidate Not Found")
+        return candiate
     }
 }
 

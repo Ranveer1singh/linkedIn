@@ -5,5 +5,7 @@ import { verifyUSer } from "~/middleware/verifyUser";
 const candidateProfileRoute= express.Router();
 
 candidateProfileRoute.post("/",asyncWrapper(verifyUSer),asyncWrapper(candidateProfileController.create));
+candidateProfileRoute.get("/",asyncWrapper(verifyUSer),asyncWrapper(candidateProfileController.readAll));
+candidateProfileRoute.get("/:id",asyncWrapper(verifyUSer),asyncWrapper(candidateProfileController.readOne));
 
 export default candidateProfileRoute;

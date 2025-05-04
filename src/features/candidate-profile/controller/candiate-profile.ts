@@ -15,6 +15,29 @@ public async create ( req : Request, res : Response, next : NextFunction) {
     })
 }
 
+/**
+ * readAll
+ */
+public async readAll(req : Request, res:Response , next :NextFunction) {
+    const candiates = await candidateProfileService.readAll();
+    res.status(HTTP_STATUS.OK).json({
+        message : "All candidates found successfully",
+        data : candiates
+    })
+    
+}
+
+/**
+ * readOne
+ */
+public async readOne(req : Request, res:Response , next :NextFunction) {
+    const {id} = req.params
+  const candiate = await candidateProfileService.readOne(id)   
+  res.status(HTTP_STATUS.OK).json({
+    message : "Candidate Profile Found SuccessFully",
+    data : candiate
+  })
+}
 }
 
 export const candidateProfileController : CandidateProfileController = new CandidateProfileController()
