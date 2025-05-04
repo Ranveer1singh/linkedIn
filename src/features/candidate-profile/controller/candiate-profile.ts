@@ -51,6 +51,20 @@ public async update(req : Request, res:Response , next :NextFunction) {
         data : updateProfile
     })
 }
+
+/**
+ * async delete
+ */
+public async delete(req : Request, res:Response , next :NextFunction) {
+     
+    const {id} = req.params;
+    await candidateProfileService.delete(id);
+    res.status(HTTP_STATUS.OK).json({
+        message : "Profile Deleted Succesfully"
+    })
+    
+}
+
 }
 
 export const candidateProfileController : CandidateProfileController = new CandidateProfileController()

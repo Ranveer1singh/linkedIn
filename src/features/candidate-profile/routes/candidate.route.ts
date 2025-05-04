@@ -8,5 +8,6 @@ candidateProfileRoute.post("/",asyncWrapper(verifyUSer),asyncWrapper(candidatePr
 candidateProfileRoute.get("/",asyncWrapper(verifyUSer),asyncWrapper(candidateProfileController.readAll));
 candidateProfileRoute.get("/:id",asyncWrapper(verifyUSer),asyncWrapper(candidateProfileController.readOne));
 candidateProfileRoute.patch("/:id",asyncWrapper(verifyUSer),asyncWrapper(candidateProfileController.update));
+candidateProfileRoute.delete("/:id",asyncWrapper(verifyUSer),asyncWrapper(candidateProfileController.delete));
 
 export default candidateProfileRoute;

@@ -58,6 +58,17 @@ class CandidateProfileService {
         return updateProfile
         
     }
+
+    /**
+     * delete
+     */
+    public async delete(id: string) : Promise<void> {
+        await this.readOne(id);
+
+        await prisma.candidateProfile.delete({
+            where : {id}
+        })
+    }
 }
 
 export const candidateProfileService: CandidateProfileService = new CandidateProfileService()
