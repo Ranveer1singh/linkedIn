@@ -9,7 +9,7 @@ export async function  verifyUSer(req:Request, res:Response, next : NextFunction
     const token = req.cookies.accessToken;
 
     const decoded = await jwt.verify(token, process.env.JWT_SECRET!)
-    const {name , email , role} = decoded as UserPayload;
-    req.currentUser = {name , email , role}
+    const {name , email , role , id} = decoded as UserPayload;
+    req.currentUser = {name , email , role, id}
     next()
 }

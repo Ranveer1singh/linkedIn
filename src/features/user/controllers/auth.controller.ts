@@ -5,6 +5,7 @@ import { sendTokenToCookie } from "~/globals/helpers/cookie.helper";
 
 class AuthController {
     public async signUp(req:Request , res : Response){
+        // validate req.body for more type safty  and error handling
         const token = await authService.signUp(req.body);
         return res.status(201).json({
             message : "signup sucessfully",

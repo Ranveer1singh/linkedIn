@@ -996,22 +996,12 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
 
-  export type UserAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type UserMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     email: string | null
     name: string | null
     password: string | null
@@ -1020,7 +1010,7 @@ export namespace Prisma {
   }
 
   export type UserMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     email: string | null
     name: string | null
     password: string | null
@@ -1038,14 +1028,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type UserAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    id?: true
-  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -1113,18 +1095,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -1155,22 +1125,18 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
 
   export type UserGroupByOutputType = {
-    id: number
+    id: string
     email: string
     name: string | null
     password: string
     role: $Enums.Role
     status: boolean
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -1239,7 +1205,7 @@ export namespace Prisma {
       candidateProfile: Prisma.$CandidateProfilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       email: string
       name: string | null
       password: string
@@ -1669,7 +1635,7 @@ export namespace Prisma {
    * Fields of the User model
    */
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
+    readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
@@ -2106,25 +2072,13 @@ export namespace Prisma {
 
   export type AggregateCandidateProfile = {
     _count: CandidateProfileCountAggregateOutputType | null
-    _avg: CandidateProfileAvgAggregateOutputType | null
-    _sum: CandidateProfileSumAggregateOutputType | null
     _min: CandidateProfileMinAggregateOutputType | null
     _max: CandidateProfileMaxAggregateOutputType | null
   }
 
-  export type CandidateProfileAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
-  export type CandidateProfileSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
   export type CandidateProfileMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
+    id: string | null
+    userId: string | null
     fullName: string | null
     gender: $Enums.Gender | null
     phone: string | null
@@ -2136,8 +2090,8 @@ export namespace Prisma {
   }
 
   export type CandidateProfileMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
+    id: string | null
+    userId: string | null
     fullName: string | null
     gender: $Enums.Gender | null
     phone: string | null
@@ -2162,16 +2116,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type CandidateProfileAvgAggregateInputType = {
-    id?: true
-    userId?: true
-  }
-
-  export type CandidateProfileSumAggregateInputType = {
-    id?: true
-    userId?: true
-  }
 
   export type CandidateProfileMinAggregateInputType = {
     id?: true
@@ -2251,18 +2195,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: CandidateProfileAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CandidateProfileSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: CandidateProfileMinAggregateInputType
@@ -2293,15 +2225,13 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: CandidateProfileCountAggregateInputType | true
-    _avg?: CandidateProfileAvgAggregateInputType
-    _sum?: CandidateProfileSumAggregateInputType
     _min?: CandidateProfileMinAggregateInputType
     _max?: CandidateProfileMaxAggregateInputType
   }
 
   export type CandidateProfileGroupByOutputType = {
-    id: number
-    userId: number
+    id: string
+    userId: string
     fullName: string
     gender: $Enums.Gender
     phone: string
@@ -2311,8 +2241,6 @@ export namespace Prisma {
     status: boolean
     openToWork: boolean
     _count: CandidateProfileCountAggregateOutputType | null
-    _avg: CandidateProfileAvgAggregateOutputType | null
-    _sum: CandidateProfileSumAggregateOutputType | null
     _min: CandidateProfileMinAggregateOutputType | null
     _max: CandidateProfileMaxAggregateOutputType | null
   }
@@ -2403,8 +2331,8 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
+      id: string
+      userId: string
       fullName: string
       gender: $Enums.Gender
       phone: string
@@ -2837,8 +2765,8 @@ export namespace Prisma {
    * Fields of the CandidateProfile model
    */
   interface CandidateProfileFieldRefs {
-    readonly id: FieldRef<"CandidateProfile", 'Int'>
-    readonly userId: FieldRef<"CandidateProfile", 'Int'>
+    readonly id: FieldRef<"CandidateProfile", 'String'>
+    readonly userId: FieldRef<"CandidateProfile", 'String'>
     readonly fullName: FieldRef<"CandidateProfile", 'String'>
     readonly gender: FieldRef<"CandidateProfile", 'Gender'>
     readonly phone: FieldRef<"CandidateProfile", 'String'>
@@ -3333,20 +3261,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -3410,16 +3324,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Int'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'Float[]'
+   * Reference to a field of type 'Int[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -3430,7 +3344,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
+    id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
@@ -3450,7 +3364,7 @@ export namespace Prisma {
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
@@ -3470,17 +3384,15 @@ export namespace Prisma {
     role?: SortOrder
     status?: SortOrder
     _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
+    id?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     password?: StringWithAggregatesFilter<"User"> | string
@@ -3492,8 +3404,8 @@ export namespace Prisma {
     AND?: CandidateProfileWhereInput | CandidateProfileWhereInput[]
     OR?: CandidateProfileWhereInput[]
     NOT?: CandidateProfileWhereInput | CandidateProfileWhereInput[]
-    id?: IntFilter<"CandidateProfile"> | number
-    userId?: IntFilter<"CandidateProfile"> | number
+    id?: StringFilter<"CandidateProfile"> | string
+    userId?: StringFilter<"CandidateProfile"> | string
     fullName?: StringFilter<"CandidateProfile"> | string
     gender?: EnumGenderFilter<"CandidateProfile"> | $Enums.Gender
     phone?: StringFilter<"CandidateProfile"> | string
@@ -3520,8 +3432,8 @@ export namespace Prisma {
   }
 
   export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    userId?: number
+    id?: string
+    userId?: string
     AND?: CandidateProfileWhereInput | CandidateProfileWhereInput[]
     OR?: CandidateProfileWhereInput[]
     NOT?: CandidateProfileWhereInput | CandidateProfileWhereInput[]
@@ -3548,18 +3460,16 @@ export namespace Prisma {
     status?: SortOrder
     openToWork?: SortOrder
     _count?: CandidateProfileCountOrderByAggregateInput
-    _avg?: CandidateProfileAvgOrderByAggregateInput
     _max?: CandidateProfileMaxOrderByAggregateInput
     _min?: CandidateProfileMinOrderByAggregateInput
-    _sum?: CandidateProfileSumOrderByAggregateInput
   }
 
   export type CandidateProfileScalarWhereWithAggregatesInput = {
     AND?: CandidateProfileScalarWhereWithAggregatesInput | CandidateProfileScalarWhereWithAggregatesInput[]
     OR?: CandidateProfileScalarWhereWithAggregatesInput[]
     NOT?: CandidateProfileScalarWhereWithAggregatesInput | CandidateProfileScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"CandidateProfile"> | number
-    userId?: IntWithAggregatesFilter<"CandidateProfile"> | number
+    id?: StringWithAggregatesFilter<"CandidateProfile"> | string
+    userId?: StringWithAggregatesFilter<"CandidateProfile"> | string
     fullName?: StringWithAggregatesFilter<"CandidateProfile"> | string
     gender?: EnumGenderWithAggregatesFilter<"CandidateProfile"> | $Enums.Gender
     phone?: StringWithAggregatesFilter<"CandidateProfile"> | string
@@ -3571,6 +3481,7 @@ export namespace Prisma {
   }
 
   export type UserCreateInput = {
+    id?: string
     email: string
     name?: string | null
     password: string
@@ -3580,7 +3491,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedCreateInput = {
-    id?: number
+    id?: string
     email: string
     name?: string | null
     password: string
@@ -3590,6 +3501,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -3599,7 +3511,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -3609,7 +3521,7 @@ export namespace Prisma {
   }
 
   export type UserCreateManyInput = {
-    id?: number
+    id?: string
     email: string
     name?: string | null
     password: string
@@ -3618,6 +3530,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -3626,7 +3539,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -3635,6 +3548,7 @@ export namespace Prisma {
   }
 
   export type CandidateProfileCreateInput = {
+    id?: string
     fullName: string
     gender: $Enums.Gender
     phone: string
@@ -3647,8 +3561,8 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUncheckedCreateInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     fullName: string
     gender: $Enums.Gender
     phone: string
@@ -3660,6 +3574,7 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     phone?: StringFieldUpdateOperationsInput | string
@@ -3672,8 +3587,8 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     phone?: StringFieldUpdateOperationsInput | string
@@ -3685,8 +3600,8 @@ export namespace Prisma {
   }
 
   export type CandidateProfileCreateManyInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     fullName: string
     gender: $Enums.Gender
     phone: string
@@ -3698,6 +3613,7 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     phone?: StringFieldUpdateOperationsInput | string
@@ -3709,8 +3625,8 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     phone?: StringFieldUpdateOperationsInput | string
@@ -3719,17 +3635,6 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3793,10 +3698,6 @@ export namespace Prisma {
     status?: SortOrder
   }
 
-  export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -3813,26 +3714,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3925,11 +3806,6 @@ export namespace Prisma {
     openToWork?: SortOrder
   }
 
-  export type CandidateProfileAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-  }
-
   export type CandidateProfileMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -3954,11 +3830,6 @@ export namespace Prisma {
     address?: SortOrder
     status?: SortOrder
     openToWork?: SortOrder
-  }
-
-  export type CandidateProfileSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
   }
 
   export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
@@ -4023,14 +3894,6 @@ export namespace Prisma {
     update?: XOR<XOR<CandidateProfileUpdateToOneWithWhereWithoutUserInput, CandidateProfileUpdateWithoutUserInput>, CandidateProfileUncheckedUpdateWithoutUserInput>
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type CandidateProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<CandidateProfileCreateWithoutUserInput, CandidateProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: CandidateProfileCreateOrConnectWithoutUserInput
@@ -4061,17 +3924,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCandidateProfileInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCandidateProfileInput, UserUpdateWithoutCandidateProfileInput>, UserUncheckedUpdateWithoutCandidateProfileInput>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4114,33 +3966,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4156,6 +3981,17 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4247,6 +4083,7 @@ export namespace Prisma {
   }
 
   export type CandidateProfileCreateWithoutUserInput = {
+    id?: string
     fullName: string
     gender: $Enums.Gender
     phone: string
@@ -4258,7 +4095,7 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUncheckedCreateWithoutUserInput = {
-    id?: number
+    id?: string
     fullName: string
     gender: $Enums.Gender
     phone: string
@@ -4286,6 +4123,7 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     phone?: StringFieldUpdateOperationsInput | string
@@ -4297,7 +4135,7 @@ export namespace Prisma {
   }
 
   export type CandidateProfileUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     phone?: StringFieldUpdateOperationsInput | string
@@ -4309,6 +4147,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutCandidateProfileInput = {
+    id?: string
     email: string
     name?: string | null
     password: string
@@ -4317,7 +4156,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedCreateWithoutCandidateProfileInput = {
-    id?: number
+    id?: string
     email: string
     name?: string | null
     password: string
@@ -4342,6 +4181,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutCandidateProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -4350,7 +4190,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateWithoutCandidateProfileInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
