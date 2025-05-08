@@ -143,6 +143,12 @@ exports.Prisma.LanguageScalarFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.CandidateLanguageScalarFieldEnum = {
+  candidateProfileId: 'candidateProfileId',
+  level: 'level',
+  languageName: 'languageName'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -168,10 +174,17 @@ exports.Gender = exports.$Enums.Gender = {
   FEMALE: 'FEMALE'
 };
 
+exports.Level = exports.$Enums.Level = {
+  NATIVE: 'NATIVE',
+  FLUENT: 'FLUENT',
+  BASIC: 'BASIC'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   CandidateProfile: 'CandidateProfile',
-  Language: 'Language'
+  Language: 'Language',
+  CandidateLanguage: 'CandidateLanguage'
 };
 
 /**

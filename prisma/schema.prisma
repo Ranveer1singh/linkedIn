@@ -39,6 +39,7 @@ model CandidateProfile {
   address String
   status Boolean @default(true)
   openToWork Boolean @default(false)
+  candidateLanguage CandidateLanguage[]
 
 }
 enum Gender{
@@ -55,4 +56,21 @@ enum Role {
 /*=================================== language MODEL ======================================*/
 model Language {
   name String @id 
+  candidateLanguage CandidateLanguage[]
+}
+
+/*=================================== Candidate language MODEL ======================================*/
+model CandidateLanguage {
+  candidateProfile CandidateProfile @relation(fields : [candidateProfileId], references : [id])
+  candidateProfileId String
+  level Level
+  language Language @relation(fields : [languageName], references : [name])
+  languageName String
+  @@unique([candidateProfileId, languageName])
+}
+
+enum Level {
+  NATIVE 
+  FLUENT
+  BASIC
 }

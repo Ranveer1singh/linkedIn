@@ -28,6 +28,11 @@ export type CandidateProfile = $Result.DefaultSelection<Prisma.$CandidateProfile
  * =================================== language MODEL ======================================
  */
 export type Language = $Result.DefaultSelection<Prisma.$LanguagePayload>
+/**
+ * Model CandidateLanguage
+ * =================================== Candidate language MODEL ======================================
+ */
+export type CandidateLanguage = $Result.DefaultSelection<Prisma.$CandidateLanguagePayload>
 
 /**
  * Enums
@@ -49,6 +54,15 @@ export const Role: {
 
 export type Role = (typeof Role)[keyof typeof Role]
 
+
+export const Level: {
+  NATIVE: 'NATIVE',
+  FLUENT: 'FLUENT',
+  BASIC: 'BASIC'
+};
+
+export type Level = (typeof Level)[keyof typeof Level]
+
 }
 
 export type Gender = $Enums.Gender
@@ -58,6 +72,10 @@ export const Gender: typeof $Enums.Gender
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type Level = $Enums.Level
+
+export const Level: typeof $Enums.Level
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +231,16 @@ export class PrismaClient<
     * ```
     */
   get language(): Prisma.LanguageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.candidateLanguage`: Exposes CRUD operations for the **CandidateLanguage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CandidateLanguages
+    * const candidateLanguages = await prisma.candidateLanguage.findMany()
+    * ```
+    */
+  get candidateLanguage(): Prisma.CandidateLanguageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -655,7 +683,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     CandidateProfile: 'CandidateProfile',
-    Language: 'Language'
+    Language: 'Language',
+    CandidateLanguage: 'CandidateLanguage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -674,7 +703,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "candidateProfile" | "language"
+      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -900,6 +929,80 @@ export namespace Prisma {
           }
         }
       }
+      CandidateLanguage: {
+        payload: Prisma.$CandidateLanguagePayload<ExtArgs>
+        fields: Prisma.CandidateLanguageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CandidateLanguageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CandidateLanguageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>
+          }
+          findFirst: {
+            args: Prisma.CandidateLanguageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CandidateLanguageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>
+          }
+          findMany: {
+            args: Prisma.CandidateLanguageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>[]
+          }
+          create: {
+            args: Prisma.CandidateLanguageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>
+          }
+          createMany: {
+            args: Prisma.CandidateLanguageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CandidateLanguageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>[]
+          }
+          delete: {
+            args: Prisma.CandidateLanguageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>
+          }
+          update: {
+            args: Prisma.CandidateLanguageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>
+          }
+          deleteMany: {
+            args: Prisma.CandidateLanguageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CandidateLanguageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CandidateLanguageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>[]
+          }
+          upsert: {
+            args: Prisma.CandidateLanguageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateLanguagePayload>
+          }
+          aggregate: {
+            args: Prisma.CandidateLanguageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCandidateLanguage>
+          }
+          groupBy: {
+            args: Prisma.CandidateLanguageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CandidateLanguageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CandidateLanguageCountArgs<ExtArgs>
+            result: $Utils.Optional<CandidateLanguageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -987,6 +1090,7 @@ export namespace Prisma {
     user?: UserOmit
     candidateProfile?: CandidateProfileOmit
     language?: LanguageOmit
+    candidateLanguage?: CandidateLanguageOmit
   }
 
   /* Types for Logging */
@@ -1075,6 +1179,67 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type CandidateProfileCountOutputType
+   */
+
+  export type CandidateProfileCountOutputType = {
+    candidateLanguage: number
+  }
+
+  export type CandidateProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateLanguage?: boolean | CandidateProfileCountOutputTypeCountCandidateLanguageArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CandidateProfileCountOutputType without action
+   */
+  export type CandidateProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateProfileCountOutputType
+     */
+    select?: CandidateProfileCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CandidateProfileCountOutputType without action
+   */
+  export type CandidateProfileCountOutputTypeCountCandidateLanguageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateLanguageWhereInput
+  }
+
+
+  /**
+   * Count Type LanguageCountOutputType
+   */
+
+  export type LanguageCountOutputType = {
+    candidateLanguage: number
+  }
+
+  export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateLanguage?: boolean | LanguageCountOutputTypeCountCandidateLanguageArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LanguageCountOutputType
+     */
+    select?: LanguageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountCandidateLanguageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateLanguageWhereInput
+  }
 
 
   /**
@@ -2362,6 +2527,8 @@ export namespace Prisma {
     status?: boolean
     openToWork?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    candidateLanguage?: boolean | CandidateProfile$candidateLanguageArgs<ExtArgs>
+    _count?: boolean | CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["candidateProfile"]>
 
   export type CandidateProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2408,6 +2575,8 @@ export namespace Prisma {
   export type CandidateProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fullName" | "gender" | "phone" | "cv" | "birthDate" | "address" | "status" | "openToWork", ExtArgs["result"]["candidateProfile"]>
   export type CandidateProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    candidateLanguage?: boolean | CandidateProfile$candidateLanguageArgs<ExtArgs>
+    _count?: boolean | CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CandidateProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2420,6 +2589,7 @@ export namespace Prisma {
     name: "CandidateProfile"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      candidateLanguage: Prisma.$CandidateLanguagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2827,6 +2997,7 @@ export namespace Prisma {
   export interface Prisma__CandidateProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    candidateLanguage<T extends CandidateProfile$candidateLanguageArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfile$candidateLanguageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3262,6 +3433,30 @@ export namespace Prisma {
   }
 
   /**
+   * CandidateProfile.candidateLanguage
+   */
+  export type CandidateProfile$candidateLanguageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    where?: CandidateLanguageWhereInput
+    orderBy?: CandidateLanguageOrderByWithRelationInput | CandidateLanguageOrderByWithRelationInput[]
+    cursor?: CandidateLanguageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CandidateLanguageScalarFieldEnum | CandidateLanguageScalarFieldEnum[]
+  }
+
+  /**
    * CandidateProfile without action
    */
   export type CandidateProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3412,6 +3607,8 @@ export namespace Prisma {
 
   export type LanguageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     name?: boolean
+    candidateLanguage?: boolean | Language$candidateLanguageArgs<ExtArgs>
+    _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["language"]>
 
   export type LanguageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3427,10 +3624,18 @@ export namespace Prisma {
   }
 
   export type LanguageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"name", ExtArgs["result"]["language"]>
+  export type LanguageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateLanguage?: boolean | Language$candidateLanguageArgs<ExtArgs>
+    _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LanguageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $LanguagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Language"
-    objects: {}
+    objects: {
+      candidateLanguage: Prisma.$CandidateLanguagePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       name: string
     }, ExtArgs["result"]["language"]>
@@ -3827,6 +4032,7 @@ export namespace Prisma {
    */
   export interface Prisma__LanguageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    candidateLanguage<T extends Language$candidateLanguageArgs<ExtArgs> = {}>(args?: Subset<T, Language$candidateLanguageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3874,6 +4080,10 @@ export namespace Prisma {
      */
     omit?: LanguageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
      * Filter, which Language to fetch.
      */
     where: LanguageWhereUniqueInput
@@ -3892,6 +4102,10 @@ export namespace Prisma {
      */
     omit?: LanguageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
      * Filter, which Language to fetch.
      */
     where: LanguageWhereUniqueInput
@@ -3909,6 +4123,10 @@ export namespace Prisma {
      * Omit specific fields from the Language
      */
     omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
     /**
      * Filter, which Language to fetch.
      */
@@ -3958,6 +4176,10 @@ export namespace Prisma {
      */
     omit?: LanguageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
      * Filter, which Language to fetch.
      */
     where?: LanguageWhereInput
@@ -4006,6 +4228,10 @@ export namespace Prisma {
      */
     omit?: LanguageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
      * Filter, which Languages to fetch.
      */
     where?: LanguageWhereInput
@@ -4048,6 +4274,10 @@ export namespace Prisma {
      * Omit specific fields from the Language
      */
     omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
     /**
      * The data needed to create a Language.
      */
@@ -4096,6 +4326,10 @@ export namespace Prisma {
      * Omit specific fields from the Language
      */
     omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
     /**
      * The data needed to update a Language.
      */
@@ -4163,6 +4397,10 @@ export namespace Prisma {
      */
     omit?: LanguageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
      * The filter to search for the Language to update in case it exists.
      */
     where: LanguageWhereUniqueInput
@@ -4189,6 +4427,10 @@ export namespace Prisma {
      */
     omit?: LanguageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
      * Filter which Language to delete.
      */
     where: LanguageWhereUniqueInput
@@ -4209,6 +4451,30 @@ export namespace Prisma {
   }
 
   /**
+   * Language.candidateLanguage
+   */
+  export type Language$candidateLanguageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    where?: CandidateLanguageWhereInput
+    orderBy?: CandidateLanguageOrderByWithRelationInput | CandidateLanguageOrderByWithRelationInput[]
+    cursor?: CandidateLanguageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CandidateLanguageScalarFieldEnum | CandidateLanguageScalarFieldEnum[]
+  }
+
+  /**
    * Language without action
    */
   export type LanguageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4220,6 +4486,1050 @@ export namespace Prisma {
      * Omit specific fields from the Language
      */
     omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CandidateLanguage
+   */
+
+  export type AggregateCandidateLanguage = {
+    _count: CandidateLanguageCountAggregateOutputType | null
+    _min: CandidateLanguageMinAggregateOutputType | null
+    _max: CandidateLanguageMaxAggregateOutputType | null
+  }
+
+  export type CandidateLanguageMinAggregateOutputType = {
+    candidateProfileId: string | null
+    level: $Enums.Level | null
+    languageName: string | null
+  }
+
+  export type CandidateLanguageMaxAggregateOutputType = {
+    candidateProfileId: string | null
+    level: $Enums.Level | null
+    languageName: string | null
+  }
+
+  export type CandidateLanguageCountAggregateOutputType = {
+    candidateProfileId: number
+    level: number
+    languageName: number
+    _all: number
+  }
+
+
+  export type CandidateLanguageMinAggregateInputType = {
+    candidateProfileId?: true
+    level?: true
+    languageName?: true
+  }
+
+  export type CandidateLanguageMaxAggregateInputType = {
+    candidateProfileId?: true
+    level?: true
+    languageName?: true
+  }
+
+  export type CandidateLanguageCountAggregateInputType = {
+    candidateProfileId?: true
+    level?: true
+    languageName?: true
+    _all?: true
+  }
+
+  export type CandidateLanguageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CandidateLanguage to aggregate.
+     */
+    where?: CandidateLanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateLanguages to fetch.
+     */
+    orderBy?: CandidateLanguageOrderByWithRelationInput | CandidateLanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CandidateLanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateLanguages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateLanguages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CandidateLanguages
+    **/
+    _count?: true | CandidateLanguageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CandidateLanguageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CandidateLanguageMaxAggregateInputType
+  }
+
+  export type GetCandidateLanguageAggregateType<T extends CandidateLanguageAggregateArgs> = {
+        [P in keyof T & keyof AggregateCandidateLanguage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCandidateLanguage[P]>
+      : GetScalarType<T[P], AggregateCandidateLanguage[P]>
+  }
+
+
+
+
+  export type CandidateLanguageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateLanguageWhereInput
+    orderBy?: CandidateLanguageOrderByWithAggregationInput | CandidateLanguageOrderByWithAggregationInput[]
+    by: CandidateLanguageScalarFieldEnum[] | CandidateLanguageScalarFieldEnum
+    having?: CandidateLanguageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CandidateLanguageCountAggregateInputType | true
+    _min?: CandidateLanguageMinAggregateInputType
+    _max?: CandidateLanguageMaxAggregateInputType
+  }
+
+  export type CandidateLanguageGroupByOutputType = {
+    candidateProfileId: string
+    level: $Enums.Level
+    languageName: string
+    _count: CandidateLanguageCountAggregateOutputType | null
+    _min: CandidateLanguageMinAggregateOutputType | null
+    _max: CandidateLanguageMaxAggregateOutputType | null
+  }
+
+  type GetCandidateLanguageGroupByPayload<T extends CandidateLanguageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CandidateLanguageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CandidateLanguageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CandidateLanguageGroupByOutputType[P]>
+            : GetScalarType<T[P], CandidateLanguageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CandidateLanguageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    candidateProfileId?: boolean
+    level?: boolean
+    languageName?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateLanguage"]>
+
+  export type CandidateLanguageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    candidateProfileId?: boolean
+    level?: boolean
+    languageName?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateLanguage"]>
+
+  export type CandidateLanguageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    candidateProfileId?: boolean
+    level?: boolean
+    languageName?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateLanguage"]>
+
+  export type CandidateLanguageSelectScalar = {
+    candidateProfileId?: boolean
+    level?: boolean
+    languageName?: boolean
+  }
+
+  export type CandidateLanguageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"candidateProfileId" | "level" | "languageName", ExtArgs["result"]["candidateLanguage"]>
+  export type CandidateLanguageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type CandidateLanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+  export type CandidateLanguageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+  }
+
+  export type $CandidateLanguagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CandidateLanguage"
+    objects: {
+      candidateProfile: Prisma.$CandidateProfilePayload<ExtArgs>
+      language: Prisma.$LanguagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      candidateProfileId: string
+      level: $Enums.Level
+      languageName: string
+    }, ExtArgs["result"]["candidateLanguage"]>
+    composites: {}
+  }
+
+  type CandidateLanguageGetPayload<S extends boolean | null | undefined | CandidateLanguageDefaultArgs> = $Result.GetResult<Prisma.$CandidateLanguagePayload, S>
+
+  type CandidateLanguageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CandidateLanguageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CandidateLanguageCountAggregateInputType | true
+    }
+
+  export interface CandidateLanguageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CandidateLanguage'], meta: { name: 'CandidateLanguage' } }
+    /**
+     * Find zero or one CandidateLanguage that matches the filter.
+     * @param {CandidateLanguageFindUniqueArgs} args - Arguments to find a CandidateLanguage
+     * @example
+     * // Get one CandidateLanguage
+     * const candidateLanguage = await prisma.candidateLanguage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CandidateLanguageFindUniqueArgs>(args: SelectSubset<T, CandidateLanguageFindUniqueArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CandidateLanguage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CandidateLanguageFindUniqueOrThrowArgs} args - Arguments to find a CandidateLanguage
+     * @example
+     * // Get one CandidateLanguage
+     * const candidateLanguage = await prisma.candidateLanguage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CandidateLanguageFindUniqueOrThrowArgs>(args: SelectSubset<T, CandidateLanguageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CandidateLanguage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateLanguageFindFirstArgs} args - Arguments to find a CandidateLanguage
+     * @example
+     * // Get one CandidateLanguage
+     * const candidateLanguage = await prisma.candidateLanguage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CandidateLanguageFindFirstArgs>(args?: SelectSubset<T, CandidateLanguageFindFirstArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CandidateLanguage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateLanguageFindFirstOrThrowArgs} args - Arguments to find a CandidateLanguage
+     * @example
+     * // Get one CandidateLanguage
+     * const candidateLanguage = await prisma.candidateLanguage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CandidateLanguageFindFirstOrThrowArgs>(args?: SelectSubset<T, CandidateLanguageFindFirstOrThrowArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CandidateLanguages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateLanguageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CandidateLanguages
+     * const candidateLanguages = await prisma.candidateLanguage.findMany()
+     * 
+     * // Get first 10 CandidateLanguages
+     * const candidateLanguages = await prisma.candidateLanguage.findMany({ take: 10 })
+     * 
+     * // Only select the `candidateProfileId`
+     * const candidateLanguageWithCandidateProfileIdOnly = await prisma.candidateLanguage.findMany({ select: { candidateProfileId: true } })
+     * 
+     */
+    findMany<T extends CandidateLanguageFindManyArgs>(args?: SelectSubset<T, CandidateLanguageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CandidateLanguage.
+     * @param {CandidateLanguageCreateArgs} args - Arguments to create a CandidateLanguage.
+     * @example
+     * // Create one CandidateLanguage
+     * const CandidateLanguage = await prisma.candidateLanguage.create({
+     *   data: {
+     *     // ... data to create a CandidateLanguage
+     *   }
+     * })
+     * 
+     */
+    create<T extends CandidateLanguageCreateArgs>(args: SelectSubset<T, CandidateLanguageCreateArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CandidateLanguages.
+     * @param {CandidateLanguageCreateManyArgs} args - Arguments to create many CandidateLanguages.
+     * @example
+     * // Create many CandidateLanguages
+     * const candidateLanguage = await prisma.candidateLanguage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CandidateLanguageCreateManyArgs>(args?: SelectSubset<T, CandidateLanguageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CandidateLanguages and returns the data saved in the database.
+     * @param {CandidateLanguageCreateManyAndReturnArgs} args - Arguments to create many CandidateLanguages.
+     * @example
+     * // Create many CandidateLanguages
+     * const candidateLanguage = await prisma.candidateLanguage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CandidateLanguages and only return the `candidateProfileId`
+     * const candidateLanguageWithCandidateProfileIdOnly = await prisma.candidateLanguage.createManyAndReturn({
+     *   select: { candidateProfileId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CandidateLanguageCreateManyAndReturnArgs>(args?: SelectSubset<T, CandidateLanguageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CandidateLanguage.
+     * @param {CandidateLanguageDeleteArgs} args - Arguments to delete one CandidateLanguage.
+     * @example
+     * // Delete one CandidateLanguage
+     * const CandidateLanguage = await prisma.candidateLanguage.delete({
+     *   where: {
+     *     // ... filter to delete one CandidateLanguage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CandidateLanguageDeleteArgs>(args: SelectSubset<T, CandidateLanguageDeleteArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CandidateLanguage.
+     * @param {CandidateLanguageUpdateArgs} args - Arguments to update one CandidateLanguage.
+     * @example
+     * // Update one CandidateLanguage
+     * const candidateLanguage = await prisma.candidateLanguage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CandidateLanguageUpdateArgs>(args: SelectSubset<T, CandidateLanguageUpdateArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CandidateLanguages.
+     * @param {CandidateLanguageDeleteManyArgs} args - Arguments to filter CandidateLanguages to delete.
+     * @example
+     * // Delete a few CandidateLanguages
+     * const { count } = await prisma.candidateLanguage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CandidateLanguageDeleteManyArgs>(args?: SelectSubset<T, CandidateLanguageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CandidateLanguages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateLanguageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CandidateLanguages
+     * const candidateLanguage = await prisma.candidateLanguage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CandidateLanguageUpdateManyArgs>(args: SelectSubset<T, CandidateLanguageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CandidateLanguages and returns the data updated in the database.
+     * @param {CandidateLanguageUpdateManyAndReturnArgs} args - Arguments to update many CandidateLanguages.
+     * @example
+     * // Update many CandidateLanguages
+     * const candidateLanguage = await prisma.candidateLanguage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CandidateLanguages and only return the `candidateProfileId`
+     * const candidateLanguageWithCandidateProfileIdOnly = await prisma.candidateLanguage.updateManyAndReturn({
+     *   select: { candidateProfileId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CandidateLanguageUpdateManyAndReturnArgs>(args: SelectSubset<T, CandidateLanguageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CandidateLanguage.
+     * @param {CandidateLanguageUpsertArgs} args - Arguments to update or create a CandidateLanguage.
+     * @example
+     * // Update or create a CandidateLanguage
+     * const candidateLanguage = await prisma.candidateLanguage.upsert({
+     *   create: {
+     *     // ... data to create a CandidateLanguage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CandidateLanguage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CandidateLanguageUpsertArgs>(args: SelectSubset<T, CandidateLanguageUpsertArgs<ExtArgs>>): Prisma__CandidateLanguageClient<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CandidateLanguages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateLanguageCountArgs} args - Arguments to filter CandidateLanguages to count.
+     * @example
+     * // Count the number of CandidateLanguages
+     * const count = await prisma.candidateLanguage.count({
+     *   where: {
+     *     // ... the filter for the CandidateLanguages we want to count
+     *   }
+     * })
+    **/
+    count<T extends CandidateLanguageCountArgs>(
+      args?: Subset<T, CandidateLanguageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CandidateLanguageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CandidateLanguage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateLanguageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CandidateLanguageAggregateArgs>(args: Subset<T, CandidateLanguageAggregateArgs>): Prisma.PrismaPromise<GetCandidateLanguageAggregateType<T>>
+
+    /**
+     * Group by CandidateLanguage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateLanguageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CandidateLanguageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CandidateLanguageGroupByArgs['orderBy'] }
+        : { orderBy?: CandidateLanguageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CandidateLanguageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCandidateLanguageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CandidateLanguage model
+   */
+  readonly fields: CandidateLanguageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CandidateLanguage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CandidateLanguageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    candidateProfile<T extends CandidateProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfileDefaultArgs<ExtArgs>>): Prisma__CandidateProfileClient<$Result.GetResult<Prisma.$CandidateProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CandidateLanguage model
+   */
+  interface CandidateLanguageFieldRefs {
+    readonly candidateProfileId: FieldRef<"CandidateLanguage", 'String'>
+    readonly level: FieldRef<"CandidateLanguage", 'Level'>
+    readonly languageName: FieldRef<"CandidateLanguage", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CandidateLanguage findUnique
+   */
+  export type CandidateLanguageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateLanguage to fetch.
+     */
+    where: CandidateLanguageWhereUniqueInput
+  }
+
+  /**
+   * CandidateLanguage findUniqueOrThrow
+   */
+  export type CandidateLanguageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateLanguage to fetch.
+     */
+    where: CandidateLanguageWhereUniqueInput
+  }
+
+  /**
+   * CandidateLanguage findFirst
+   */
+  export type CandidateLanguageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateLanguage to fetch.
+     */
+    where?: CandidateLanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateLanguages to fetch.
+     */
+    orderBy?: CandidateLanguageOrderByWithRelationInput | CandidateLanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CandidateLanguages.
+     */
+    cursor?: CandidateLanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateLanguages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateLanguages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CandidateLanguages.
+     */
+    distinct?: CandidateLanguageScalarFieldEnum | CandidateLanguageScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateLanguage findFirstOrThrow
+   */
+  export type CandidateLanguageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateLanguage to fetch.
+     */
+    where?: CandidateLanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateLanguages to fetch.
+     */
+    orderBy?: CandidateLanguageOrderByWithRelationInput | CandidateLanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CandidateLanguages.
+     */
+    cursor?: CandidateLanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateLanguages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateLanguages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CandidateLanguages.
+     */
+    distinct?: CandidateLanguageScalarFieldEnum | CandidateLanguageScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateLanguage findMany
+   */
+  export type CandidateLanguageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateLanguages to fetch.
+     */
+    where?: CandidateLanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateLanguages to fetch.
+     */
+    orderBy?: CandidateLanguageOrderByWithRelationInput | CandidateLanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CandidateLanguages.
+     */
+    cursor?: CandidateLanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateLanguages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateLanguages.
+     */
+    skip?: number
+    distinct?: CandidateLanguageScalarFieldEnum | CandidateLanguageScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateLanguage create
+   */
+  export type CandidateLanguageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CandidateLanguage.
+     */
+    data: XOR<CandidateLanguageCreateInput, CandidateLanguageUncheckedCreateInput>
+  }
+
+  /**
+   * CandidateLanguage createMany
+   */
+  export type CandidateLanguageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CandidateLanguages.
+     */
+    data: CandidateLanguageCreateManyInput | CandidateLanguageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CandidateLanguage createManyAndReturn
+   */
+  export type CandidateLanguageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * The data used to create many CandidateLanguages.
+     */
+    data: CandidateLanguageCreateManyInput | CandidateLanguageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CandidateLanguage update
+   */
+  export type CandidateLanguageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CandidateLanguage.
+     */
+    data: XOR<CandidateLanguageUpdateInput, CandidateLanguageUncheckedUpdateInput>
+    /**
+     * Choose, which CandidateLanguage to update.
+     */
+    where: CandidateLanguageWhereUniqueInput
+  }
+
+  /**
+   * CandidateLanguage updateMany
+   */
+  export type CandidateLanguageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CandidateLanguages.
+     */
+    data: XOR<CandidateLanguageUpdateManyMutationInput, CandidateLanguageUncheckedUpdateManyInput>
+    /**
+     * Filter which CandidateLanguages to update
+     */
+    where?: CandidateLanguageWhereInput
+    /**
+     * Limit how many CandidateLanguages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CandidateLanguage updateManyAndReturn
+   */
+  export type CandidateLanguageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * The data used to update CandidateLanguages.
+     */
+    data: XOR<CandidateLanguageUpdateManyMutationInput, CandidateLanguageUncheckedUpdateManyInput>
+    /**
+     * Filter which CandidateLanguages to update
+     */
+    where?: CandidateLanguageWhereInput
+    /**
+     * Limit how many CandidateLanguages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CandidateLanguage upsert
+   */
+  export type CandidateLanguageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CandidateLanguage to update in case it exists.
+     */
+    where: CandidateLanguageWhereUniqueInput
+    /**
+     * In case the CandidateLanguage found by the `where` argument doesn't exist, create a new CandidateLanguage with this data.
+     */
+    create: XOR<CandidateLanguageCreateInput, CandidateLanguageUncheckedCreateInput>
+    /**
+     * In case the CandidateLanguage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CandidateLanguageUpdateInput, CandidateLanguageUncheckedUpdateInput>
+  }
+
+  /**
+   * CandidateLanguage delete
+   */
+  export type CandidateLanguageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
+    /**
+     * Filter which CandidateLanguage to delete.
+     */
+    where: CandidateLanguageWhereUniqueInput
+  }
+
+  /**
+   * CandidateLanguage deleteMany
+   */
+  export type CandidateLanguageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CandidateLanguages to delete
+     */
+    where?: CandidateLanguageWhereInput
+    /**
+     * Limit how many CandidateLanguages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CandidateLanguage without action
+   */
+  export type CandidateLanguageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateLanguage
+     */
+    select?: CandidateLanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateLanguage
+     */
+    omit?: CandidateLanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateLanguageInclude<ExtArgs> | null
   }
 
 
@@ -4270,6 +5580,15 @@ export namespace Prisma {
   };
 
   export type LanguageScalarFieldEnum = (typeof LanguageScalarFieldEnum)[keyof typeof LanguageScalarFieldEnum]
+
+
+  export const CandidateLanguageScalarFieldEnum: {
+    candidateProfileId: 'candidateProfileId',
+    level: 'level',
+    languageName: 'languageName'
+  };
+
+  export type CandidateLanguageScalarFieldEnum = (typeof CandidateLanguageScalarFieldEnum)[keyof typeof CandidateLanguageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4365,6 +5684,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Level'
+   */
+  export type EnumLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Level'>
+    
+
+
+  /**
+   * Reference to a field of type 'Level[]'
+   */
+  export type ListEnumLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Level[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -4456,6 +5789,7 @@ export namespace Prisma {
     status?: BoolFilter<"CandidateProfile"> | boolean
     openToWork?: BoolFilter<"CandidateProfile"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    candidateLanguage?: CandidateLanguageListRelationFilter
   }
 
   export type CandidateProfileOrderByWithRelationInput = {
@@ -4470,6 +5804,7 @@ export namespace Prisma {
     status?: SortOrder
     openToWork?: SortOrder
     user?: UserOrderByWithRelationInput
+    candidateLanguage?: CandidateLanguageOrderByRelationAggregateInput
   }
 
   export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -4487,6 +5822,7 @@ export namespace Prisma {
     status?: BoolFilter<"CandidateProfile"> | boolean
     openToWork?: BoolFilter<"CandidateProfile"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    candidateLanguage?: CandidateLanguageListRelationFilter
   }, "id" | "userId">
 
   export type CandidateProfileOrderByWithAggregationInput = {
@@ -4526,10 +5862,12 @@ export namespace Prisma {
     OR?: LanguageWhereInput[]
     NOT?: LanguageWhereInput | LanguageWhereInput[]
     name?: StringFilter<"Language"> | string
+    candidateLanguage?: CandidateLanguageListRelationFilter
   }
 
   export type LanguageOrderByWithRelationInput = {
     name?: SortOrder
+    candidateLanguage?: CandidateLanguageOrderByRelationAggregateInput
   }
 
   export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -4537,6 +5875,7 @@ export namespace Prisma {
     AND?: LanguageWhereInput | LanguageWhereInput[]
     OR?: LanguageWhereInput[]
     NOT?: LanguageWhereInput | LanguageWhereInput[]
+    candidateLanguage?: CandidateLanguageListRelationFilter
   }, "name">
 
   export type LanguageOrderByWithAggregationInput = {
@@ -4551,6 +5890,55 @@ export namespace Prisma {
     OR?: LanguageScalarWhereWithAggregatesInput[]
     NOT?: LanguageScalarWhereWithAggregatesInput | LanguageScalarWhereWithAggregatesInput[]
     name?: StringWithAggregatesFilter<"Language"> | string
+  }
+
+  export type CandidateLanguageWhereInput = {
+    AND?: CandidateLanguageWhereInput | CandidateLanguageWhereInput[]
+    OR?: CandidateLanguageWhereInput[]
+    NOT?: CandidateLanguageWhereInput | CandidateLanguageWhereInput[]
+    candidateProfileId?: StringFilter<"CandidateLanguage"> | string
+    level?: EnumLevelFilter<"CandidateLanguage"> | $Enums.Level
+    languageName?: StringFilter<"CandidateLanguage"> | string
+    candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }
+
+  export type CandidateLanguageOrderByWithRelationInput = {
+    candidateProfileId?: SortOrder
+    level?: SortOrder
+    languageName?: SortOrder
+    candidateProfile?: CandidateProfileOrderByWithRelationInput
+    language?: LanguageOrderByWithRelationInput
+  }
+
+  export type CandidateLanguageWhereUniqueInput = Prisma.AtLeast<{
+    candidateProfileId_languageName?: CandidateLanguageCandidateProfileIdLanguageNameCompoundUniqueInput
+    AND?: CandidateLanguageWhereInput | CandidateLanguageWhereInput[]
+    OR?: CandidateLanguageWhereInput[]
+    NOT?: CandidateLanguageWhereInput | CandidateLanguageWhereInput[]
+    candidateProfileId?: StringFilter<"CandidateLanguage"> | string
+    level?: EnumLevelFilter<"CandidateLanguage"> | $Enums.Level
+    languageName?: StringFilter<"CandidateLanguage"> | string
+    candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+  }, "candidateProfileId_languageName">
+
+  export type CandidateLanguageOrderByWithAggregationInput = {
+    candidateProfileId?: SortOrder
+    level?: SortOrder
+    languageName?: SortOrder
+    _count?: CandidateLanguageCountOrderByAggregateInput
+    _max?: CandidateLanguageMaxOrderByAggregateInput
+    _min?: CandidateLanguageMinOrderByAggregateInput
+  }
+
+  export type CandidateLanguageScalarWhereWithAggregatesInput = {
+    AND?: CandidateLanguageScalarWhereWithAggregatesInput | CandidateLanguageScalarWhereWithAggregatesInput[]
+    OR?: CandidateLanguageScalarWhereWithAggregatesInput[]
+    NOT?: CandidateLanguageScalarWhereWithAggregatesInput | CandidateLanguageScalarWhereWithAggregatesInput[]
+    candidateProfileId?: StringWithAggregatesFilter<"CandidateLanguage"> | string
+    level?: EnumLevelWithAggregatesFilter<"CandidateLanguage"> | $Enums.Level
+    languageName?: StringWithAggregatesFilter<"CandidateLanguage"> | string
   }
 
   export type UserCreateInput = {
@@ -4631,6 +6019,7 @@ export namespace Prisma {
     status?: boolean
     openToWork?: boolean
     user: UserCreateNestedOneWithoutCandidateProfileInput
+    candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateInput = {
@@ -4644,6 +6033,7 @@ export namespace Prisma {
     address: string
     status?: boolean
     openToWork?: boolean
+    candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUpdateInput = {
@@ -4657,6 +6047,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
+    candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateInput = {
@@ -4670,6 +6061,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
+    candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileCreateManyInput = {
@@ -4712,18 +6104,22 @@ export namespace Prisma {
 
   export type LanguageCreateInput = {
     name: string
+    candidateLanguage?: CandidateLanguageCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUncheckedCreateInput = {
     name: string
+    candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutLanguageInput
   }
 
   export type LanguageUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    candidateLanguage?: CandidateLanguageUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   }
 
   export type LanguageCreateManyInput = {
@@ -4736,6 +6132,46 @@ export namespace Prisma {
 
   export type LanguageUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateLanguageCreateInput = {
+    level: $Enums.Level
+    candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateLanguageInput
+    language: LanguageCreateNestedOneWithoutCandidateLanguageInput
+  }
+
+  export type CandidateLanguageUncheckedCreateInput = {
+    candidateProfileId: string
+    level: $Enums.Level
+    languageName: string
+  }
+
+  export type CandidateLanguageUpdateInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    candidateProfile?: CandidateProfileUpdateOneRequiredWithoutCandidateLanguageNestedInput
+    language?: LanguageUpdateOneRequiredWithoutCandidateLanguageNestedInput
+  }
+
+  export type CandidateLanguageUncheckedUpdateInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    languageName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateLanguageCreateManyInput = {
+    candidateProfileId: string
+    level: $Enums.Level
+    languageName: string
+  }
+
+  export type CandidateLanguageUpdateManyMutationInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  }
+
+  export type CandidateLanguageUncheckedUpdateManyInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    languageName?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4894,6 +6330,16 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type CandidateLanguageListRelationFilter = {
+    every?: CandidateLanguageWhereInput
+    some?: CandidateLanguageWhereInput
+    none?: CandidateLanguageWhereInput
+  }
+
+  export type CandidateLanguageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CandidateProfileCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -4969,6 +6415,56 @@ export namespace Prisma {
     name?: SortOrder
   }
 
+  export type EnumLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelFilter<$PrismaModel> | $Enums.Level
+  }
+
+  export type CandidateProfileScalarRelationFilter = {
+    is?: CandidateProfileWhereInput
+    isNot?: CandidateProfileWhereInput
+  }
+
+  export type LanguageScalarRelationFilter = {
+    is?: LanguageWhereInput
+    isNot?: LanguageWhereInput
+  }
+
+  export type CandidateLanguageCandidateProfileIdLanguageNameCompoundUniqueInput = {
+    candidateProfileId: string
+    languageName: string
+  }
+
+  export type CandidateLanguageCountOrderByAggregateInput = {
+    candidateProfileId?: SortOrder
+    level?: SortOrder
+    languageName?: SortOrder
+  }
+
+  export type CandidateLanguageMaxOrderByAggregateInput = {
+    candidateProfileId?: SortOrder
+    level?: SortOrder
+    languageName?: SortOrder
+  }
+
+  export type CandidateLanguageMinOrderByAggregateInput = {
+    candidateProfileId?: SortOrder
+    level?: SortOrder
+    languageName?: SortOrder
+  }
+
+  export type EnumLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelWithAggregatesFilter<$PrismaModel> | $Enums.Level
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelFilter<$PrismaModel>
+    _max?: NestedEnumLevelFilter<$PrismaModel>
+  }
+
   export type CandidateProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<CandidateProfileCreateWithoutUserInput, CandidateProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: CandidateProfileCreateOrConnectWithoutUserInput
@@ -5023,6 +6519,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type CandidateLanguageCreateNestedManyWithoutCandidateProfileInput = {
+    create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
+    createMany?: CandidateLanguageCreateManyCandidateProfileInputEnvelope
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+  }
+
+  export type CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput = {
+    create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
+    createMany?: CandidateLanguageCreateManyCandidateProfileInputEnvelope
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+  }
+
   export type EnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender
   }
@@ -5037,6 +6547,108 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCandidateProfileInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCandidateProfileInput, UserUpdateWithoutCandidateProfileInput>, UserUncheckedUpdateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput = {
+    create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
+    upsert?: CandidateLanguageUpsertWithWhereUniqueWithoutCandidateProfileInput | CandidateLanguageUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+    createMany?: CandidateLanguageCreateManyCandidateProfileInputEnvelope
+    set?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    disconnect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    delete?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    update?: CandidateLanguageUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateLanguageUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+    updateMany?: CandidateLanguageUpdateManyWithWhereWithoutCandidateProfileInput | CandidateLanguageUpdateManyWithWhereWithoutCandidateProfileInput[]
+    deleteMany?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
+  }
+
+  export type CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput = {
+    create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
+    upsert?: CandidateLanguageUpsertWithWhereUniqueWithoutCandidateProfileInput | CandidateLanguageUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+    createMany?: CandidateLanguageCreateManyCandidateProfileInputEnvelope
+    set?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    disconnect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    delete?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    update?: CandidateLanguageUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateLanguageUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+    updateMany?: CandidateLanguageUpdateManyWithWhereWithoutCandidateProfileInput | CandidateLanguageUpdateManyWithWhereWithoutCandidateProfileInput[]
+    deleteMany?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
+  }
+
+  export type CandidateLanguageCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<CandidateLanguageCreateWithoutLanguageInput, CandidateLanguageUncheckedCreateWithoutLanguageInput> | CandidateLanguageCreateWithoutLanguageInput[] | CandidateLanguageUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutLanguageInput | CandidateLanguageCreateOrConnectWithoutLanguageInput[]
+    createMany?: CandidateLanguageCreateManyLanguageInputEnvelope
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+  }
+
+  export type CandidateLanguageUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<CandidateLanguageCreateWithoutLanguageInput, CandidateLanguageUncheckedCreateWithoutLanguageInput> | CandidateLanguageCreateWithoutLanguageInput[] | CandidateLanguageUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutLanguageInput | CandidateLanguageCreateOrConnectWithoutLanguageInput[]
+    createMany?: CandidateLanguageCreateManyLanguageInputEnvelope
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+  }
+
+  export type CandidateLanguageUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<CandidateLanguageCreateWithoutLanguageInput, CandidateLanguageUncheckedCreateWithoutLanguageInput> | CandidateLanguageCreateWithoutLanguageInput[] | CandidateLanguageUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutLanguageInput | CandidateLanguageCreateOrConnectWithoutLanguageInput[]
+    upsert?: CandidateLanguageUpsertWithWhereUniqueWithoutLanguageInput | CandidateLanguageUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: CandidateLanguageCreateManyLanguageInputEnvelope
+    set?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    disconnect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    delete?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    update?: CandidateLanguageUpdateWithWhereUniqueWithoutLanguageInput | CandidateLanguageUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: CandidateLanguageUpdateManyWithWhereWithoutLanguageInput | CandidateLanguageUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
+  }
+
+  export type CandidateLanguageUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<CandidateLanguageCreateWithoutLanguageInput, CandidateLanguageUncheckedCreateWithoutLanguageInput> | CandidateLanguageCreateWithoutLanguageInput[] | CandidateLanguageUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: CandidateLanguageCreateOrConnectWithoutLanguageInput | CandidateLanguageCreateOrConnectWithoutLanguageInput[]
+    upsert?: CandidateLanguageUpsertWithWhereUniqueWithoutLanguageInput | CandidateLanguageUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: CandidateLanguageCreateManyLanguageInputEnvelope
+    set?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    disconnect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    delete?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+    update?: CandidateLanguageUpdateWithWhereUniqueWithoutLanguageInput | CandidateLanguageUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: CandidateLanguageUpdateManyWithWhereWithoutLanguageInput | CandidateLanguageUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
+  }
+
+  export type CandidateProfileCreateNestedOneWithoutCandidateLanguageInput = {
+    create?: XOR<CandidateProfileCreateWithoutCandidateLanguageInput, CandidateProfileUncheckedCreateWithoutCandidateLanguageInput>
+    connectOrCreate?: CandidateProfileCreateOrConnectWithoutCandidateLanguageInput
+    connect?: CandidateProfileWhereUniqueInput
+  }
+
+  export type LanguageCreateNestedOneWithoutCandidateLanguageInput = {
+    create?: XOR<LanguageCreateWithoutCandidateLanguageInput, LanguageUncheckedCreateWithoutCandidateLanguageInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutCandidateLanguageInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type EnumLevelFieldUpdateOperationsInput = {
+    set?: $Enums.Level
+  }
+
+  export type CandidateProfileUpdateOneRequiredWithoutCandidateLanguageNestedInput = {
+    create?: XOR<CandidateProfileCreateWithoutCandidateLanguageInput, CandidateProfileUncheckedCreateWithoutCandidateLanguageInput>
+    connectOrCreate?: CandidateProfileCreateOrConnectWithoutCandidateLanguageInput
+    upsert?: CandidateProfileUpsertWithoutCandidateLanguageInput
+    connect?: CandidateProfileWhereUniqueInput
+    update?: XOR<XOR<CandidateProfileUpdateToOneWithWhereWithoutCandidateLanguageInput, CandidateProfileUpdateWithoutCandidateLanguageInput>, CandidateProfileUncheckedUpdateWithoutCandidateLanguageInput>
+  }
+
+  export type LanguageUpdateOneRequiredWithoutCandidateLanguageNestedInput = {
+    create?: XOR<LanguageCreateWithoutCandidateLanguageInput, LanguageUncheckedCreateWithoutCandidateLanguageInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutCandidateLanguageInput
+    upsert?: LanguageUpsertWithoutCandidateLanguageInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutCandidateLanguageInput, LanguageUpdateWithoutCandidateLanguageInput>, LanguageUncheckedUpdateWithoutCandidateLanguageInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5195,6 +6807,23 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelFilter<$PrismaModel> | $Enums.Level
+  }
+
+  export type NestedEnumLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelWithAggregatesFilter<$PrismaModel> | $Enums.Level
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelFilter<$PrismaModel>
+    _max?: NestedEnumLevelFilter<$PrismaModel>
+  }
+
   export type CandidateProfileCreateWithoutUserInput = {
     id?: string
     fullName: string
@@ -5205,6 +6834,7 @@ export namespace Prisma {
     address: string
     status?: boolean
     openToWork?: boolean
+    candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateWithoutUserInput = {
@@ -5217,6 +6847,7 @@ export namespace Prisma {
     address: string
     status?: boolean
     openToWork?: boolean
+    candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileCreateOrConnectWithoutUserInput = {
@@ -5245,6 +6876,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
+    candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateWithoutUserInput = {
@@ -5257,6 +6889,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
+    candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type UserCreateWithoutCandidateProfileInput = {
@@ -5280,6 +6913,26 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutCandidateProfileInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutCandidateProfileInput, UserUncheckedCreateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateLanguageCreateWithoutCandidateProfileInput = {
+    level: $Enums.Level
+    language: LanguageCreateNestedOneWithoutCandidateLanguageInput
+  }
+
+  export type CandidateLanguageUncheckedCreateWithoutCandidateProfileInput = {
+    level: $Enums.Level
+    languageName: string
+  }
+
+  export type CandidateLanguageCreateOrConnectWithoutCandidateProfileInput = {
+    where: CandidateLanguageWhereUniqueInput
+    create: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateLanguageCreateManyCandidateProfileInputEnvelope = {
+    data: CandidateLanguageCreateManyCandidateProfileInput | CandidateLanguageCreateManyCandidateProfileInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutCandidateProfileInput = {
@@ -5309,6 +6962,207 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CandidateLanguageUpsertWithWhereUniqueWithoutCandidateProfileInput = {
+    where: CandidateLanguageWhereUniqueInput
+    update: XOR<CandidateLanguageUpdateWithoutCandidateProfileInput, CandidateLanguageUncheckedUpdateWithoutCandidateProfileInput>
+    create: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateLanguageUpdateWithWhereUniqueWithoutCandidateProfileInput = {
+    where: CandidateLanguageWhereUniqueInput
+    data: XOR<CandidateLanguageUpdateWithoutCandidateProfileInput, CandidateLanguageUncheckedUpdateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateLanguageUpdateManyWithWhereWithoutCandidateProfileInput = {
+    where: CandidateLanguageScalarWhereInput
+    data: XOR<CandidateLanguageUpdateManyMutationInput, CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileInput>
+  }
+
+  export type CandidateLanguageScalarWhereInput = {
+    AND?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
+    OR?: CandidateLanguageScalarWhereInput[]
+    NOT?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
+    candidateProfileId?: StringFilter<"CandidateLanguage"> | string
+    level?: EnumLevelFilter<"CandidateLanguage"> | $Enums.Level
+    languageName?: StringFilter<"CandidateLanguage"> | string
+  }
+
+  export type CandidateLanguageCreateWithoutLanguageInput = {
+    level: $Enums.Level
+    candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateLanguageInput
+  }
+
+  export type CandidateLanguageUncheckedCreateWithoutLanguageInput = {
+    candidateProfileId: string
+    level: $Enums.Level
+  }
+
+  export type CandidateLanguageCreateOrConnectWithoutLanguageInput = {
+    where: CandidateLanguageWhereUniqueInput
+    create: XOR<CandidateLanguageCreateWithoutLanguageInput, CandidateLanguageUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type CandidateLanguageCreateManyLanguageInputEnvelope = {
+    data: CandidateLanguageCreateManyLanguageInput | CandidateLanguageCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CandidateLanguageUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: CandidateLanguageWhereUniqueInput
+    update: XOR<CandidateLanguageUpdateWithoutLanguageInput, CandidateLanguageUncheckedUpdateWithoutLanguageInput>
+    create: XOR<CandidateLanguageCreateWithoutLanguageInput, CandidateLanguageUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type CandidateLanguageUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: CandidateLanguageWhereUniqueInput
+    data: XOR<CandidateLanguageUpdateWithoutLanguageInput, CandidateLanguageUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type CandidateLanguageUpdateManyWithWhereWithoutLanguageInput = {
+    where: CandidateLanguageScalarWhereInput
+    data: XOR<CandidateLanguageUpdateManyMutationInput, CandidateLanguageUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type CandidateProfileCreateWithoutCandidateLanguageInput = {
+    id?: string
+    fullName: string
+    gender: $Enums.Gender
+    phone: string
+    cv: string
+    birthDate: Date | string
+    address: string
+    status?: boolean
+    openToWork?: boolean
+    user: UserCreateNestedOneWithoutCandidateProfileInput
+  }
+
+  export type CandidateProfileUncheckedCreateWithoutCandidateLanguageInput = {
+    id?: string
+    userId: string
+    fullName: string
+    gender: $Enums.Gender
+    phone: string
+    cv: string
+    birthDate: Date | string
+    address: string
+    status?: boolean
+    openToWork?: boolean
+  }
+
+  export type CandidateProfileCreateOrConnectWithoutCandidateLanguageInput = {
+    where: CandidateProfileWhereUniqueInput
+    create: XOR<CandidateProfileCreateWithoutCandidateLanguageInput, CandidateProfileUncheckedCreateWithoutCandidateLanguageInput>
+  }
+
+  export type LanguageCreateWithoutCandidateLanguageInput = {
+    name: string
+  }
+
+  export type LanguageUncheckedCreateWithoutCandidateLanguageInput = {
+    name: string
+  }
+
+  export type LanguageCreateOrConnectWithoutCandidateLanguageInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutCandidateLanguageInput, LanguageUncheckedCreateWithoutCandidateLanguageInput>
+  }
+
+  export type CandidateProfileUpsertWithoutCandidateLanguageInput = {
+    update: XOR<CandidateProfileUpdateWithoutCandidateLanguageInput, CandidateProfileUncheckedUpdateWithoutCandidateLanguageInput>
+    create: XOR<CandidateProfileCreateWithoutCandidateLanguageInput, CandidateProfileUncheckedCreateWithoutCandidateLanguageInput>
+    where?: CandidateProfileWhereInput
+  }
+
+  export type CandidateProfileUpdateToOneWithWhereWithoutCandidateLanguageInput = {
+    where?: CandidateProfileWhereInput
+    data: XOR<CandidateProfileUpdateWithoutCandidateLanguageInput, CandidateProfileUncheckedUpdateWithoutCandidateLanguageInput>
+  }
+
+  export type CandidateProfileUpdateWithoutCandidateLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    phone?: StringFieldUpdateOperationsInput | string
+    cv?: StringFieldUpdateOperationsInput | string
+    birthDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    openToWork?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
+  }
+
+  export type CandidateProfileUncheckedUpdateWithoutCandidateLanguageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    phone?: StringFieldUpdateOperationsInput | string
+    cv?: StringFieldUpdateOperationsInput | string
+    birthDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    openToWork?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LanguageUpsertWithoutCandidateLanguageInput = {
+    update: XOR<LanguageUpdateWithoutCandidateLanguageInput, LanguageUncheckedUpdateWithoutCandidateLanguageInput>
+    create: XOR<LanguageCreateWithoutCandidateLanguageInput, LanguageUncheckedCreateWithoutCandidateLanguageInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutCandidateLanguageInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutCandidateLanguageInput, LanguageUncheckedUpdateWithoutCandidateLanguageInput>
+  }
+
+  export type LanguageUpdateWithoutCandidateLanguageInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LanguageUncheckedUpdateWithoutCandidateLanguageInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateLanguageCreateManyCandidateProfileInput = {
+    level: $Enums.Level
+    languageName: string
+  }
+
+  export type CandidateLanguageUpdateWithoutCandidateProfileInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    language?: LanguageUpdateOneRequiredWithoutCandidateLanguageNestedInput
+  }
+
+  export type CandidateLanguageUncheckedUpdateWithoutCandidateProfileInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    languageName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    languageName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateLanguageCreateManyLanguageInput = {
+    candidateProfileId: string
+    level: $Enums.Level
+  }
+
+  export type CandidateLanguageUpdateWithoutLanguageInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    candidateProfile?: CandidateProfileUpdateOneRequiredWithoutCandidateLanguageNestedInput
+  }
+
+  export type CandidateLanguageUncheckedUpdateWithoutLanguageInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  }
+
+  export type CandidateLanguageUncheckedUpdateManyWithoutLanguageInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
   }
 
 
