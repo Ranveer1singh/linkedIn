@@ -13,7 +13,7 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
+/*=================================== USER MODEL ======================================*/
 model User {
    id      String   @id @default(uuid())
   email   String   @unique
@@ -23,6 +23,9 @@ model User {
  status  Boolean @default(true)
  candidateProfile CandidateProfile?
 }
+
+/*=================================== Candidate MODEL ======================================*/
+
 // One To One 
 model CandidateProfile {
  id String   @id @default(uuid())
@@ -46,4 +49,10 @@ enum Role {
   ADMIN
   RECRUITER
   CANDIDATE
+}
+
+
+/*=================================== language MODEL ======================================*/
+model Language {
+  name String @id 
 }

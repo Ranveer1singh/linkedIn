@@ -139,6 +139,10 @@ exports.Prisma.CandidateProfileScalarFieldEnum = {
   openToWork: 'openToWork'
 };
 
+exports.Prisma.LanguageScalarFieldEnum = {
+  name: 'name'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -166,7 +170,8 @@ exports.Gender = exports.$Enums.Gender = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  CandidateProfile: 'CandidateProfile'
+  CandidateProfile: 'CandidateProfile',
+  Language: 'Language'
 };
 
 /**
