@@ -63,7 +63,7 @@ model Language {
 model CandidateLanguage {
   candidateProfile CandidateProfile @relation(fields : [candidateProfileId], references : [id])
   candidateProfileId String
-  level Level
+  level Level @default(BASIC)
   language Language @relation(fields : [languageName], references : [name])
   languageName String
   @@unique([candidateProfileId, languageName])

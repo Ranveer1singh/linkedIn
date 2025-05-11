@@ -44,6 +44,18 @@ class CandidateProfileService {
         if(!candiate) throw new BadRequestException("Candidate Not Found")
         return candiate
     }
+    /**
+     * readByUSerID
+     */
+    public async readByUserId(userId : string):Promise<CandidateProfile>  {
+        console.log(userId)
+        const candiate : CandidateProfile | null =  await prisma.candidateProfile.findUnique({
+            where : {userId}
+        })
+        
+        if(!candiate) throw new BadRequestException("Candidate Not Found")
+        return candiate
+    }
 
     /**
      * update

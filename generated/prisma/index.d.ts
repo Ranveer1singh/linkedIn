@@ -6135,14 +6135,14 @@ export namespace Prisma {
   }
 
   export type CandidateLanguageCreateInput = {
-    level: $Enums.Level
+    level?: $Enums.Level
     candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateLanguageInput
     language: LanguageCreateNestedOneWithoutCandidateLanguageInput
   }
 
   export type CandidateLanguageUncheckedCreateInput = {
     candidateProfileId: string
-    level: $Enums.Level
+    level?: $Enums.Level
     languageName: string
   }
 
@@ -6160,7 +6160,7 @@ export namespace Prisma {
 
   export type CandidateLanguageCreateManyInput = {
     candidateProfileId: string
-    level: $Enums.Level
+    level?: $Enums.Level
     languageName: string
   }
 
@@ -6916,12 +6916,12 @@ export namespace Prisma {
   }
 
   export type CandidateLanguageCreateWithoutCandidateProfileInput = {
-    level: $Enums.Level
+    level?: $Enums.Level
     language: LanguageCreateNestedOneWithoutCandidateLanguageInput
   }
 
   export type CandidateLanguageUncheckedCreateWithoutCandidateProfileInput = {
-    level: $Enums.Level
+    level?: $Enums.Level
     languageName: string
   }
 
@@ -6990,13 +6990,13 @@ export namespace Prisma {
   }
 
   export type CandidateLanguageCreateWithoutLanguageInput = {
-    level: $Enums.Level
+    level?: $Enums.Level
     candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateLanguageInput
   }
 
   export type CandidateLanguageUncheckedCreateWithoutLanguageInput = {
     candidateProfileId: string
-    level: $Enums.Level
+    level?: $Enums.Level
   }
 
   export type CandidateLanguageCreateOrConnectWithoutLanguageInput = {
@@ -7126,7 +7126,7 @@ export namespace Prisma {
   }
 
   export type CandidateLanguageCreateManyCandidateProfileInput = {
-    level: $Enums.Level
+    level?: $Enums.Level
     languageName: string
   }
 
@@ -7147,7 +7147,7 @@ export namespace Prisma {
 
   export type CandidateLanguageCreateManyLanguageInput = {
     candidateProfileId: string
-    level: $Enums.Level
+    level?: $Enums.Level
   }
 
   export type CandidateLanguageUpdateWithoutLanguageInput = {
