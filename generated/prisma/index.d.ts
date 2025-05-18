@@ -33,6 +33,16 @@ export type Language = $Result.DefaultSelection<Prisma.$LanguagePayload>
  * =================================== Candidate language MODEL ======================================
  */
 export type CandidateLanguage = $Result.DefaultSelection<Prisma.$CandidateLanguagePayload>
+/**
+ * Model Education
+ * ===================================  EDUCATION MODEL ======================================
+ */
+export type Education = $Result.DefaultSelection<Prisma.$EducationPayload>
+/**
+ * Model CandidateEducation
+ * =================================== Candidate EDUCATION MODEL ======================================
+ */
+export type CandidateEducation = $Result.DefaultSelection<Prisma.$CandidateEducationPayload>
 
 /**
  * Enums
@@ -63,6 +73,15 @@ export const Level: {
 
 export type Level = (typeof Level)[keyof typeof Level]
 
+
+export const DEGREE: {
+  BACHELORS: 'BACHELORS',
+  MASTER: 'MASTER',
+  ENGINEER: 'ENGINEER'
+};
+
+export type DEGREE = (typeof DEGREE)[keyof typeof DEGREE]
+
 }
 
 export type Gender = $Enums.Gender
@@ -76,6 +95,10 @@ export const Role: typeof $Enums.Role
 export type Level = $Enums.Level
 
 export const Level: typeof $Enums.Level
+
+export type DEGREE = $Enums.DEGREE
+
+export const DEGREE: typeof $Enums.DEGREE
 
 /**
  * ##  Prisma Client ʲˢ
@@ -241,6 +264,26 @@ export class PrismaClient<
     * ```
     */
   get candidateLanguage(): Prisma.CandidateLanguageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.education`: Exposes CRUD operations for the **Education** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Educations
+    * const educations = await prisma.education.findMany()
+    * ```
+    */
+  get education(): Prisma.EducationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.candidateEducation`: Exposes CRUD operations for the **CandidateEducation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CandidateEducations
+    * const candidateEducations = await prisma.candidateEducation.findMany()
+    * ```
+    */
+  get candidateEducation(): Prisma.CandidateEducationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -684,7 +727,9 @@ export namespace Prisma {
     User: 'User',
     CandidateProfile: 'CandidateProfile',
     Language: 'Language',
-    CandidateLanguage: 'CandidateLanguage'
+    CandidateLanguage: 'CandidateLanguage',
+    Education: 'Education',
+    CandidateEducation: 'CandidateEducation'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -703,7 +748,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage"
+      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1003,6 +1048,154 @@ export namespace Prisma {
           }
         }
       }
+      Education: {
+        payload: Prisma.$EducationPayload<ExtArgs>
+        fields: Prisma.EducationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EducationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EducationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>
+          }
+          findFirst: {
+            args: Prisma.EducationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EducationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>
+          }
+          findMany: {
+            args: Prisma.EducationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>[]
+          }
+          create: {
+            args: Prisma.EducationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>
+          }
+          createMany: {
+            args: Prisma.EducationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EducationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>[]
+          }
+          delete: {
+            args: Prisma.EducationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>
+          }
+          update: {
+            args: Prisma.EducationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>
+          }
+          deleteMany: {
+            args: Prisma.EducationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EducationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EducationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>[]
+          }
+          upsert: {
+            args: Prisma.EducationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EducationPayload>
+          }
+          aggregate: {
+            args: Prisma.EducationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEducation>
+          }
+          groupBy: {
+            args: Prisma.EducationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EducationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EducationCountArgs<ExtArgs>
+            result: $Utils.Optional<EducationCountAggregateOutputType> | number
+          }
+        }
+      }
+      CandidateEducation: {
+        payload: Prisma.$CandidateEducationPayload<ExtArgs>
+        fields: Prisma.CandidateEducationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CandidateEducationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CandidateEducationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>
+          }
+          findFirst: {
+            args: Prisma.CandidateEducationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CandidateEducationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>
+          }
+          findMany: {
+            args: Prisma.CandidateEducationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>[]
+          }
+          create: {
+            args: Prisma.CandidateEducationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>
+          }
+          createMany: {
+            args: Prisma.CandidateEducationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CandidateEducationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>[]
+          }
+          delete: {
+            args: Prisma.CandidateEducationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>
+          }
+          update: {
+            args: Prisma.CandidateEducationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>
+          }
+          deleteMany: {
+            args: Prisma.CandidateEducationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CandidateEducationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CandidateEducationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>[]
+          }
+          upsert: {
+            args: Prisma.CandidateEducationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateEducationPayload>
+          }
+          aggregate: {
+            args: Prisma.CandidateEducationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCandidateEducation>
+          }
+          groupBy: {
+            args: Prisma.CandidateEducationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CandidateEducationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CandidateEducationCountArgs<ExtArgs>
+            result: $Utils.Optional<CandidateEducationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1091,6 +1284,8 @@ export namespace Prisma {
     candidateProfile?: CandidateProfileOmit
     language?: LanguageOmit
     candidateLanguage?: CandidateLanguageOmit
+    education?: EducationOmit
+    candidateEducation?: CandidateEducationOmit
   }
 
   /* Types for Logging */
@@ -1186,10 +1381,12 @@ export namespace Prisma {
 
   export type CandidateProfileCountOutputType = {
     candidateLanguage: number
+    candidateEducation: number
   }
 
   export type CandidateProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     candidateLanguage?: boolean | CandidateProfileCountOutputTypeCountCandidateLanguageArgs
+    candidateEducation?: boolean | CandidateProfileCountOutputTypeCountCandidateEducationArgs
   }
 
   // Custom InputTypes
@@ -1208,6 +1405,13 @@ export namespace Prisma {
    */
   export type CandidateProfileCountOutputTypeCountCandidateLanguageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CandidateLanguageWhereInput
+  }
+
+  /**
+   * CandidateProfileCountOutputType without action
+   */
+  export type CandidateProfileCountOutputTypeCountCandidateEducationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateEducationWhereInput
   }
 
 
@@ -1239,6 +1443,37 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountCandidateLanguageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CandidateLanguageWhereInput
+  }
+
+
+  /**
+   * Count Type EducationCountOutputType
+   */
+
+  export type EducationCountOutputType = {
+    candidateEducation: number
+  }
+
+  export type EducationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateEducation?: boolean | EducationCountOutputTypeCountCandidateEducationArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EducationCountOutputType without action
+   */
+  export type EducationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EducationCountOutputType
+     */
+    select?: EducationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EducationCountOutputType without action
+   */
+  export type EducationCountOutputTypeCountCandidateEducationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateEducationWhereInput
   }
 
 
@@ -2528,6 +2763,7 @@ export namespace Prisma {
     openToWork?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     candidateLanguage?: boolean | CandidateProfile$candidateLanguageArgs<ExtArgs>
+    candidateEducation?: boolean | CandidateProfile$candidateEducationArgs<ExtArgs>
     _count?: boolean | CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["candidateProfile"]>
 
@@ -2576,6 +2812,7 @@ export namespace Prisma {
   export type CandidateProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     candidateLanguage?: boolean | CandidateProfile$candidateLanguageArgs<ExtArgs>
+    candidateEducation?: boolean | CandidateProfile$candidateEducationArgs<ExtArgs>
     _count?: boolean | CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CandidateProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2590,6 +2827,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       candidateLanguage: Prisma.$CandidateLanguagePayload<ExtArgs>[]
+      candidateEducation: Prisma.$CandidateEducationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2998,6 +3236,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     candidateLanguage<T extends CandidateProfile$candidateLanguageArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfile$candidateLanguageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    candidateEducation<T extends CandidateProfile$candidateEducationArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfile$candidateEducationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3454,6 +3693,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CandidateLanguageScalarFieldEnum | CandidateLanguageScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateProfile.candidateEducation
+   */
+  export type CandidateProfile$candidateEducationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    where?: CandidateEducationWhereInput
+    orderBy?: CandidateEducationOrderByWithRelationInput | CandidateEducationOrderByWithRelationInput[]
+    cursor?: CandidateEducationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CandidateEducationScalarFieldEnum | CandidateEducationScalarFieldEnum[]
   }
 
   /**
@@ -5534,6 +5797,2167 @@ export namespace Prisma {
 
 
   /**
+   * Model Education
+   */
+
+  export type AggregateEducation = {
+    _count: EducationCountAggregateOutputType | null
+    _min: EducationMinAggregateOutputType | null
+    _max: EducationMaxAggregateOutputType | null
+  }
+
+  export type EducationMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    map: string | null
+  }
+
+  export type EducationMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    map: string | null
+  }
+
+  export type EducationCountAggregateOutputType = {
+    id: number
+    name: number
+    map: number
+    _all: number
+  }
+
+
+  export type EducationMinAggregateInputType = {
+    id?: true
+    name?: true
+    map?: true
+  }
+
+  export type EducationMaxAggregateInputType = {
+    id?: true
+    name?: true
+    map?: true
+  }
+
+  export type EducationCountAggregateInputType = {
+    id?: true
+    name?: true
+    map?: true
+    _all?: true
+  }
+
+  export type EducationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Education to aggregate.
+     */
+    where?: EducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Educations to fetch.
+     */
+    orderBy?: EducationOrderByWithRelationInput | EducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Educations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Educations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Educations
+    **/
+    _count?: true | EducationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EducationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EducationMaxAggregateInputType
+  }
+
+  export type GetEducationAggregateType<T extends EducationAggregateArgs> = {
+        [P in keyof T & keyof AggregateEducation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEducation[P]>
+      : GetScalarType<T[P], AggregateEducation[P]>
+  }
+
+
+
+
+  export type EducationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EducationWhereInput
+    orderBy?: EducationOrderByWithAggregationInput | EducationOrderByWithAggregationInput[]
+    by: EducationScalarFieldEnum[] | EducationScalarFieldEnum
+    having?: EducationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EducationCountAggregateInputType | true
+    _min?: EducationMinAggregateInputType
+    _max?: EducationMaxAggregateInputType
+  }
+
+  export type EducationGroupByOutputType = {
+    id: string
+    name: string
+    map: string
+    _count: EducationCountAggregateOutputType | null
+    _min: EducationMinAggregateOutputType | null
+    _max: EducationMaxAggregateOutputType | null
+  }
+
+  type GetEducationGroupByPayload<T extends EducationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EducationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EducationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EducationGroupByOutputType[P]>
+            : GetScalarType<T[P], EducationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EducationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    map?: boolean
+    candidateEducation?: boolean | Education$candidateEducationArgs<ExtArgs>
+    _count?: boolean | EducationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["education"]>
+
+  export type EducationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    map?: boolean
+  }, ExtArgs["result"]["education"]>
+
+  export type EducationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    map?: boolean
+  }, ExtArgs["result"]["education"]>
+
+  export type EducationSelectScalar = {
+    id?: boolean
+    name?: boolean
+    map?: boolean
+  }
+
+  export type EducationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "map", ExtArgs["result"]["education"]>
+  export type EducationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateEducation?: boolean | Education$candidateEducationArgs<ExtArgs>
+    _count?: boolean | EducationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EducationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type EducationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $EducationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Education"
+    objects: {
+      candidateEducation: Prisma.$CandidateEducationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      map: string
+    }, ExtArgs["result"]["education"]>
+    composites: {}
+  }
+
+  type EducationGetPayload<S extends boolean | null | undefined | EducationDefaultArgs> = $Result.GetResult<Prisma.$EducationPayload, S>
+
+  type EducationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EducationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EducationCountAggregateInputType | true
+    }
+
+  export interface EducationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Education'], meta: { name: 'Education' } }
+    /**
+     * Find zero or one Education that matches the filter.
+     * @param {EducationFindUniqueArgs} args - Arguments to find a Education
+     * @example
+     * // Get one Education
+     * const education = await prisma.education.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EducationFindUniqueArgs>(args: SelectSubset<T, EducationFindUniqueArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Education that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EducationFindUniqueOrThrowArgs} args - Arguments to find a Education
+     * @example
+     * // Get one Education
+     * const education = await prisma.education.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EducationFindUniqueOrThrowArgs>(args: SelectSubset<T, EducationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Education that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EducationFindFirstArgs} args - Arguments to find a Education
+     * @example
+     * // Get one Education
+     * const education = await prisma.education.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EducationFindFirstArgs>(args?: SelectSubset<T, EducationFindFirstArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Education that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EducationFindFirstOrThrowArgs} args - Arguments to find a Education
+     * @example
+     * // Get one Education
+     * const education = await prisma.education.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EducationFindFirstOrThrowArgs>(args?: SelectSubset<T, EducationFindFirstOrThrowArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Educations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EducationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Educations
+     * const educations = await prisma.education.findMany()
+     * 
+     * // Get first 10 Educations
+     * const educations = await prisma.education.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const educationWithIdOnly = await prisma.education.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EducationFindManyArgs>(args?: SelectSubset<T, EducationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Education.
+     * @param {EducationCreateArgs} args - Arguments to create a Education.
+     * @example
+     * // Create one Education
+     * const Education = await prisma.education.create({
+     *   data: {
+     *     // ... data to create a Education
+     *   }
+     * })
+     * 
+     */
+    create<T extends EducationCreateArgs>(args: SelectSubset<T, EducationCreateArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Educations.
+     * @param {EducationCreateManyArgs} args - Arguments to create many Educations.
+     * @example
+     * // Create many Educations
+     * const education = await prisma.education.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EducationCreateManyArgs>(args?: SelectSubset<T, EducationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Educations and returns the data saved in the database.
+     * @param {EducationCreateManyAndReturnArgs} args - Arguments to create many Educations.
+     * @example
+     * // Create many Educations
+     * const education = await prisma.education.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Educations and only return the `id`
+     * const educationWithIdOnly = await prisma.education.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EducationCreateManyAndReturnArgs>(args?: SelectSubset<T, EducationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Education.
+     * @param {EducationDeleteArgs} args - Arguments to delete one Education.
+     * @example
+     * // Delete one Education
+     * const Education = await prisma.education.delete({
+     *   where: {
+     *     // ... filter to delete one Education
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EducationDeleteArgs>(args: SelectSubset<T, EducationDeleteArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Education.
+     * @param {EducationUpdateArgs} args - Arguments to update one Education.
+     * @example
+     * // Update one Education
+     * const education = await prisma.education.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EducationUpdateArgs>(args: SelectSubset<T, EducationUpdateArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Educations.
+     * @param {EducationDeleteManyArgs} args - Arguments to filter Educations to delete.
+     * @example
+     * // Delete a few Educations
+     * const { count } = await prisma.education.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EducationDeleteManyArgs>(args?: SelectSubset<T, EducationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Educations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EducationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Educations
+     * const education = await prisma.education.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EducationUpdateManyArgs>(args: SelectSubset<T, EducationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Educations and returns the data updated in the database.
+     * @param {EducationUpdateManyAndReturnArgs} args - Arguments to update many Educations.
+     * @example
+     * // Update many Educations
+     * const education = await prisma.education.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Educations and only return the `id`
+     * const educationWithIdOnly = await prisma.education.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EducationUpdateManyAndReturnArgs>(args: SelectSubset<T, EducationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Education.
+     * @param {EducationUpsertArgs} args - Arguments to update or create a Education.
+     * @example
+     * // Update or create a Education
+     * const education = await prisma.education.upsert({
+     *   create: {
+     *     // ... data to create a Education
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Education we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EducationUpsertArgs>(args: SelectSubset<T, EducationUpsertArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Educations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EducationCountArgs} args - Arguments to filter Educations to count.
+     * @example
+     * // Count the number of Educations
+     * const count = await prisma.education.count({
+     *   where: {
+     *     // ... the filter for the Educations we want to count
+     *   }
+     * })
+    **/
+    count<T extends EducationCountArgs>(
+      args?: Subset<T, EducationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EducationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Education.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EducationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EducationAggregateArgs>(args: Subset<T, EducationAggregateArgs>): Prisma.PrismaPromise<GetEducationAggregateType<T>>
+
+    /**
+     * Group by Education.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EducationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EducationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EducationGroupByArgs['orderBy'] }
+        : { orderBy?: EducationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EducationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEducationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Education model
+   */
+  readonly fields: EducationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Education.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EducationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    candidateEducation<T extends Education$candidateEducationArgs<ExtArgs> = {}>(args?: Subset<T, Education$candidateEducationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Education model
+   */
+  interface EducationFieldRefs {
+    readonly id: FieldRef<"Education", 'String'>
+    readonly name: FieldRef<"Education", 'String'>
+    readonly map: FieldRef<"Education", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Education findUnique
+   */
+  export type EducationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * Filter, which Education to fetch.
+     */
+    where: EducationWhereUniqueInput
+  }
+
+  /**
+   * Education findUniqueOrThrow
+   */
+  export type EducationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * Filter, which Education to fetch.
+     */
+    where: EducationWhereUniqueInput
+  }
+
+  /**
+   * Education findFirst
+   */
+  export type EducationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * Filter, which Education to fetch.
+     */
+    where?: EducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Educations to fetch.
+     */
+    orderBy?: EducationOrderByWithRelationInput | EducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Educations.
+     */
+    cursor?: EducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Educations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Educations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Educations.
+     */
+    distinct?: EducationScalarFieldEnum | EducationScalarFieldEnum[]
+  }
+
+  /**
+   * Education findFirstOrThrow
+   */
+  export type EducationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * Filter, which Education to fetch.
+     */
+    where?: EducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Educations to fetch.
+     */
+    orderBy?: EducationOrderByWithRelationInput | EducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Educations.
+     */
+    cursor?: EducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Educations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Educations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Educations.
+     */
+    distinct?: EducationScalarFieldEnum | EducationScalarFieldEnum[]
+  }
+
+  /**
+   * Education findMany
+   */
+  export type EducationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * Filter, which Educations to fetch.
+     */
+    where?: EducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Educations to fetch.
+     */
+    orderBy?: EducationOrderByWithRelationInput | EducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Educations.
+     */
+    cursor?: EducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Educations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Educations.
+     */
+    skip?: number
+    distinct?: EducationScalarFieldEnum | EducationScalarFieldEnum[]
+  }
+
+  /**
+   * Education create
+   */
+  export type EducationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Education.
+     */
+    data: XOR<EducationCreateInput, EducationUncheckedCreateInput>
+  }
+
+  /**
+   * Education createMany
+   */
+  export type EducationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Educations.
+     */
+    data: EducationCreateManyInput | EducationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Education createManyAndReturn
+   */
+  export type EducationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Educations.
+     */
+    data: EducationCreateManyInput | EducationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Education update
+   */
+  export type EducationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Education.
+     */
+    data: XOR<EducationUpdateInput, EducationUncheckedUpdateInput>
+    /**
+     * Choose, which Education to update.
+     */
+    where: EducationWhereUniqueInput
+  }
+
+  /**
+   * Education updateMany
+   */
+  export type EducationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Educations.
+     */
+    data: XOR<EducationUpdateManyMutationInput, EducationUncheckedUpdateManyInput>
+    /**
+     * Filter which Educations to update
+     */
+    where?: EducationWhereInput
+    /**
+     * Limit how many Educations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Education updateManyAndReturn
+   */
+  export type EducationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * The data used to update Educations.
+     */
+    data: XOR<EducationUpdateManyMutationInput, EducationUncheckedUpdateManyInput>
+    /**
+     * Filter which Educations to update
+     */
+    where?: EducationWhereInput
+    /**
+     * Limit how many Educations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Education upsert
+   */
+  export type EducationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Education to update in case it exists.
+     */
+    where: EducationWhereUniqueInput
+    /**
+     * In case the Education found by the `where` argument doesn't exist, create a new Education with this data.
+     */
+    create: XOR<EducationCreateInput, EducationUncheckedCreateInput>
+    /**
+     * In case the Education was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EducationUpdateInput, EducationUncheckedUpdateInput>
+  }
+
+  /**
+   * Education delete
+   */
+  export type EducationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+    /**
+     * Filter which Education to delete.
+     */
+    where: EducationWhereUniqueInput
+  }
+
+  /**
+   * Education deleteMany
+   */
+  export type EducationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Educations to delete
+     */
+    where?: EducationWhereInput
+    /**
+     * Limit how many Educations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Education.candidateEducation
+   */
+  export type Education$candidateEducationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    where?: CandidateEducationWhereInput
+    orderBy?: CandidateEducationOrderByWithRelationInput | CandidateEducationOrderByWithRelationInput[]
+    cursor?: CandidateEducationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CandidateEducationScalarFieldEnum | CandidateEducationScalarFieldEnum[]
+  }
+
+  /**
+   * Education without action
+   */
+  export type EducationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Education
+     */
+    select?: EducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Education
+     */
+    omit?: EducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EducationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CandidateEducation
+   */
+
+  export type AggregateCandidateEducation = {
+    _count: CandidateEducationCountAggregateOutputType | null
+    _avg: CandidateEducationAvgAggregateOutputType | null
+    _sum: CandidateEducationSumAggregateOutputType | null
+    _min: CandidateEducationMinAggregateOutputType | null
+    _max: CandidateEducationMaxAggregateOutputType | null
+  }
+
+  export type CandidateEducationAvgAggregateOutputType = {
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type CandidateEducationSumAggregateOutputType = {
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type CandidateEducationMinAggregateOutputType = {
+    candidateProfileId: string | null
+    educationId: string | null
+    major: string | null
+    degree: $Enums.DEGREE | null
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type CandidateEducationMaxAggregateOutputType = {
+    candidateProfileId: string | null
+    educationId: string | null
+    major: string | null
+    degree: $Enums.DEGREE | null
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type CandidateEducationCountAggregateOutputType = {
+    candidateProfileId: number
+    educationId: number
+    major: number
+    degree: number
+    startYear: number
+    endYear: number
+    _all: number
+  }
+
+
+  export type CandidateEducationAvgAggregateInputType = {
+    startYear?: true
+    endYear?: true
+  }
+
+  export type CandidateEducationSumAggregateInputType = {
+    startYear?: true
+    endYear?: true
+  }
+
+  export type CandidateEducationMinAggregateInputType = {
+    candidateProfileId?: true
+    educationId?: true
+    major?: true
+    degree?: true
+    startYear?: true
+    endYear?: true
+  }
+
+  export type CandidateEducationMaxAggregateInputType = {
+    candidateProfileId?: true
+    educationId?: true
+    major?: true
+    degree?: true
+    startYear?: true
+    endYear?: true
+  }
+
+  export type CandidateEducationCountAggregateInputType = {
+    candidateProfileId?: true
+    educationId?: true
+    major?: true
+    degree?: true
+    startYear?: true
+    endYear?: true
+    _all?: true
+  }
+
+  export type CandidateEducationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CandidateEducation to aggregate.
+     */
+    where?: CandidateEducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateEducations to fetch.
+     */
+    orderBy?: CandidateEducationOrderByWithRelationInput | CandidateEducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CandidateEducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateEducations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateEducations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CandidateEducations
+    **/
+    _count?: true | CandidateEducationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CandidateEducationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CandidateEducationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CandidateEducationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CandidateEducationMaxAggregateInputType
+  }
+
+  export type GetCandidateEducationAggregateType<T extends CandidateEducationAggregateArgs> = {
+        [P in keyof T & keyof AggregateCandidateEducation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCandidateEducation[P]>
+      : GetScalarType<T[P], AggregateCandidateEducation[P]>
+  }
+
+
+
+
+  export type CandidateEducationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateEducationWhereInput
+    orderBy?: CandidateEducationOrderByWithAggregationInput | CandidateEducationOrderByWithAggregationInput[]
+    by: CandidateEducationScalarFieldEnum[] | CandidateEducationScalarFieldEnum
+    having?: CandidateEducationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CandidateEducationCountAggregateInputType | true
+    _avg?: CandidateEducationAvgAggregateInputType
+    _sum?: CandidateEducationSumAggregateInputType
+    _min?: CandidateEducationMinAggregateInputType
+    _max?: CandidateEducationMaxAggregateInputType
+  }
+
+  export type CandidateEducationGroupByOutputType = {
+    candidateProfileId: string
+    educationId: string
+    major: string
+    degree: $Enums.DEGREE
+    startYear: number
+    endYear: number
+    _count: CandidateEducationCountAggregateOutputType | null
+    _avg: CandidateEducationAvgAggregateOutputType | null
+    _sum: CandidateEducationSumAggregateOutputType | null
+    _min: CandidateEducationMinAggregateOutputType | null
+    _max: CandidateEducationMaxAggregateOutputType | null
+  }
+
+  type GetCandidateEducationGroupByPayload<T extends CandidateEducationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CandidateEducationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CandidateEducationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CandidateEducationGroupByOutputType[P]>
+            : GetScalarType<T[P], CandidateEducationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CandidateEducationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    candidateProfileId?: boolean
+    educationId?: boolean
+    major?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    education?: boolean | EducationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateEducation"]>
+
+  export type CandidateEducationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    candidateProfileId?: boolean
+    educationId?: boolean
+    major?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    education?: boolean | EducationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateEducation"]>
+
+  export type CandidateEducationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    candidateProfileId?: boolean
+    educationId?: boolean
+    major?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    education?: boolean | EducationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateEducation"]>
+
+  export type CandidateEducationSelectScalar = {
+    candidateProfileId?: boolean
+    educationId?: boolean
+    major?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+  }
+
+  export type CandidateEducationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"candidateProfileId" | "educationId" | "major" | "degree" | "startYear" | "endYear", ExtArgs["result"]["candidateEducation"]>
+  export type CandidateEducationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    education?: boolean | EducationDefaultArgs<ExtArgs>
+  }
+  export type CandidateEducationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    education?: boolean | EducationDefaultArgs<ExtArgs>
+  }
+  export type CandidateEducationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+    education?: boolean | EducationDefaultArgs<ExtArgs>
+  }
+
+  export type $CandidateEducationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CandidateEducation"
+    objects: {
+      candidateProfile: Prisma.$CandidateProfilePayload<ExtArgs>
+      education: Prisma.$EducationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      candidateProfileId: string
+      educationId: string
+      major: string
+      degree: $Enums.DEGREE
+      startYear: number
+      endYear: number
+    }, ExtArgs["result"]["candidateEducation"]>
+    composites: {}
+  }
+
+  type CandidateEducationGetPayload<S extends boolean | null | undefined | CandidateEducationDefaultArgs> = $Result.GetResult<Prisma.$CandidateEducationPayload, S>
+
+  type CandidateEducationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CandidateEducationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CandidateEducationCountAggregateInputType | true
+    }
+
+  export interface CandidateEducationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CandidateEducation'], meta: { name: 'CandidateEducation' } }
+    /**
+     * Find zero or one CandidateEducation that matches the filter.
+     * @param {CandidateEducationFindUniqueArgs} args - Arguments to find a CandidateEducation
+     * @example
+     * // Get one CandidateEducation
+     * const candidateEducation = await prisma.candidateEducation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CandidateEducationFindUniqueArgs>(args: SelectSubset<T, CandidateEducationFindUniqueArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CandidateEducation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CandidateEducationFindUniqueOrThrowArgs} args - Arguments to find a CandidateEducation
+     * @example
+     * // Get one CandidateEducation
+     * const candidateEducation = await prisma.candidateEducation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CandidateEducationFindUniqueOrThrowArgs>(args: SelectSubset<T, CandidateEducationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CandidateEducation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateEducationFindFirstArgs} args - Arguments to find a CandidateEducation
+     * @example
+     * // Get one CandidateEducation
+     * const candidateEducation = await prisma.candidateEducation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CandidateEducationFindFirstArgs>(args?: SelectSubset<T, CandidateEducationFindFirstArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CandidateEducation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateEducationFindFirstOrThrowArgs} args - Arguments to find a CandidateEducation
+     * @example
+     * // Get one CandidateEducation
+     * const candidateEducation = await prisma.candidateEducation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CandidateEducationFindFirstOrThrowArgs>(args?: SelectSubset<T, CandidateEducationFindFirstOrThrowArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CandidateEducations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateEducationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CandidateEducations
+     * const candidateEducations = await prisma.candidateEducation.findMany()
+     * 
+     * // Get first 10 CandidateEducations
+     * const candidateEducations = await prisma.candidateEducation.findMany({ take: 10 })
+     * 
+     * // Only select the `candidateProfileId`
+     * const candidateEducationWithCandidateProfileIdOnly = await prisma.candidateEducation.findMany({ select: { candidateProfileId: true } })
+     * 
+     */
+    findMany<T extends CandidateEducationFindManyArgs>(args?: SelectSubset<T, CandidateEducationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CandidateEducation.
+     * @param {CandidateEducationCreateArgs} args - Arguments to create a CandidateEducation.
+     * @example
+     * // Create one CandidateEducation
+     * const CandidateEducation = await prisma.candidateEducation.create({
+     *   data: {
+     *     // ... data to create a CandidateEducation
+     *   }
+     * })
+     * 
+     */
+    create<T extends CandidateEducationCreateArgs>(args: SelectSubset<T, CandidateEducationCreateArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CandidateEducations.
+     * @param {CandidateEducationCreateManyArgs} args - Arguments to create many CandidateEducations.
+     * @example
+     * // Create many CandidateEducations
+     * const candidateEducation = await prisma.candidateEducation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CandidateEducationCreateManyArgs>(args?: SelectSubset<T, CandidateEducationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CandidateEducations and returns the data saved in the database.
+     * @param {CandidateEducationCreateManyAndReturnArgs} args - Arguments to create many CandidateEducations.
+     * @example
+     * // Create many CandidateEducations
+     * const candidateEducation = await prisma.candidateEducation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CandidateEducations and only return the `candidateProfileId`
+     * const candidateEducationWithCandidateProfileIdOnly = await prisma.candidateEducation.createManyAndReturn({
+     *   select: { candidateProfileId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CandidateEducationCreateManyAndReturnArgs>(args?: SelectSubset<T, CandidateEducationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CandidateEducation.
+     * @param {CandidateEducationDeleteArgs} args - Arguments to delete one CandidateEducation.
+     * @example
+     * // Delete one CandidateEducation
+     * const CandidateEducation = await prisma.candidateEducation.delete({
+     *   where: {
+     *     // ... filter to delete one CandidateEducation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CandidateEducationDeleteArgs>(args: SelectSubset<T, CandidateEducationDeleteArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CandidateEducation.
+     * @param {CandidateEducationUpdateArgs} args - Arguments to update one CandidateEducation.
+     * @example
+     * // Update one CandidateEducation
+     * const candidateEducation = await prisma.candidateEducation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CandidateEducationUpdateArgs>(args: SelectSubset<T, CandidateEducationUpdateArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CandidateEducations.
+     * @param {CandidateEducationDeleteManyArgs} args - Arguments to filter CandidateEducations to delete.
+     * @example
+     * // Delete a few CandidateEducations
+     * const { count } = await prisma.candidateEducation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CandidateEducationDeleteManyArgs>(args?: SelectSubset<T, CandidateEducationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CandidateEducations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateEducationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CandidateEducations
+     * const candidateEducation = await prisma.candidateEducation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CandidateEducationUpdateManyArgs>(args: SelectSubset<T, CandidateEducationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CandidateEducations and returns the data updated in the database.
+     * @param {CandidateEducationUpdateManyAndReturnArgs} args - Arguments to update many CandidateEducations.
+     * @example
+     * // Update many CandidateEducations
+     * const candidateEducation = await prisma.candidateEducation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CandidateEducations and only return the `candidateProfileId`
+     * const candidateEducationWithCandidateProfileIdOnly = await prisma.candidateEducation.updateManyAndReturn({
+     *   select: { candidateProfileId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CandidateEducationUpdateManyAndReturnArgs>(args: SelectSubset<T, CandidateEducationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CandidateEducation.
+     * @param {CandidateEducationUpsertArgs} args - Arguments to update or create a CandidateEducation.
+     * @example
+     * // Update or create a CandidateEducation
+     * const candidateEducation = await prisma.candidateEducation.upsert({
+     *   create: {
+     *     // ... data to create a CandidateEducation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CandidateEducation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CandidateEducationUpsertArgs>(args: SelectSubset<T, CandidateEducationUpsertArgs<ExtArgs>>): Prisma__CandidateEducationClient<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CandidateEducations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateEducationCountArgs} args - Arguments to filter CandidateEducations to count.
+     * @example
+     * // Count the number of CandidateEducations
+     * const count = await prisma.candidateEducation.count({
+     *   where: {
+     *     // ... the filter for the CandidateEducations we want to count
+     *   }
+     * })
+    **/
+    count<T extends CandidateEducationCountArgs>(
+      args?: Subset<T, CandidateEducationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CandidateEducationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CandidateEducation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateEducationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CandidateEducationAggregateArgs>(args: Subset<T, CandidateEducationAggregateArgs>): Prisma.PrismaPromise<GetCandidateEducationAggregateType<T>>
+
+    /**
+     * Group by CandidateEducation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateEducationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CandidateEducationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CandidateEducationGroupByArgs['orderBy'] }
+        : { orderBy?: CandidateEducationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CandidateEducationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCandidateEducationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CandidateEducation model
+   */
+  readonly fields: CandidateEducationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CandidateEducation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CandidateEducationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    candidateProfile<T extends CandidateProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfileDefaultArgs<ExtArgs>>): Prisma__CandidateProfileClient<$Result.GetResult<Prisma.$CandidateProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    education<T extends EducationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EducationDefaultArgs<ExtArgs>>): Prisma__EducationClient<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CandidateEducation model
+   */
+  interface CandidateEducationFieldRefs {
+    readonly candidateProfileId: FieldRef<"CandidateEducation", 'String'>
+    readonly educationId: FieldRef<"CandidateEducation", 'String'>
+    readonly major: FieldRef<"CandidateEducation", 'String'>
+    readonly degree: FieldRef<"CandidateEducation", 'DEGREE'>
+    readonly startYear: FieldRef<"CandidateEducation", 'Int'>
+    readonly endYear: FieldRef<"CandidateEducation", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CandidateEducation findUnique
+   */
+  export type CandidateEducationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateEducation to fetch.
+     */
+    where: CandidateEducationWhereUniqueInput
+  }
+
+  /**
+   * CandidateEducation findUniqueOrThrow
+   */
+  export type CandidateEducationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateEducation to fetch.
+     */
+    where: CandidateEducationWhereUniqueInput
+  }
+
+  /**
+   * CandidateEducation findFirst
+   */
+  export type CandidateEducationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateEducation to fetch.
+     */
+    where?: CandidateEducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateEducations to fetch.
+     */
+    orderBy?: CandidateEducationOrderByWithRelationInput | CandidateEducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CandidateEducations.
+     */
+    cursor?: CandidateEducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateEducations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateEducations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CandidateEducations.
+     */
+    distinct?: CandidateEducationScalarFieldEnum | CandidateEducationScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateEducation findFirstOrThrow
+   */
+  export type CandidateEducationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateEducation to fetch.
+     */
+    where?: CandidateEducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateEducations to fetch.
+     */
+    orderBy?: CandidateEducationOrderByWithRelationInput | CandidateEducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CandidateEducations.
+     */
+    cursor?: CandidateEducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateEducations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateEducations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CandidateEducations.
+     */
+    distinct?: CandidateEducationScalarFieldEnum | CandidateEducationScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateEducation findMany
+   */
+  export type CandidateEducationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateEducations to fetch.
+     */
+    where?: CandidateEducationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateEducations to fetch.
+     */
+    orderBy?: CandidateEducationOrderByWithRelationInput | CandidateEducationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CandidateEducations.
+     */
+    cursor?: CandidateEducationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateEducations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateEducations.
+     */
+    skip?: number
+    distinct?: CandidateEducationScalarFieldEnum | CandidateEducationScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateEducation create
+   */
+  export type CandidateEducationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CandidateEducation.
+     */
+    data: XOR<CandidateEducationCreateInput, CandidateEducationUncheckedCreateInput>
+  }
+
+  /**
+   * CandidateEducation createMany
+   */
+  export type CandidateEducationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CandidateEducations.
+     */
+    data: CandidateEducationCreateManyInput | CandidateEducationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CandidateEducation createManyAndReturn
+   */
+  export type CandidateEducationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * The data used to create many CandidateEducations.
+     */
+    data: CandidateEducationCreateManyInput | CandidateEducationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CandidateEducation update
+   */
+  export type CandidateEducationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CandidateEducation.
+     */
+    data: XOR<CandidateEducationUpdateInput, CandidateEducationUncheckedUpdateInput>
+    /**
+     * Choose, which CandidateEducation to update.
+     */
+    where: CandidateEducationWhereUniqueInput
+  }
+
+  /**
+   * CandidateEducation updateMany
+   */
+  export type CandidateEducationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CandidateEducations.
+     */
+    data: XOR<CandidateEducationUpdateManyMutationInput, CandidateEducationUncheckedUpdateManyInput>
+    /**
+     * Filter which CandidateEducations to update
+     */
+    where?: CandidateEducationWhereInput
+    /**
+     * Limit how many CandidateEducations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CandidateEducation updateManyAndReturn
+   */
+  export type CandidateEducationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * The data used to update CandidateEducations.
+     */
+    data: XOR<CandidateEducationUpdateManyMutationInput, CandidateEducationUncheckedUpdateManyInput>
+    /**
+     * Filter which CandidateEducations to update
+     */
+    where?: CandidateEducationWhereInput
+    /**
+     * Limit how many CandidateEducations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CandidateEducation upsert
+   */
+  export type CandidateEducationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CandidateEducation to update in case it exists.
+     */
+    where: CandidateEducationWhereUniqueInput
+    /**
+     * In case the CandidateEducation found by the `where` argument doesn't exist, create a new CandidateEducation with this data.
+     */
+    create: XOR<CandidateEducationCreateInput, CandidateEducationUncheckedCreateInput>
+    /**
+     * In case the CandidateEducation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CandidateEducationUpdateInput, CandidateEducationUncheckedUpdateInput>
+  }
+
+  /**
+   * CandidateEducation delete
+   */
+  export type CandidateEducationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+    /**
+     * Filter which CandidateEducation to delete.
+     */
+    where: CandidateEducationWhereUniqueInput
+  }
+
+  /**
+   * CandidateEducation deleteMany
+   */
+  export type CandidateEducationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CandidateEducations to delete
+     */
+    where?: CandidateEducationWhereInput
+    /**
+     * Limit how many CandidateEducations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CandidateEducation without action
+   */
+  export type CandidateEducationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateEducation
+     */
+    select?: CandidateEducationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateEducation
+     */
+    omit?: CandidateEducationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateEducationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5589,6 +8013,27 @@ export namespace Prisma {
   };
 
   export type CandidateLanguageScalarFieldEnum = (typeof CandidateLanguageScalarFieldEnum)[keyof typeof CandidateLanguageScalarFieldEnum]
+
+
+  export const EducationScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    map: 'map'
+  };
+
+  export type EducationScalarFieldEnum = (typeof EducationScalarFieldEnum)[keyof typeof EducationScalarFieldEnum]
+
+
+  export const CandidateEducationScalarFieldEnum: {
+    candidateProfileId: 'candidateProfileId',
+    educationId: 'educationId',
+    major: 'major',
+    degree: 'degree',
+    startYear: 'startYear',
+    endYear: 'endYear'
+  };
+
+  export type CandidateEducationScalarFieldEnum = (typeof CandidateEducationScalarFieldEnum)[keyof typeof CandidateEducationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5698,6 +8143,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DEGREE'
+   */
+  export type EnumDEGREEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DEGREE'>
+    
+
+
+  /**
+   * Reference to a field of type 'DEGREE[]'
+   */
+  export type ListEnumDEGREEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DEGREE[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5708,6 +8167,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -5790,6 +8263,7 @@ export namespace Prisma {
     openToWork?: BoolFilter<"CandidateProfile"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     candidateLanguage?: CandidateLanguageListRelationFilter
+    candidateEducation?: CandidateEducationListRelationFilter
   }
 
   export type CandidateProfileOrderByWithRelationInput = {
@@ -5805,6 +8279,7 @@ export namespace Prisma {
     openToWork?: SortOrder
     user?: UserOrderByWithRelationInput
     candidateLanguage?: CandidateLanguageOrderByRelationAggregateInput
+    candidateEducation?: CandidateEducationOrderByRelationAggregateInput
   }
 
   export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -5823,6 +8298,7 @@ export namespace Prisma {
     openToWork?: BoolFilter<"CandidateProfile"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     candidateLanguage?: CandidateLanguageListRelationFilter
+    candidateEducation?: CandidateEducationListRelationFilter
   }, "id" | "userId">
 
   export type CandidateProfileOrderByWithAggregationInput = {
@@ -5941,6 +8417,117 @@ export namespace Prisma {
     languageName?: StringWithAggregatesFilter<"CandidateLanguage"> | string
   }
 
+  export type EducationWhereInput = {
+    AND?: EducationWhereInput | EducationWhereInput[]
+    OR?: EducationWhereInput[]
+    NOT?: EducationWhereInput | EducationWhereInput[]
+    id?: StringFilter<"Education"> | string
+    name?: StringFilter<"Education"> | string
+    map?: StringFilter<"Education"> | string
+    candidateEducation?: CandidateEducationListRelationFilter
+  }
+
+  export type EducationOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    map?: SortOrder
+    candidateEducation?: CandidateEducationOrderByRelationAggregateInput
+  }
+
+  export type EducationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EducationWhereInput | EducationWhereInput[]
+    OR?: EducationWhereInput[]
+    NOT?: EducationWhereInput | EducationWhereInput[]
+    name?: StringFilter<"Education"> | string
+    map?: StringFilter<"Education"> | string
+    candidateEducation?: CandidateEducationListRelationFilter
+  }, "id">
+
+  export type EducationOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    map?: SortOrder
+    _count?: EducationCountOrderByAggregateInput
+    _max?: EducationMaxOrderByAggregateInput
+    _min?: EducationMinOrderByAggregateInput
+  }
+
+  export type EducationScalarWhereWithAggregatesInput = {
+    AND?: EducationScalarWhereWithAggregatesInput | EducationScalarWhereWithAggregatesInput[]
+    OR?: EducationScalarWhereWithAggregatesInput[]
+    NOT?: EducationScalarWhereWithAggregatesInput | EducationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Education"> | string
+    name?: StringWithAggregatesFilter<"Education"> | string
+    map?: StringWithAggregatesFilter<"Education"> | string
+  }
+
+  export type CandidateEducationWhereInput = {
+    AND?: CandidateEducationWhereInput | CandidateEducationWhereInput[]
+    OR?: CandidateEducationWhereInput[]
+    NOT?: CandidateEducationWhereInput | CandidateEducationWhereInput[]
+    candidateProfileId?: StringFilter<"CandidateEducation"> | string
+    educationId?: StringFilter<"CandidateEducation"> | string
+    major?: StringFilter<"CandidateEducation"> | string
+    degree?: EnumDEGREEFilter<"CandidateEducation"> | $Enums.DEGREE
+    startYear?: IntFilter<"CandidateEducation"> | number
+    endYear?: IntFilter<"CandidateEducation"> | number
+    candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
+    education?: XOR<EducationScalarRelationFilter, EducationWhereInput>
+  }
+
+  export type CandidateEducationOrderByWithRelationInput = {
+    candidateProfileId?: SortOrder
+    educationId?: SortOrder
+    major?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+    candidateProfile?: CandidateProfileOrderByWithRelationInput
+    education?: EducationOrderByWithRelationInput
+  }
+
+  export type CandidateEducationWhereUniqueInput = Prisma.AtLeast<{
+    candidateProfileId_educationId?: CandidateEducationCandidateProfileIdEducationIdCompoundUniqueInput
+    AND?: CandidateEducationWhereInput | CandidateEducationWhereInput[]
+    OR?: CandidateEducationWhereInput[]
+    NOT?: CandidateEducationWhereInput | CandidateEducationWhereInput[]
+    candidateProfileId?: StringFilter<"CandidateEducation"> | string
+    educationId?: StringFilter<"CandidateEducation"> | string
+    major?: StringFilter<"CandidateEducation"> | string
+    degree?: EnumDEGREEFilter<"CandidateEducation"> | $Enums.DEGREE
+    startYear?: IntFilter<"CandidateEducation"> | number
+    endYear?: IntFilter<"CandidateEducation"> | number
+    candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
+    education?: XOR<EducationScalarRelationFilter, EducationWhereInput>
+  }, "candidateProfileId_educationId">
+
+  export type CandidateEducationOrderByWithAggregationInput = {
+    candidateProfileId?: SortOrder
+    educationId?: SortOrder
+    major?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+    _count?: CandidateEducationCountOrderByAggregateInput
+    _avg?: CandidateEducationAvgOrderByAggregateInput
+    _max?: CandidateEducationMaxOrderByAggregateInput
+    _min?: CandidateEducationMinOrderByAggregateInput
+    _sum?: CandidateEducationSumOrderByAggregateInput
+  }
+
+  export type CandidateEducationScalarWhereWithAggregatesInput = {
+    AND?: CandidateEducationScalarWhereWithAggregatesInput | CandidateEducationScalarWhereWithAggregatesInput[]
+    OR?: CandidateEducationScalarWhereWithAggregatesInput[]
+    NOT?: CandidateEducationScalarWhereWithAggregatesInput | CandidateEducationScalarWhereWithAggregatesInput[]
+    candidateProfileId?: StringWithAggregatesFilter<"CandidateEducation"> | string
+    educationId?: StringWithAggregatesFilter<"CandidateEducation"> | string
+    major?: StringWithAggregatesFilter<"CandidateEducation"> | string
+    degree?: EnumDEGREEWithAggregatesFilter<"CandidateEducation"> | $Enums.DEGREE
+    startYear?: IntWithAggregatesFilter<"CandidateEducation"> | number
+    endYear?: IntWithAggregatesFilter<"CandidateEducation"> | number
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -6020,6 +8607,7 @@ export namespace Prisma {
     openToWork?: boolean
     user: UserCreateNestedOneWithoutCandidateProfileInput
     candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
+    candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateInput = {
@@ -6034,6 +8622,7 @@ export namespace Prisma {
     status?: boolean
     openToWork?: boolean
     candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUpdateInput = {
@@ -6048,6 +8637,7 @@ export namespace Prisma {
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
     candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
+    candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateInput = {
@@ -6062,6 +8652,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileCreateManyInput = {
@@ -6172,6 +8763,113 @@ export namespace Prisma {
     candidateProfileId?: StringFieldUpdateOperationsInput | string
     level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
     languageName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EducationCreateInput = {
+    id?: string
+    name: string
+    map: string
+    candidateEducation?: CandidateEducationCreateNestedManyWithoutEducationInput
+  }
+
+  export type EducationUncheckedCreateInput = {
+    id?: string
+    name: string
+    map: string
+    candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutEducationInput
+  }
+
+  export type EducationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    map?: StringFieldUpdateOperationsInput | string
+    candidateEducation?: CandidateEducationUpdateManyWithoutEducationNestedInput
+  }
+
+  export type EducationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    map?: StringFieldUpdateOperationsInput | string
+    candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutEducationNestedInput
+  }
+
+  export type EducationCreateManyInput = {
+    id?: string
+    name: string
+    map: string
+  }
+
+  export type EducationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    map?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EducationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    map?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateEducationCreateInput = {
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+    candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateEducationInput
+    education: EducationCreateNestedOneWithoutCandidateEducationInput
+  }
+
+  export type CandidateEducationUncheckedCreateInput = {
+    candidateProfileId: string
+    educationId: string
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+  }
+
+  export type CandidateEducationUpdateInput = {
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
+    candidateProfile?: CandidateProfileUpdateOneRequiredWithoutCandidateEducationNestedInput
+    education?: EducationUpdateOneRequiredWithoutCandidateEducationNestedInput
+  }
+
+  export type CandidateEducationUncheckedUpdateInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    educationId?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CandidateEducationCreateManyInput = {
+    candidateProfileId: string
+    educationId: string
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+  }
+
+  export type CandidateEducationUpdateManyMutationInput = {
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CandidateEducationUncheckedUpdateManyInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    educationId?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6336,7 +9034,17 @@ export namespace Prisma {
     none?: CandidateLanguageWhereInput
   }
 
+  export type CandidateEducationListRelationFilter = {
+    every?: CandidateEducationWhereInput
+    some?: CandidateEducationWhereInput
+    none?: CandidateEducationWhereInput
+  }
+
   export type CandidateLanguageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CandidateEducationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6465,6 +9173,115 @@ export namespace Prisma {
     _max?: NestedEnumLevelFilter<$PrismaModel>
   }
 
+  export type EducationCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    map?: SortOrder
+  }
+
+  export type EducationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    map?: SortOrder
+  }
+
+  export type EducationMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    map?: SortOrder
+  }
+
+  export type EnumDEGREEFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEGREE | EnumDEGREEFieldRefInput<$PrismaModel>
+    in?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    not?: NestedEnumDEGREEFilter<$PrismaModel> | $Enums.DEGREE
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EducationScalarRelationFilter = {
+    is?: EducationWhereInput
+    isNot?: EducationWhereInput
+  }
+
+  export type CandidateEducationCandidateProfileIdEducationIdCompoundUniqueInput = {
+    candidateProfileId: string
+    educationId: string
+  }
+
+  export type CandidateEducationCountOrderByAggregateInput = {
+    candidateProfileId?: SortOrder
+    educationId?: SortOrder
+    major?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type CandidateEducationAvgOrderByAggregateInput = {
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type CandidateEducationMaxOrderByAggregateInput = {
+    candidateProfileId?: SortOrder
+    educationId?: SortOrder
+    major?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type CandidateEducationMinOrderByAggregateInput = {
+    candidateProfileId?: SortOrder
+    educationId?: SortOrder
+    major?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type CandidateEducationSumOrderByAggregateInput = {
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type EnumDEGREEWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEGREE | EnumDEGREEFieldRefInput<$PrismaModel>
+    in?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    not?: NestedEnumDEGREEWithAggregatesFilter<$PrismaModel> | $Enums.DEGREE
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDEGREEFilter<$PrismaModel>
+    _max?: NestedEnumDEGREEFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type CandidateProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<CandidateProfileCreateWithoutUserInput, CandidateProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: CandidateProfileCreateOrConnectWithoutUserInput
@@ -6526,11 +9343,25 @@ export namespace Prisma {
     connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
   }
 
+  export type CandidateEducationCreateNestedManyWithoutCandidateProfileInput = {
+    create?: XOR<CandidateEducationCreateWithoutCandidateProfileInput, CandidateEducationUncheckedCreateWithoutCandidateProfileInput> | CandidateEducationCreateWithoutCandidateProfileInput[] | CandidateEducationUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutCandidateProfileInput | CandidateEducationCreateOrConnectWithoutCandidateProfileInput[]
+    createMany?: CandidateEducationCreateManyCandidateProfileInputEnvelope
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+  }
+
   export type CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput = {
     create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
     connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
     createMany?: CandidateLanguageCreateManyCandidateProfileInputEnvelope
     connect?: CandidateLanguageWhereUniqueInput | CandidateLanguageWhereUniqueInput[]
+  }
+
+  export type CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput = {
+    create?: XOR<CandidateEducationCreateWithoutCandidateProfileInput, CandidateEducationUncheckedCreateWithoutCandidateProfileInput> | CandidateEducationCreateWithoutCandidateProfileInput[] | CandidateEducationUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutCandidateProfileInput | CandidateEducationCreateOrConnectWithoutCandidateProfileInput[]
+    createMany?: CandidateEducationCreateManyCandidateProfileInputEnvelope
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
   }
 
   export type EnumGenderFieldUpdateOperationsInput = {
@@ -6563,6 +9394,20 @@ export namespace Prisma {
     deleteMany?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
   }
 
+  export type CandidateEducationUpdateManyWithoutCandidateProfileNestedInput = {
+    create?: XOR<CandidateEducationCreateWithoutCandidateProfileInput, CandidateEducationUncheckedCreateWithoutCandidateProfileInput> | CandidateEducationCreateWithoutCandidateProfileInput[] | CandidateEducationUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutCandidateProfileInput | CandidateEducationCreateOrConnectWithoutCandidateProfileInput[]
+    upsert?: CandidateEducationUpsertWithWhereUniqueWithoutCandidateProfileInput | CandidateEducationUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+    createMany?: CandidateEducationCreateManyCandidateProfileInputEnvelope
+    set?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    disconnect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    delete?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    update?: CandidateEducationUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateEducationUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+    updateMany?: CandidateEducationUpdateManyWithWhereWithoutCandidateProfileInput | CandidateEducationUpdateManyWithWhereWithoutCandidateProfileInput[]
+    deleteMany?: CandidateEducationScalarWhereInput | CandidateEducationScalarWhereInput[]
+  }
+
   export type CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput = {
     create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
     connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
@@ -6575,6 +9420,20 @@ export namespace Prisma {
     update?: CandidateLanguageUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateLanguageUpdateWithWhereUniqueWithoutCandidateProfileInput[]
     updateMany?: CandidateLanguageUpdateManyWithWhereWithoutCandidateProfileInput | CandidateLanguageUpdateManyWithWhereWithoutCandidateProfileInput[]
     deleteMany?: CandidateLanguageScalarWhereInput | CandidateLanguageScalarWhereInput[]
+  }
+
+  export type CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput = {
+    create?: XOR<CandidateEducationCreateWithoutCandidateProfileInput, CandidateEducationUncheckedCreateWithoutCandidateProfileInput> | CandidateEducationCreateWithoutCandidateProfileInput[] | CandidateEducationUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutCandidateProfileInput | CandidateEducationCreateOrConnectWithoutCandidateProfileInput[]
+    upsert?: CandidateEducationUpsertWithWhereUniqueWithoutCandidateProfileInput | CandidateEducationUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+    createMany?: CandidateEducationCreateManyCandidateProfileInputEnvelope
+    set?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    disconnect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    delete?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    update?: CandidateEducationUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateEducationUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+    updateMany?: CandidateEducationUpdateManyWithWhereWithoutCandidateProfileInput | CandidateEducationUpdateManyWithWhereWithoutCandidateProfileInput[]
+    deleteMany?: CandidateEducationScalarWhereInput | CandidateEducationScalarWhereInput[]
   }
 
   export type CandidateLanguageCreateNestedManyWithoutLanguageInput = {
@@ -6649,6 +9508,88 @@ export namespace Prisma {
     upsert?: LanguageUpsertWithoutCandidateLanguageInput
     connect?: LanguageWhereUniqueInput
     update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutCandidateLanguageInput, LanguageUpdateWithoutCandidateLanguageInput>, LanguageUncheckedUpdateWithoutCandidateLanguageInput>
+  }
+
+  export type CandidateEducationCreateNestedManyWithoutEducationInput = {
+    create?: XOR<CandidateEducationCreateWithoutEducationInput, CandidateEducationUncheckedCreateWithoutEducationInput> | CandidateEducationCreateWithoutEducationInput[] | CandidateEducationUncheckedCreateWithoutEducationInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutEducationInput | CandidateEducationCreateOrConnectWithoutEducationInput[]
+    createMany?: CandidateEducationCreateManyEducationInputEnvelope
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+  }
+
+  export type CandidateEducationUncheckedCreateNestedManyWithoutEducationInput = {
+    create?: XOR<CandidateEducationCreateWithoutEducationInput, CandidateEducationUncheckedCreateWithoutEducationInput> | CandidateEducationCreateWithoutEducationInput[] | CandidateEducationUncheckedCreateWithoutEducationInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutEducationInput | CandidateEducationCreateOrConnectWithoutEducationInput[]
+    createMany?: CandidateEducationCreateManyEducationInputEnvelope
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+  }
+
+  export type CandidateEducationUpdateManyWithoutEducationNestedInput = {
+    create?: XOR<CandidateEducationCreateWithoutEducationInput, CandidateEducationUncheckedCreateWithoutEducationInput> | CandidateEducationCreateWithoutEducationInput[] | CandidateEducationUncheckedCreateWithoutEducationInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutEducationInput | CandidateEducationCreateOrConnectWithoutEducationInput[]
+    upsert?: CandidateEducationUpsertWithWhereUniqueWithoutEducationInput | CandidateEducationUpsertWithWhereUniqueWithoutEducationInput[]
+    createMany?: CandidateEducationCreateManyEducationInputEnvelope
+    set?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    disconnect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    delete?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    update?: CandidateEducationUpdateWithWhereUniqueWithoutEducationInput | CandidateEducationUpdateWithWhereUniqueWithoutEducationInput[]
+    updateMany?: CandidateEducationUpdateManyWithWhereWithoutEducationInput | CandidateEducationUpdateManyWithWhereWithoutEducationInput[]
+    deleteMany?: CandidateEducationScalarWhereInput | CandidateEducationScalarWhereInput[]
+  }
+
+  export type CandidateEducationUncheckedUpdateManyWithoutEducationNestedInput = {
+    create?: XOR<CandidateEducationCreateWithoutEducationInput, CandidateEducationUncheckedCreateWithoutEducationInput> | CandidateEducationCreateWithoutEducationInput[] | CandidateEducationUncheckedCreateWithoutEducationInput[]
+    connectOrCreate?: CandidateEducationCreateOrConnectWithoutEducationInput | CandidateEducationCreateOrConnectWithoutEducationInput[]
+    upsert?: CandidateEducationUpsertWithWhereUniqueWithoutEducationInput | CandidateEducationUpsertWithWhereUniqueWithoutEducationInput[]
+    createMany?: CandidateEducationCreateManyEducationInputEnvelope
+    set?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    disconnect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    delete?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    connect?: CandidateEducationWhereUniqueInput | CandidateEducationWhereUniqueInput[]
+    update?: CandidateEducationUpdateWithWhereUniqueWithoutEducationInput | CandidateEducationUpdateWithWhereUniqueWithoutEducationInput[]
+    updateMany?: CandidateEducationUpdateManyWithWhereWithoutEducationInput | CandidateEducationUpdateManyWithWhereWithoutEducationInput[]
+    deleteMany?: CandidateEducationScalarWhereInput | CandidateEducationScalarWhereInput[]
+  }
+
+  export type CandidateProfileCreateNestedOneWithoutCandidateEducationInput = {
+    create?: XOR<CandidateProfileCreateWithoutCandidateEducationInput, CandidateProfileUncheckedCreateWithoutCandidateEducationInput>
+    connectOrCreate?: CandidateProfileCreateOrConnectWithoutCandidateEducationInput
+    connect?: CandidateProfileWhereUniqueInput
+  }
+
+  export type EducationCreateNestedOneWithoutCandidateEducationInput = {
+    create?: XOR<EducationCreateWithoutCandidateEducationInput, EducationUncheckedCreateWithoutCandidateEducationInput>
+    connectOrCreate?: EducationCreateOrConnectWithoutCandidateEducationInput
+    connect?: EducationWhereUniqueInput
+  }
+
+  export type EnumDEGREEFieldUpdateOperationsInput = {
+    set?: $Enums.DEGREE
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type CandidateProfileUpdateOneRequiredWithoutCandidateEducationNestedInput = {
+    create?: XOR<CandidateProfileCreateWithoutCandidateEducationInput, CandidateProfileUncheckedCreateWithoutCandidateEducationInput>
+    connectOrCreate?: CandidateProfileCreateOrConnectWithoutCandidateEducationInput
+    upsert?: CandidateProfileUpsertWithoutCandidateEducationInput
+    connect?: CandidateProfileWhereUniqueInput
+    update?: XOR<XOR<CandidateProfileUpdateToOneWithWhereWithoutCandidateEducationInput, CandidateProfileUpdateWithoutCandidateEducationInput>, CandidateProfileUncheckedUpdateWithoutCandidateEducationInput>
+  }
+
+  export type EducationUpdateOneRequiredWithoutCandidateEducationNestedInput = {
+    create?: XOR<EducationCreateWithoutCandidateEducationInput, EducationUncheckedCreateWithoutCandidateEducationInput>
+    connectOrCreate?: EducationCreateOrConnectWithoutCandidateEducationInput
+    upsert?: EducationUpsertWithoutCandidateEducationInput
+    connect?: EducationWhereUniqueInput
+    update?: XOR<XOR<EducationUpdateToOneWithWhereWithoutCandidateEducationInput, EducationUpdateWithoutCandidateEducationInput>, EducationUncheckedUpdateWithoutCandidateEducationInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6824,6 +9765,50 @@ export namespace Prisma {
     _max?: NestedEnumLevelFilter<$PrismaModel>
   }
 
+  export type NestedEnumDEGREEFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEGREE | EnumDEGREEFieldRefInput<$PrismaModel>
+    in?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    not?: NestedEnumDEGREEFilter<$PrismaModel> | $Enums.DEGREE
+  }
+
+  export type NestedEnumDEGREEWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEGREE | EnumDEGREEFieldRefInput<$PrismaModel>
+    in?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
+    not?: NestedEnumDEGREEWithAggregatesFilter<$PrismaModel> | $Enums.DEGREE
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDEGREEFilter<$PrismaModel>
+    _max?: NestedEnumDEGREEFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type CandidateProfileCreateWithoutUserInput = {
     id?: string
     fullName: string
@@ -6835,6 +9820,7 @@ export namespace Prisma {
     status?: boolean
     openToWork?: boolean
     candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
+    candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateWithoutUserInput = {
@@ -6848,6 +9834,7 @@ export namespace Prisma {
     status?: boolean
     openToWork?: boolean
     candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileCreateOrConnectWithoutUserInput = {
@@ -6877,6 +9864,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
+    candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateWithoutUserInput = {
@@ -6890,6 +9878,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type UserCreateWithoutCandidateProfileInput = {
@@ -6932,6 +9921,32 @@ export namespace Prisma {
 
   export type CandidateLanguageCreateManyCandidateProfileInputEnvelope = {
     data: CandidateLanguageCreateManyCandidateProfileInput | CandidateLanguageCreateManyCandidateProfileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CandidateEducationCreateWithoutCandidateProfileInput = {
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+    education: EducationCreateNestedOneWithoutCandidateEducationInput
+  }
+
+  export type CandidateEducationUncheckedCreateWithoutCandidateProfileInput = {
+    educationId: string
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+  }
+
+  export type CandidateEducationCreateOrConnectWithoutCandidateProfileInput = {
+    where: CandidateEducationWhereUniqueInput
+    create: XOR<CandidateEducationCreateWithoutCandidateProfileInput, CandidateEducationUncheckedCreateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateEducationCreateManyCandidateProfileInputEnvelope = {
+    data: CandidateEducationCreateManyCandidateProfileInput | CandidateEducationCreateManyCandidateProfileInput[]
     skipDuplicates?: boolean
   }
 
@@ -6989,6 +10004,34 @@ export namespace Prisma {
     languageName?: StringFilter<"CandidateLanguage"> | string
   }
 
+  export type CandidateEducationUpsertWithWhereUniqueWithoutCandidateProfileInput = {
+    where: CandidateEducationWhereUniqueInput
+    update: XOR<CandidateEducationUpdateWithoutCandidateProfileInput, CandidateEducationUncheckedUpdateWithoutCandidateProfileInput>
+    create: XOR<CandidateEducationCreateWithoutCandidateProfileInput, CandidateEducationUncheckedCreateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateEducationUpdateWithWhereUniqueWithoutCandidateProfileInput = {
+    where: CandidateEducationWhereUniqueInput
+    data: XOR<CandidateEducationUpdateWithoutCandidateProfileInput, CandidateEducationUncheckedUpdateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateEducationUpdateManyWithWhereWithoutCandidateProfileInput = {
+    where: CandidateEducationScalarWhereInput
+    data: XOR<CandidateEducationUpdateManyMutationInput, CandidateEducationUncheckedUpdateManyWithoutCandidateProfileInput>
+  }
+
+  export type CandidateEducationScalarWhereInput = {
+    AND?: CandidateEducationScalarWhereInput | CandidateEducationScalarWhereInput[]
+    OR?: CandidateEducationScalarWhereInput[]
+    NOT?: CandidateEducationScalarWhereInput | CandidateEducationScalarWhereInput[]
+    candidateProfileId?: StringFilter<"CandidateEducation"> | string
+    educationId?: StringFilter<"CandidateEducation"> | string
+    major?: StringFilter<"CandidateEducation"> | string
+    degree?: EnumDEGREEFilter<"CandidateEducation"> | $Enums.DEGREE
+    startYear?: IntFilter<"CandidateEducation"> | number
+    endYear?: IntFilter<"CandidateEducation"> | number
+  }
+
   export type CandidateLanguageCreateWithoutLanguageInput = {
     level?: $Enums.Level
     candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateLanguageInput
@@ -7036,6 +10079,7 @@ export namespace Prisma {
     status?: boolean
     openToWork?: boolean
     user: UserCreateNestedOneWithoutCandidateProfileInput
+    candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateWithoutCandidateLanguageInput = {
@@ -7049,6 +10093,7 @@ export namespace Prisma {
     address: string
     status?: boolean
     openToWork?: boolean
+    candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileCreateOrConnectWithoutCandidateLanguageInput = {
@@ -7091,6 +10136,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
+    candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateWithoutCandidateLanguageInput = {
@@ -7104,6 +10150,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     openToWork?: BoolFieldUpdateOperationsInput | boolean
+    candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type LanguageUpsertWithoutCandidateLanguageInput = {
@@ -7125,9 +10172,171 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
+  export type CandidateEducationCreateWithoutEducationInput = {
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+    candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateEducationInput
+  }
+
+  export type CandidateEducationUncheckedCreateWithoutEducationInput = {
+    candidateProfileId: string
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+  }
+
+  export type CandidateEducationCreateOrConnectWithoutEducationInput = {
+    where: CandidateEducationWhereUniqueInput
+    create: XOR<CandidateEducationCreateWithoutEducationInput, CandidateEducationUncheckedCreateWithoutEducationInput>
+  }
+
+  export type CandidateEducationCreateManyEducationInputEnvelope = {
+    data: CandidateEducationCreateManyEducationInput | CandidateEducationCreateManyEducationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CandidateEducationUpsertWithWhereUniqueWithoutEducationInput = {
+    where: CandidateEducationWhereUniqueInput
+    update: XOR<CandidateEducationUpdateWithoutEducationInput, CandidateEducationUncheckedUpdateWithoutEducationInput>
+    create: XOR<CandidateEducationCreateWithoutEducationInput, CandidateEducationUncheckedCreateWithoutEducationInput>
+  }
+
+  export type CandidateEducationUpdateWithWhereUniqueWithoutEducationInput = {
+    where: CandidateEducationWhereUniqueInput
+    data: XOR<CandidateEducationUpdateWithoutEducationInput, CandidateEducationUncheckedUpdateWithoutEducationInput>
+  }
+
+  export type CandidateEducationUpdateManyWithWhereWithoutEducationInput = {
+    where: CandidateEducationScalarWhereInput
+    data: XOR<CandidateEducationUpdateManyMutationInput, CandidateEducationUncheckedUpdateManyWithoutEducationInput>
+  }
+
+  export type CandidateProfileCreateWithoutCandidateEducationInput = {
+    id?: string
+    fullName: string
+    gender: $Enums.Gender
+    phone: string
+    cv: string
+    birthDate: Date | string
+    address: string
+    status?: boolean
+    openToWork?: boolean
+    user: UserCreateNestedOneWithoutCandidateProfileInput
+    candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
+  }
+
+  export type CandidateProfileUncheckedCreateWithoutCandidateEducationInput = {
+    id?: string
+    userId: string
+    fullName: string
+    gender: $Enums.Gender
+    phone: string
+    cv: string
+    birthDate: Date | string
+    address: string
+    status?: boolean
+    openToWork?: boolean
+    candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
+  }
+
+  export type CandidateProfileCreateOrConnectWithoutCandidateEducationInput = {
+    where: CandidateProfileWhereUniqueInput
+    create: XOR<CandidateProfileCreateWithoutCandidateEducationInput, CandidateProfileUncheckedCreateWithoutCandidateEducationInput>
+  }
+
+  export type EducationCreateWithoutCandidateEducationInput = {
+    id?: string
+    name: string
+    map: string
+  }
+
+  export type EducationUncheckedCreateWithoutCandidateEducationInput = {
+    id?: string
+    name: string
+    map: string
+  }
+
+  export type EducationCreateOrConnectWithoutCandidateEducationInput = {
+    where: EducationWhereUniqueInput
+    create: XOR<EducationCreateWithoutCandidateEducationInput, EducationUncheckedCreateWithoutCandidateEducationInput>
+  }
+
+  export type CandidateProfileUpsertWithoutCandidateEducationInput = {
+    update: XOR<CandidateProfileUpdateWithoutCandidateEducationInput, CandidateProfileUncheckedUpdateWithoutCandidateEducationInput>
+    create: XOR<CandidateProfileCreateWithoutCandidateEducationInput, CandidateProfileUncheckedCreateWithoutCandidateEducationInput>
+    where?: CandidateProfileWhereInput
+  }
+
+  export type CandidateProfileUpdateToOneWithWhereWithoutCandidateEducationInput = {
+    where?: CandidateProfileWhereInput
+    data: XOR<CandidateProfileUpdateWithoutCandidateEducationInput, CandidateProfileUncheckedUpdateWithoutCandidateEducationInput>
+  }
+
+  export type CandidateProfileUpdateWithoutCandidateEducationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    phone?: StringFieldUpdateOperationsInput | string
+    cv?: StringFieldUpdateOperationsInput | string
+    birthDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    openToWork?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
+    candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
+  }
+
+  export type CandidateProfileUncheckedUpdateWithoutCandidateEducationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    phone?: StringFieldUpdateOperationsInput | string
+    cv?: StringFieldUpdateOperationsInput | string
+    birthDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    openToWork?: BoolFieldUpdateOperationsInput | boolean
+    candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
+  }
+
+  export type EducationUpsertWithoutCandidateEducationInput = {
+    update: XOR<EducationUpdateWithoutCandidateEducationInput, EducationUncheckedUpdateWithoutCandidateEducationInput>
+    create: XOR<EducationCreateWithoutCandidateEducationInput, EducationUncheckedCreateWithoutCandidateEducationInput>
+    where?: EducationWhereInput
+  }
+
+  export type EducationUpdateToOneWithWhereWithoutCandidateEducationInput = {
+    where?: EducationWhereInput
+    data: XOR<EducationUpdateWithoutCandidateEducationInput, EducationUncheckedUpdateWithoutCandidateEducationInput>
+  }
+
+  export type EducationUpdateWithoutCandidateEducationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    map?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EducationUncheckedUpdateWithoutCandidateEducationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    map?: StringFieldUpdateOperationsInput | string
+  }
+
   export type CandidateLanguageCreateManyCandidateProfileInput = {
     level?: $Enums.Level
     languageName: string
+  }
+
+  export type CandidateEducationCreateManyCandidateProfileInput = {
+    educationId: string
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
   }
 
   export type CandidateLanguageUpdateWithoutCandidateProfileInput = {
@@ -7143,6 +10352,30 @@ export namespace Prisma {
   export type CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileInput = {
     level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
     languageName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateEducationUpdateWithoutCandidateProfileInput = {
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
+    education?: EducationUpdateOneRequiredWithoutCandidateEducationNestedInput
+  }
+
+  export type CandidateEducationUncheckedUpdateWithoutCandidateProfileInput = {
+    educationId?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CandidateEducationUncheckedUpdateManyWithoutCandidateProfileInput = {
+    educationId?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
   }
 
   export type CandidateLanguageCreateManyLanguageInput = {
@@ -7163,6 +10396,38 @@ export namespace Prisma {
   export type CandidateLanguageUncheckedUpdateManyWithoutLanguageInput = {
     candidateProfileId?: StringFieldUpdateOperationsInput | string
     level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  }
+
+  export type CandidateEducationCreateManyEducationInput = {
+    candidateProfileId: string
+    major: string
+    degree?: $Enums.DEGREE
+    startYear: number
+    endYear: number
+  }
+
+  export type CandidateEducationUpdateWithoutEducationInput = {
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
+    candidateProfile?: CandidateProfileUpdateOneRequiredWithoutCandidateEducationNestedInput
+  }
+
+  export type CandidateEducationUncheckedUpdateWithoutEducationInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CandidateEducationUncheckedUpdateManyWithoutEducationInput = {
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: IntFieldUpdateOperationsInput | number
   }
 
 

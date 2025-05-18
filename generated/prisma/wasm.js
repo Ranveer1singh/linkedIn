@@ -149,6 +149,21 @@ exports.Prisma.CandidateLanguageScalarFieldEnum = {
   languageName: 'languageName'
 };
 
+exports.Prisma.EducationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  map: 'map'
+};
+
+exports.Prisma.CandidateEducationScalarFieldEnum = {
+  candidateProfileId: 'candidateProfileId',
+  educationId: 'educationId',
+  major: 'major',
+  degree: 'degree',
+  startYear: 'startYear',
+  endYear: 'endYear'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -180,11 +195,19 @@ exports.Level = exports.$Enums.Level = {
   BASIC: 'BASIC'
 };
 
+exports.DEGREE = exports.$Enums.DEGREE = {
+  BACHELORS: 'BACHELORS',
+  MASTER: 'MASTER',
+  ENGINEER: 'ENGINEER'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   CandidateProfile: 'CandidateProfile',
   Language: 'Language',
-  CandidateLanguage: 'CandidateLanguage'
+  CandidateLanguage: 'CandidateLanguage',
+  Education: 'Education',
+  CandidateEducation: 'CandidateEducation'
 };
 
 /**
