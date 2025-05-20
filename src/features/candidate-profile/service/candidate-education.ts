@@ -2,6 +2,7 @@ import prisma from "~/prisma";
 import { candidateProfileService } from "./candidate-profile";
 import { NotFoundException } from "~/globals/cores/error.core";
 import { CandidateEducation, Education } from "generated/prisma";
+import { ICandidateEducation } from "../interface/candidate-education";
 
 class CandidateEducationService {
 
@@ -15,7 +16,7 @@ class CandidateEducationService {
     /**
      * addEducation
      */
-    public async addEducation(body: any, currentUser: UserPayload) {
+    public async addEducation(body: ICandidateEducation, currentUser: UserPayload) {
         const { educationId, startYear, endYear, degree, major } = body;
        await this.findEducation(educationId);
         const currentUserProfile = await candidateProfileService.readByUserId(currentUser.id)
@@ -71,6 +72,24 @@ class CandidateEducationService {
             }
         })
         return updateDoc
+    }
+    /**
+     * deleteEducation
+     */
+    public async removeEducation(educationId : string , currentUser : UserPayload) {
+        await this.findEducation(educationId)
+        const currentUserProfile = await candidateProfileService.readByUserId(currentUser.id)
+
+        await prisma.candidateEducation.delete({
+            where : {
+                candidateProfileId_educationId : {
+                    candidateProfileId : currentUserProfile.id,
+                    educationId : educationId
+                }
+            }
+        });
+
+        return "deleted"
     }
 }
 

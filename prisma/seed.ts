@@ -1,17 +1,17 @@
  import { Education, Language, PrismaClient } from "../generated/prisma"
  const prisma = new PrismaClient()
 
-//  async function main(){
-//     const data : Language[] = [
-//         {name : 'english'},
-//         {name : "japnese"},
-//         {name : "chinese"},
-//     ]
-//     await prisma.language.createMany({
-//         data 
-//     })
+ async function main(){
+    const data : Language[] = [
+        {name : 'english'},
+        {name : "japnese"},
+        {name : "chinese"},
+    ]
+    await prisma.language.createMany({
+        data 
+    })
 
-//  }
+ }
 async function createEducationData() {
         const data = [
             {
@@ -33,9 +33,9 @@ async function createEducationData() {
         })
     }
 
-//  main()
-//  .then()
-//  .catch((err) => console.log(err))
+ main()
+ .then()
+ .catch((err) => console.log(err))
  createEducationData()
  .then()
  .catch((err) => console.log(err))

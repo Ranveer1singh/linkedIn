@@ -14,8 +14,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+/**
+ * =================================== USER MODEL ======================================
+ */
 model User {
-  id               Int               @id @default(autoincrement())
+  id               String            @id @default(uuid())
   email            String            @unique
   name             String?
   password         String
@@ -24,19 +27,25 @@ model User {
   candidateProfile CandidateProfile?
 }
 
+/**
+ * =================================== Candidate MODEL ======================================
+ */
+
 // One To One 
 model CandidateProfile {
-  id         Int      @id @default(autoincrement())
-  user       User     @relation(fields: [userId], references: [id])
-  userId     Int      @unique
-  fullName   String
-  gender     Gender
-  phone      String
-  cv         String
-  birthDate  DateTime
-  address    String
-  status     Boolean  @default(true)
-  openToWork Boolean  @default(false)
+  id                 String               @id @default(uuid())
+  user               User                 @relation(fields: [userId], references: [id])
+  userId             String               @unique
+  fullName           String
+  gender             Gender
+  phone              String
+  cv                 String
+  birthDate          DateTime
+  address            String
+  status             Boolean              @default(true)
+  openToWork         Boolean              @default(false)
+  candidateLanguage  CandidateLanguage[]
+  candidateEducation CandidateEducation[]
 }
 
 enum Gender {
@@ -48,4 +57,63 @@ enum Role {
   ADMIN
   RECRUITER
   CANDIDATE
+}
+
+/**
+ * =================================== language MODEL ======================================
+ */
+model Language {
+  name              String              @id
+  candidateLanguage CandidateLanguage[]
+}
+
+/**
+ * =================================== Candidate language MODEL ======================================
+ */
+model CandidateLanguage {
+  candidateProfile   CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId String
+  level              Level            @default(BASIC)
+  language           Language         @relation(fields: [languageName], references: [name])
+  languageName       String
+
+  @@unique([candidateProfileId, languageName])
+}
+
+enum Level {
+  NATIVE
+  FLUENT
+  BASIC
+}
+
+/**
+ * ===================================  EDUCATION MODEL ======================================
+ */
+model Education {
+  id                 String               @id @default(uuid())
+  name               String
+  map                String
+  candidateEducation CandidateEducation[]
+}
+
+/**
+ * =================================== Candidate EDUCATION MODEL ======================================
+ */
+model CandidateEducation {
+  candidateProfile   CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId String
+  education          Education        @relation(fields: [educationId], references: [id])
+  educationId        String
+  major              String
+  degree             DEGREE           @default(BACHELORS)
+  startYear          DateTime
+  endYear            DateTime
+
+  @@id([candidateProfileId, educationId])
+}
+
+enum DEGREE {
+  BACHELORS
+  MASTER
+  ENGINEER
 }

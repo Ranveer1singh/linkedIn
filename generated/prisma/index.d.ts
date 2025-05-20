@@ -6846,20 +6846,8 @@ export namespace Prisma {
 
   export type AggregateCandidateEducation = {
     _count: CandidateEducationCountAggregateOutputType | null
-    _avg: CandidateEducationAvgAggregateOutputType | null
-    _sum: CandidateEducationSumAggregateOutputType | null
     _min: CandidateEducationMinAggregateOutputType | null
     _max: CandidateEducationMaxAggregateOutputType | null
-  }
-
-  export type CandidateEducationAvgAggregateOutputType = {
-    startYear: number | null
-    endYear: number | null
-  }
-
-  export type CandidateEducationSumAggregateOutputType = {
-    startYear: number | null
-    endYear: number | null
   }
 
   export type CandidateEducationMinAggregateOutputType = {
@@ -6867,8 +6855,8 @@ export namespace Prisma {
     educationId: string | null
     major: string | null
     degree: $Enums.DEGREE | null
-    startYear: number | null
-    endYear: number | null
+    startYear: Date | null
+    endYear: Date | null
   }
 
   export type CandidateEducationMaxAggregateOutputType = {
@@ -6876,8 +6864,8 @@ export namespace Prisma {
     educationId: string | null
     major: string | null
     degree: $Enums.DEGREE | null
-    startYear: number | null
-    endYear: number | null
+    startYear: Date | null
+    endYear: Date | null
   }
 
   export type CandidateEducationCountAggregateOutputType = {
@@ -6890,16 +6878,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type CandidateEducationAvgAggregateInputType = {
-    startYear?: true
-    endYear?: true
-  }
-
-  export type CandidateEducationSumAggregateInputType = {
-    startYear?: true
-    endYear?: true
-  }
 
   export type CandidateEducationMinAggregateInputType = {
     candidateProfileId?: true
@@ -6967,18 +6945,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: CandidateEducationAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CandidateEducationSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: CandidateEducationMinAggregateInputType
@@ -7009,8 +6975,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: CandidateEducationCountAggregateInputType | true
-    _avg?: CandidateEducationAvgAggregateInputType
-    _sum?: CandidateEducationSumAggregateInputType
     _min?: CandidateEducationMinAggregateInputType
     _max?: CandidateEducationMaxAggregateInputType
   }
@@ -7020,11 +6984,9 @@ export namespace Prisma {
     educationId: string
     major: string
     degree: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date
+    endYear: Date
     _count: CandidateEducationCountAggregateOutputType | null
-    _avg: CandidateEducationAvgAggregateOutputType | null
-    _sum: CandidateEducationSumAggregateOutputType | null
     _min: CandidateEducationMinAggregateOutputType | null
     _max: CandidateEducationMaxAggregateOutputType | null
   }
@@ -7110,8 +7072,8 @@ export namespace Prisma {
       educationId: string
       major: string
       degree: $Enums.DEGREE
-      startYear: number
-      endYear: number
+      startYear: Date
+      endYear: Date
     }, ExtArgs["result"]["candidateEducation"]>
     composites: {}
   }
@@ -7541,8 +7503,8 @@ export namespace Prisma {
     readonly educationId: FieldRef<"CandidateEducation", 'String'>
     readonly major: FieldRef<"CandidateEducation", 'String'>
     readonly degree: FieldRef<"CandidateEducation", 'DEGREE'>
-    readonly startYear: FieldRef<"CandidateEducation", 'Int'>
-    readonly endYear: FieldRef<"CandidateEducation", 'Int'>
+    readonly startYear: FieldRef<"CandidateEducation", 'DateTime'>
+    readonly endYear: FieldRef<"CandidateEducation", 'DateTime'>
   }
     
 
@@ -8168,20 +8130,6 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
   /**
    * Deep Input Types
    */
@@ -8470,8 +8418,8 @@ export namespace Prisma {
     educationId?: StringFilter<"CandidateEducation"> | string
     major?: StringFilter<"CandidateEducation"> | string
     degree?: EnumDEGREEFilter<"CandidateEducation"> | $Enums.DEGREE
-    startYear?: IntFilter<"CandidateEducation"> | number
-    endYear?: IntFilter<"CandidateEducation"> | number
+    startYear?: DateTimeFilter<"CandidateEducation"> | Date | string
+    endYear?: DateTimeFilter<"CandidateEducation"> | Date | string
     candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
     education?: XOR<EducationScalarRelationFilter, EducationWhereInput>
   }
@@ -8496,8 +8444,8 @@ export namespace Prisma {
     educationId?: StringFilter<"CandidateEducation"> | string
     major?: StringFilter<"CandidateEducation"> | string
     degree?: EnumDEGREEFilter<"CandidateEducation"> | $Enums.DEGREE
-    startYear?: IntFilter<"CandidateEducation"> | number
-    endYear?: IntFilter<"CandidateEducation"> | number
+    startYear?: DateTimeFilter<"CandidateEducation"> | Date | string
+    endYear?: DateTimeFilter<"CandidateEducation"> | Date | string
     candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
     education?: XOR<EducationScalarRelationFilter, EducationWhereInput>
   }, "candidateProfileId_educationId">
@@ -8510,10 +8458,8 @@ export namespace Prisma {
     startYear?: SortOrder
     endYear?: SortOrder
     _count?: CandidateEducationCountOrderByAggregateInput
-    _avg?: CandidateEducationAvgOrderByAggregateInput
     _max?: CandidateEducationMaxOrderByAggregateInput
     _min?: CandidateEducationMinOrderByAggregateInput
-    _sum?: CandidateEducationSumOrderByAggregateInput
   }
 
   export type CandidateEducationScalarWhereWithAggregatesInput = {
@@ -8524,8 +8470,8 @@ export namespace Prisma {
     educationId?: StringWithAggregatesFilter<"CandidateEducation"> | string
     major?: StringWithAggregatesFilter<"CandidateEducation"> | string
     degree?: EnumDEGREEWithAggregatesFilter<"CandidateEducation"> | $Enums.DEGREE
-    startYear?: IntWithAggregatesFilter<"CandidateEducation"> | number
-    endYear?: IntWithAggregatesFilter<"CandidateEducation"> | number
+    startYear?: DateTimeWithAggregatesFilter<"CandidateEducation"> | Date | string
+    endYear?: DateTimeWithAggregatesFilter<"CandidateEducation"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -8814,8 +8760,8 @@ export namespace Prisma {
   export type CandidateEducationCreateInput = {
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
     candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateEducationInput
     education: EducationCreateNestedOneWithoutCandidateEducationInput
   }
@@ -8825,15 +8771,15 @@ export namespace Prisma {
     educationId: string
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
   }
 
   export type CandidateEducationUpdateInput = {
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
     candidateProfile?: CandidateProfileUpdateOneRequiredWithoutCandidateEducationNestedInput
     education?: EducationUpdateOneRequiredWithoutCandidateEducationNestedInput
   }
@@ -8843,8 +8789,8 @@ export namespace Prisma {
     educationId?: StringFieldUpdateOperationsInput | string
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CandidateEducationCreateManyInput = {
@@ -8852,15 +8798,15 @@ export namespace Prisma {
     educationId: string
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
   }
 
   export type CandidateEducationUpdateManyMutationInput = {
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CandidateEducationUncheckedUpdateManyInput = {
@@ -8868,8 +8814,8 @@ export namespace Prisma {
     educationId?: StringFieldUpdateOperationsInput | string
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -9198,17 +9144,6 @@ export namespace Prisma {
     not?: NestedEnumDEGREEFilter<$PrismaModel> | $Enums.DEGREE
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type EducationScalarRelationFilter = {
     is?: EducationWhereInput
     isNot?: EducationWhereInput
@@ -9224,11 +9159,6 @@ export namespace Prisma {
     educationId?: SortOrder
     major?: SortOrder
     degree?: SortOrder
-    startYear?: SortOrder
-    endYear?: SortOrder
-  }
-
-  export type CandidateEducationAvgOrderByAggregateInput = {
     startYear?: SortOrder
     endYear?: SortOrder
   }
@@ -9251,11 +9181,6 @@ export namespace Prisma {
     endYear?: SortOrder
   }
 
-  export type CandidateEducationSumOrderByAggregateInput = {
-    startYear?: SortOrder
-    endYear?: SortOrder
-  }
-
   export type EnumDEGREEWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.DEGREE | EnumDEGREEFieldRefInput<$PrismaModel>
     in?: $Enums.DEGREE[] | ListEnumDEGREEFieldRefInput<$PrismaModel>
@@ -9264,22 +9189,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDEGREEFilter<$PrismaModel>
     _max?: NestedEnumDEGREEFilter<$PrismaModel>
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type CandidateProfileCreateNestedOneWithoutUserInput = {
@@ -9568,14 +9477,6 @@ export namespace Prisma {
     set?: $Enums.DEGREE
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type CandidateProfileUpdateOneRequiredWithoutCandidateEducationNestedInput = {
     create?: XOR<CandidateProfileCreateWithoutCandidateEducationInput, CandidateProfileUncheckedCreateWithoutCandidateEducationInput>
     connectOrCreate?: CandidateProfileCreateOrConnectWithoutCandidateEducationInput
@@ -9782,33 +9683,6 @@ export namespace Prisma {
     _max?: NestedEnumDEGREEFilter<$PrismaModel>
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type CandidateProfileCreateWithoutUserInput = {
     id?: string
     fullName: string
@@ -9927,8 +9801,8 @@ export namespace Prisma {
   export type CandidateEducationCreateWithoutCandidateProfileInput = {
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
     education: EducationCreateNestedOneWithoutCandidateEducationInput
   }
 
@@ -9936,8 +9810,8 @@ export namespace Prisma {
     educationId: string
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
   }
 
   export type CandidateEducationCreateOrConnectWithoutCandidateProfileInput = {
@@ -10028,8 +9902,8 @@ export namespace Prisma {
     educationId?: StringFilter<"CandidateEducation"> | string
     major?: StringFilter<"CandidateEducation"> | string
     degree?: EnumDEGREEFilter<"CandidateEducation"> | $Enums.DEGREE
-    startYear?: IntFilter<"CandidateEducation"> | number
-    endYear?: IntFilter<"CandidateEducation"> | number
+    startYear?: DateTimeFilter<"CandidateEducation"> | Date | string
+    endYear?: DateTimeFilter<"CandidateEducation"> | Date | string
   }
 
   export type CandidateLanguageCreateWithoutLanguageInput = {
@@ -10175,8 +10049,8 @@ export namespace Prisma {
   export type CandidateEducationCreateWithoutEducationInput = {
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
     candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateEducationInput
   }
 
@@ -10184,8 +10058,8 @@ export namespace Prisma {
     candidateProfileId: string
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
   }
 
   export type CandidateEducationCreateOrConnectWithoutEducationInput = {
@@ -10335,8 +10209,8 @@ export namespace Prisma {
     educationId: string
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
   }
 
   export type CandidateLanguageUpdateWithoutCandidateProfileInput = {
@@ -10357,8 +10231,8 @@ export namespace Prisma {
   export type CandidateEducationUpdateWithoutCandidateProfileInput = {
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
     education?: EducationUpdateOneRequiredWithoutCandidateEducationNestedInput
   }
 
@@ -10366,16 +10240,16 @@ export namespace Prisma {
     educationId?: StringFieldUpdateOperationsInput | string
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CandidateEducationUncheckedUpdateManyWithoutCandidateProfileInput = {
     educationId?: StringFieldUpdateOperationsInput | string
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CandidateLanguageCreateManyLanguageInput = {
@@ -10402,15 +10276,15 @@ export namespace Prisma {
     candidateProfileId: string
     major: string
     degree?: $Enums.DEGREE
-    startYear: number
-    endYear: number
+    startYear: Date | string
+    endYear: Date | string
   }
 
   export type CandidateEducationUpdateWithoutEducationInput = {
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
     candidateProfile?: CandidateProfileUpdateOneRequiredWithoutCandidateEducationNestedInput
   }
 
@@ -10418,16 +10292,16 @@ export namespace Prisma {
     candidateProfileId?: StringFieldUpdateOperationsInput | string
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CandidateEducationUncheckedUpdateManyWithoutEducationInput = {
     candidateProfileId?: StringFieldUpdateOperationsInput | string
     major?: StringFieldUpdateOperationsInput | string
     degree?: EnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE
-    startYear?: IntFieldUpdateOperationsInput | number
-    endYear?: IntFieldUpdateOperationsInput | number
+    startYear?: DateTimeFieldUpdateOperationsInput | Date | string
+    endYear?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

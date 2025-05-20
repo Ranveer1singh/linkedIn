@@ -92,8 +92,8 @@ educationId String
 @@id([candidateProfileId, educationId])
 major String
 degree DEGREE @default(BACHELORS)
-startYear  Int
-endYear Int
+startYear  DateTime
+endYear DateTime
 
 }
 enum DEGREE { 

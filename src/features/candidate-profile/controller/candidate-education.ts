@@ -50,6 +50,16 @@ class CandidateEducation {
             data : updaetEducation
         })
     }
+    /**
+     * deleteEducation
+     */
+    public async deleteEducation(req : Request, res : Response) {
+        const {educationId} = req.params
+        const Education = await candidateEducationService.removeEducation(educationId,  req.currentUser)
+        res.status(HTTP_STATUS.OK).json({
+            message : Education,
+        })
+    }
 }
 
 export  const candidateEducation : CandidateEducation = new CandidateEducation();
