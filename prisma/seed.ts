@@ -1,4 +1,4 @@
- import { Education, Language, PrismaClient } from "../generated/prisma"
+ import { Education, Language, PrismaClient, skill } from "../generated/prisma"
  const prisma = new PrismaClient()
 
  async function main(){
@@ -32,10 +32,29 @@ async function createEducationData() {
             data
         })
     }
+async function createSkills() {
+    const data : skill[]= [
+        {name  : "Java"},
+        {name  : "Python"},
+        {name  : "c++"},
+        {name  : "React"},
+        {name  : "Node"},
+        {name  : "C#"},
+        {name  : "GoLang"},
+        {name  : "Rust"}
+    ]
 
- main()
- .then()
- .catch((err) => console.log(err))
- createEducationData()
+    await prisma.skill.createMany({
+        data
+    })
+}
+
+
+
+
+//  main()
+//  .then()
+//  .catch((err) => console.log(err))
+ createSkills()
  .then()
  .catch((err) => console.log(err))

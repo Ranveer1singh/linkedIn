@@ -41,6 +41,8 @@ model CandidateProfile {
   openToWork Boolean @default(false)
   candidateLanguage CandidateLanguage[]
 candidateEducation CandidateEducation[]
+candidateSkills CandidateSkill[]
+
 }
 enum Gender{
   MALE
@@ -100,4 +102,19 @@ enum DEGREE {
   BACHELORS
   MASTER
   ENGINEER
+}
+
+/*=================================== SKILL MODEL ======================================*/
+model skill {
+  name String @id
+  candidateSkills CandidateSkill[]
+}
+/*=================================== candidateSKILL MODEL ======================================*/
+model CandidateSkill {
+  candidateProfile CandidateProfile @relation(fields : [candidateProfileId], references : [id])
+  candidateProfileId String
+
+  skill skill @relation(fields : [skillName], references : [name])
+  skillName String
+  @@id([candidateProfileId, skillName])
 }
