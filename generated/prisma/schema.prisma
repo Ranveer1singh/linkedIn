@@ -33,19 +33,21 @@ model User {
 
 // One To One 
 model CandidateProfile {
-  id                 String               @id @default(uuid())
-  user               User                 @relation(fields: [userId], references: [id])
-  userId             String               @unique
-  fullName           String
-  gender             Gender
-  phone              String
-  cv                 String
-  birthDate          DateTime
-  address            String
-  status             Boolean              @default(true)
-  openToWork         Boolean              @default(false)
-  candidateLanguage  CandidateLanguage[]
-  candidateEducation CandidateEducation[]
+  id                  String                @id @default(uuid())
+  user                User                  @relation(fields: [userId], references: [id])
+  userId              String                @unique
+  fullName            String
+  gender              Gender
+  phone               String
+  cv                  String
+  birthDate           DateTime
+  address             String
+  status              Boolean               @default(true)
+  openToWork          Boolean               @default(false)
+  candidateLanguage   CandidateLanguage[]
+  candidateEducation  CandidateEducation[]
+  candidateSkills     CandidateSkill[]
+  candidateExperience CandidateExperience[]
 }
 
 enum Gender {
@@ -116,4 +118,39 @@ enum DEGREE {
   BACHELORS
   MASTER
   ENGINEER
+}
+
+/**
+ * =================================== SKILL MODEL ======================================
+ */
+model skill {
+  name            String           @id
+  candidateSkills CandidateSkill[]
+}
+
+/**
+ * =================================== candidateSKILL MODEL ======================================
+ */
+model CandidateSkill {
+  candidateProfile   CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId String
+
+  skill     skill  @relation(fields: [skillName], references: [name])
+  skillName String
+
+  @@id([candidateProfileId, skillName])
+}
+
+/**
+ * =================================== candidateExperience MODEL ======================================
+ */
+model CandidateExperience {
+  id                 String           @id @default(uuid())
+  company            String
+  deapartment        String
+  startDate          DateTime         @db.Date
+  endDate            DateTime         @db.Date
+  responsibility     String
+  candidateProfile   CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId String
 }

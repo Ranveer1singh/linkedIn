@@ -6,5 +6,4 @@ export interface ICandidateEducation {
     major : string;
     startYear : Date;
     endYear :  Date;
-
 }

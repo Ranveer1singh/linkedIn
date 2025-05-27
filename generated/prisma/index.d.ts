@@ -53,6 +53,11 @@ export type skill = $Result.DefaultSelection<Prisma.$skillPayload>
  * =================================== candidateSKILL MODEL ======================================
  */
 export type CandidateSkill = $Result.DefaultSelection<Prisma.$CandidateSkillPayload>
+/**
+ * Model CandidateExperience
+ * =================================== candidateExperience MODEL ======================================
+ */
+export type CandidateExperience = $Result.DefaultSelection<Prisma.$CandidateExperiencePayload>
 
 /**
  * Enums
@@ -314,6 +319,16 @@ export class PrismaClient<
     * ```
     */
   get candidateSkill(): Prisma.CandidateSkillDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.candidateExperience`: Exposes CRUD operations for the **CandidateExperience** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CandidateExperiences
+    * const candidateExperiences = await prisma.candidateExperience.findMany()
+    * ```
+    */
+  get candidateExperience(): Prisma.CandidateExperienceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -761,7 +776,8 @@ export namespace Prisma {
     Education: 'Education',
     CandidateEducation: 'CandidateEducation',
     skill: 'skill',
-    CandidateSkill: 'CandidateSkill'
+    CandidateSkill: 'CandidateSkill',
+    CandidateExperience: 'CandidateExperience'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -780,7 +796,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "skill" | "candidateSkill"
+      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "skill" | "candidateSkill" | "candidateExperience"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1376,6 +1392,80 @@ export namespace Prisma {
           }
         }
       }
+      CandidateExperience: {
+        payload: Prisma.$CandidateExperiencePayload<ExtArgs>
+        fields: Prisma.CandidateExperienceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CandidateExperienceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CandidateExperienceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>
+          }
+          findFirst: {
+            args: Prisma.CandidateExperienceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CandidateExperienceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>
+          }
+          findMany: {
+            args: Prisma.CandidateExperienceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>[]
+          }
+          create: {
+            args: Prisma.CandidateExperienceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>
+          }
+          createMany: {
+            args: Prisma.CandidateExperienceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CandidateExperienceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>[]
+          }
+          delete: {
+            args: Prisma.CandidateExperienceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>
+          }
+          update: {
+            args: Prisma.CandidateExperienceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>
+          }
+          deleteMany: {
+            args: Prisma.CandidateExperienceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CandidateExperienceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CandidateExperienceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>[]
+          }
+          upsert: {
+            args: Prisma.CandidateExperienceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidateExperiencePayload>
+          }
+          aggregate: {
+            args: Prisma.CandidateExperienceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCandidateExperience>
+          }
+          groupBy: {
+            args: Prisma.CandidateExperienceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CandidateExperienceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CandidateExperienceCountArgs<ExtArgs>
+            result: $Utils.Optional<CandidateExperienceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1468,6 +1558,7 @@ export namespace Prisma {
     candidateEducation?: CandidateEducationOmit
     skill?: skillOmit
     candidateSkill?: CandidateSkillOmit
+    candidateExperience?: CandidateExperienceOmit
   }
 
   /* Types for Logging */
@@ -1565,12 +1656,14 @@ export namespace Prisma {
     candidateLanguage: number
     candidateEducation: number
     candidateSkills: number
+    candidateExperience: number
   }
 
   export type CandidateProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     candidateLanguage?: boolean | CandidateProfileCountOutputTypeCountCandidateLanguageArgs
     candidateEducation?: boolean | CandidateProfileCountOutputTypeCountCandidateEducationArgs
     candidateSkills?: boolean | CandidateProfileCountOutputTypeCountCandidateSkillsArgs
+    candidateExperience?: boolean | CandidateProfileCountOutputTypeCountCandidateExperienceArgs
   }
 
   // Custom InputTypes
@@ -1603,6 +1696,13 @@ export namespace Prisma {
    */
   export type CandidateProfileCountOutputTypeCountCandidateSkillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CandidateSkillWhereInput
+  }
+
+  /**
+   * CandidateProfileCountOutputType without action
+   */
+  export type CandidateProfileCountOutputTypeCountCandidateExperienceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateExperienceWhereInput
   }
 
 
@@ -2987,6 +3087,7 @@ export namespace Prisma {
     candidateLanguage?: boolean | CandidateProfile$candidateLanguageArgs<ExtArgs>
     candidateEducation?: boolean | CandidateProfile$candidateEducationArgs<ExtArgs>
     candidateSkills?: boolean | CandidateProfile$candidateSkillsArgs<ExtArgs>
+    candidateExperience?: boolean | CandidateProfile$candidateExperienceArgs<ExtArgs>
     _count?: boolean | CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["candidateProfile"]>
 
@@ -3037,6 +3138,7 @@ export namespace Prisma {
     candidateLanguage?: boolean | CandidateProfile$candidateLanguageArgs<ExtArgs>
     candidateEducation?: boolean | CandidateProfile$candidateEducationArgs<ExtArgs>
     candidateSkills?: boolean | CandidateProfile$candidateSkillsArgs<ExtArgs>
+    candidateExperience?: boolean | CandidateProfile$candidateExperienceArgs<ExtArgs>
     _count?: boolean | CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CandidateProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3053,6 +3155,7 @@ export namespace Prisma {
       candidateLanguage: Prisma.$CandidateLanguagePayload<ExtArgs>[]
       candidateEducation: Prisma.$CandidateEducationPayload<ExtArgs>[]
       candidateSkills: Prisma.$CandidateSkillPayload<ExtArgs>[]
+      candidateExperience: Prisma.$CandidateExperiencePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3463,6 +3566,7 @@ export namespace Prisma {
     candidateLanguage<T extends CandidateProfile$candidateLanguageArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfile$candidateLanguageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateLanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     candidateEducation<T extends CandidateProfile$candidateEducationArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfile$candidateEducationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateEducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     candidateSkills<T extends CandidateProfile$candidateSkillsArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfile$candidateSkillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    candidateExperience<T extends CandidateProfile$candidateExperienceArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfile$candidateExperienceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3967,6 +4071,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CandidateSkillScalarFieldEnum | CandidateSkillScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateProfile.candidateExperience
+   */
+  export type CandidateProfile$candidateExperienceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    where?: CandidateExperienceWhereInput
+    orderBy?: CandidateExperienceOrderByWithRelationInput | CandidateExperienceOrderByWithRelationInput[]
+    cursor?: CandidateExperienceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CandidateExperienceScalarFieldEnum | CandidateExperienceScalarFieldEnum[]
   }
 
   /**
@@ -10215,6 +10343,1090 @@ export namespace Prisma {
 
 
   /**
+   * Model CandidateExperience
+   */
+
+  export type AggregateCandidateExperience = {
+    _count: CandidateExperienceCountAggregateOutputType | null
+    _min: CandidateExperienceMinAggregateOutputType | null
+    _max: CandidateExperienceMaxAggregateOutputType | null
+  }
+
+  export type CandidateExperienceMinAggregateOutputType = {
+    id: string | null
+    company: string | null
+    department: string | null
+    startDate: Date | null
+    endDate: Date | null
+    responsibility: string | null
+    candidateProfileId: string | null
+  }
+
+  export type CandidateExperienceMaxAggregateOutputType = {
+    id: string | null
+    company: string | null
+    department: string | null
+    startDate: Date | null
+    endDate: Date | null
+    responsibility: string | null
+    candidateProfileId: string | null
+  }
+
+  export type CandidateExperienceCountAggregateOutputType = {
+    id: number
+    company: number
+    department: number
+    startDate: number
+    endDate: number
+    responsibility: number
+    candidateProfileId: number
+    _all: number
+  }
+
+
+  export type CandidateExperienceMinAggregateInputType = {
+    id?: true
+    company?: true
+    department?: true
+    startDate?: true
+    endDate?: true
+    responsibility?: true
+    candidateProfileId?: true
+  }
+
+  export type CandidateExperienceMaxAggregateInputType = {
+    id?: true
+    company?: true
+    department?: true
+    startDate?: true
+    endDate?: true
+    responsibility?: true
+    candidateProfileId?: true
+  }
+
+  export type CandidateExperienceCountAggregateInputType = {
+    id?: true
+    company?: true
+    department?: true
+    startDate?: true
+    endDate?: true
+    responsibility?: true
+    candidateProfileId?: true
+    _all?: true
+  }
+
+  export type CandidateExperienceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CandidateExperience to aggregate.
+     */
+    where?: CandidateExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateExperiences to fetch.
+     */
+    orderBy?: CandidateExperienceOrderByWithRelationInput | CandidateExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CandidateExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateExperiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateExperiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CandidateExperiences
+    **/
+    _count?: true | CandidateExperienceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CandidateExperienceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CandidateExperienceMaxAggregateInputType
+  }
+
+  export type GetCandidateExperienceAggregateType<T extends CandidateExperienceAggregateArgs> = {
+        [P in keyof T & keyof AggregateCandidateExperience]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCandidateExperience[P]>
+      : GetScalarType<T[P], AggregateCandidateExperience[P]>
+  }
+
+
+
+
+  export type CandidateExperienceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateExperienceWhereInput
+    orderBy?: CandidateExperienceOrderByWithAggregationInput | CandidateExperienceOrderByWithAggregationInput[]
+    by: CandidateExperienceScalarFieldEnum[] | CandidateExperienceScalarFieldEnum
+    having?: CandidateExperienceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CandidateExperienceCountAggregateInputType | true
+    _min?: CandidateExperienceMinAggregateInputType
+    _max?: CandidateExperienceMaxAggregateInputType
+  }
+
+  export type CandidateExperienceGroupByOutputType = {
+    id: string
+    company: string
+    department: string
+    startDate: Date
+    endDate: Date
+    responsibility: string
+    candidateProfileId: string
+    _count: CandidateExperienceCountAggregateOutputType | null
+    _min: CandidateExperienceMinAggregateOutputType | null
+    _max: CandidateExperienceMaxAggregateOutputType | null
+  }
+
+  type GetCandidateExperienceGroupByPayload<T extends CandidateExperienceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CandidateExperienceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CandidateExperienceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CandidateExperienceGroupByOutputType[P]>
+            : GetScalarType<T[P], CandidateExperienceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CandidateExperienceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company?: boolean
+    department?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    responsibility?: boolean
+    candidateProfileId?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateExperience"]>
+
+  export type CandidateExperienceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company?: boolean
+    department?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    responsibility?: boolean
+    candidateProfileId?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateExperience"]>
+
+  export type CandidateExperienceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company?: boolean
+    department?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    responsibility?: boolean
+    candidateProfileId?: boolean
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["candidateExperience"]>
+
+  export type CandidateExperienceSelectScalar = {
+    id?: boolean
+    company?: boolean
+    department?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    responsibility?: boolean
+    candidateProfileId?: boolean
+  }
+
+  export type CandidateExperienceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company" | "department" | "startDate" | "endDate" | "responsibility" | "candidateProfileId", ExtArgs["result"]["candidateExperience"]>
+  export type CandidateExperienceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+  }
+  export type CandidateExperienceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+  }
+  export type CandidateExperienceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    candidateProfile?: boolean | CandidateProfileDefaultArgs<ExtArgs>
+  }
+
+  export type $CandidateExperiencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CandidateExperience"
+    objects: {
+      candidateProfile: Prisma.$CandidateProfilePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      company: string
+      department: string
+      startDate: Date
+      endDate: Date
+      responsibility: string
+      candidateProfileId: string
+    }, ExtArgs["result"]["candidateExperience"]>
+    composites: {}
+  }
+
+  type CandidateExperienceGetPayload<S extends boolean | null | undefined | CandidateExperienceDefaultArgs> = $Result.GetResult<Prisma.$CandidateExperiencePayload, S>
+
+  type CandidateExperienceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CandidateExperienceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CandidateExperienceCountAggregateInputType | true
+    }
+
+  export interface CandidateExperienceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CandidateExperience'], meta: { name: 'CandidateExperience' } }
+    /**
+     * Find zero or one CandidateExperience that matches the filter.
+     * @param {CandidateExperienceFindUniqueArgs} args - Arguments to find a CandidateExperience
+     * @example
+     * // Get one CandidateExperience
+     * const candidateExperience = await prisma.candidateExperience.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CandidateExperienceFindUniqueArgs>(args: SelectSubset<T, CandidateExperienceFindUniqueArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CandidateExperience that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CandidateExperienceFindUniqueOrThrowArgs} args - Arguments to find a CandidateExperience
+     * @example
+     * // Get one CandidateExperience
+     * const candidateExperience = await prisma.candidateExperience.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CandidateExperienceFindUniqueOrThrowArgs>(args: SelectSubset<T, CandidateExperienceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CandidateExperience that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateExperienceFindFirstArgs} args - Arguments to find a CandidateExperience
+     * @example
+     * // Get one CandidateExperience
+     * const candidateExperience = await prisma.candidateExperience.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CandidateExperienceFindFirstArgs>(args?: SelectSubset<T, CandidateExperienceFindFirstArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CandidateExperience that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateExperienceFindFirstOrThrowArgs} args - Arguments to find a CandidateExperience
+     * @example
+     * // Get one CandidateExperience
+     * const candidateExperience = await prisma.candidateExperience.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CandidateExperienceFindFirstOrThrowArgs>(args?: SelectSubset<T, CandidateExperienceFindFirstOrThrowArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CandidateExperiences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateExperienceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CandidateExperiences
+     * const candidateExperiences = await prisma.candidateExperience.findMany()
+     * 
+     * // Get first 10 CandidateExperiences
+     * const candidateExperiences = await prisma.candidateExperience.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const candidateExperienceWithIdOnly = await prisma.candidateExperience.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CandidateExperienceFindManyArgs>(args?: SelectSubset<T, CandidateExperienceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CandidateExperience.
+     * @param {CandidateExperienceCreateArgs} args - Arguments to create a CandidateExperience.
+     * @example
+     * // Create one CandidateExperience
+     * const CandidateExperience = await prisma.candidateExperience.create({
+     *   data: {
+     *     // ... data to create a CandidateExperience
+     *   }
+     * })
+     * 
+     */
+    create<T extends CandidateExperienceCreateArgs>(args: SelectSubset<T, CandidateExperienceCreateArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CandidateExperiences.
+     * @param {CandidateExperienceCreateManyArgs} args - Arguments to create many CandidateExperiences.
+     * @example
+     * // Create many CandidateExperiences
+     * const candidateExperience = await prisma.candidateExperience.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CandidateExperienceCreateManyArgs>(args?: SelectSubset<T, CandidateExperienceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CandidateExperiences and returns the data saved in the database.
+     * @param {CandidateExperienceCreateManyAndReturnArgs} args - Arguments to create many CandidateExperiences.
+     * @example
+     * // Create many CandidateExperiences
+     * const candidateExperience = await prisma.candidateExperience.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CandidateExperiences and only return the `id`
+     * const candidateExperienceWithIdOnly = await prisma.candidateExperience.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CandidateExperienceCreateManyAndReturnArgs>(args?: SelectSubset<T, CandidateExperienceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CandidateExperience.
+     * @param {CandidateExperienceDeleteArgs} args - Arguments to delete one CandidateExperience.
+     * @example
+     * // Delete one CandidateExperience
+     * const CandidateExperience = await prisma.candidateExperience.delete({
+     *   where: {
+     *     // ... filter to delete one CandidateExperience
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CandidateExperienceDeleteArgs>(args: SelectSubset<T, CandidateExperienceDeleteArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CandidateExperience.
+     * @param {CandidateExperienceUpdateArgs} args - Arguments to update one CandidateExperience.
+     * @example
+     * // Update one CandidateExperience
+     * const candidateExperience = await prisma.candidateExperience.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CandidateExperienceUpdateArgs>(args: SelectSubset<T, CandidateExperienceUpdateArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CandidateExperiences.
+     * @param {CandidateExperienceDeleteManyArgs} args - Arguments to filter CandidateExperiences to delete.
+     * @example
+     * // Delete a few CandidateExperiences
+     * const { count } = await prisma.candidateExperience.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CandidateExperienceDeleteManyArgs>(args?: SelectSubset<T, CandidateExperienceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CandidateExperiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateExperienceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CandidateExperiences
+     * const candidateExperience = await prisma.candidateExperience.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CandidateExperienceUpdateManyArgs>(args: SelectSubset<T, CandidateExperienceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CandidateExperiences and returns the data updated in the database.
+     * @param {CandidateExperienceUpdateManyAndReturnArgs} args - Arguments to update many CandidateExperiences.
+     * @example
+     * // Update many CandidateExperiences
+     * const candidateExperience = await prisma.candidateExperience.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CandidateExperiences and only return the `id`
+     * const candidateExperienceWithIdOnly = await prisma.candidateExperience.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CandidateExperienceUpdateManyAndReturnArgs>(args: SelectSubset<T, CandidateExperienceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CandidateExperience.
+     * @param {CandidateExperienceUpsertArgs} args - Arguments to update or create a CandidateExperience.
+     * @example
+     * // Update or create a CandidateExperience
+     * const candidateExperience = await prisma.candidateExperience.upsert({
+     *   create: {
+     *     // ... data to create a CandidateExperience
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CandidateExperience we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CandidateExperienceUpsertArgs>(args: SelectSubset<T, CandidateExperienceUpsertArgs<ExtArgs>>): Prisma__CandidateExperienceClient<$Result.GetResult<Prisma.$CandidateExperiencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CandidateExperiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateExperienceCountArgs} args - Arguments to filter CandidateExperiences to count.
+     * @example
+     * // Count the number of CandidateExperiences
+     * const count = await prisma.candidateExperience.count({
+     *   where: {
+     *     // ... the filter for the CandidateExperiences we want to count
+     *   }
+     * })
+    **/
+    count<T extends CandidateExperienceCountArgs>(
+      args?: Subset<T, CandidateExperienceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CandidateExperienceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CandidateExperience.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateExperienceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CandidateExperienceAggregateArgs>(args: Subset<T, CandidateExperienceAggregateArgs>): Prisma.PrismaPromise<GetCandidateExperienceAggregateType<T>>
+
+    /**
+     * Group by CandidateExperience.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateExperienceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CandidateExperienceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CandidateExperienceGroupByArgs['orderBy'] }
+        : { orderBy?: CandidateExperienceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CandidateExperienceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCandidateExperienceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CandidateExperience model
+   */
+  readonly fields: CandidateExperienceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CandidateExperience.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CandidateExperienceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    candidateProfile<T extends CandidateProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CandidateProfileDefaultArgs<ExtArgs>>): Prisma__CandidateProfileClient<$Result.GetResult<Prisma.$CandidateProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CandidateExperience model
+   */
+  interface CandidateExperienceFieldRefs {
+    readonly id: FieldRef<"CandidateExperience", 'String'>
+    readonly company: FieldRef<"CandidateExperience", 'String'>
+    readonly department: FieldRef<"CandidateExperience", 'String'>
+    readonly startDate: FieldRef<"CandidateExperience", 'DateTime'>
+    readonly endDate: FieldRef<"CandidateExperience", 'DateTime'>
+    readonly responsibility: FieldRef<"CandidateExperience", 'String'>
+    readonly candidateProfileId: FieldRef<"CandidateExperience", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CandidateExperience findUnique
+   */
+  export type CandidateExperienceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateExperience to fetch.
+     */
+    where: CandidateExperienceWhereUniqueInput
+  }
+
+  /**
+   * CandidateExperience findUniqueOrThrow
+   */
+  export type CandidateExperienceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateExperience to fetch.
+     */
+    where: CandidateExperienceWhereUniqueInput
+  }
+
+  /**
+   * CandidateExperience findFirst
+   */
+  export type CandidateExperienceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateExperience to fetch.
+     */
+    where?: CandidateExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateExperiences to fetch.
+     */
+    orderBy?: CandidateExperienceOrderByWithRelationInput | CandidateExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CandidateExperiences.
+     */
+    cursor?: CandidateExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateExperiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateExperiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CandidateExperiences.
+     */
+    distinct?: CandidateExperienceScalarFieldEnum | CandidateExperienceScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateExperience findFirstOrThrow
+   */
+  export type CandidateExperienceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateExperience to fetch.
+     */
+    where?: CandidateExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateExperiences to fetch.
+     */
+    orderBy?: CandidateExperienceOrderByWithRelationInput | CandidateExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CandidateExperiences.
+     */
+    cursor?: CandidateExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateExperiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateExperiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CandidateExperiences.
+     */
+    distinct?: CandidateExperienceScalarFieldEnum | CandidateExperienceScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateExperience findMany
+   */
+  export type CandidateExperienceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which CandidateExperiences to fetch.
+     */
+    where?: CandidateExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CandidateExperiences to fetch.
+     */
+    orderBy?: CandidateExperienceOrderByWithRelationInput | CandidateExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CandidateExperiences.
+     */
+    cursor?: CandidateExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CandidateExperiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CandidateExperiences.
+     */
+    skip?: number
+    distinct?: CandidateExperienceScalarFieldEnum | CandidateExperienceScalarFieldEnum[]
+  }
+
+  /**
+   * CandidateExperience create
+   */
+  export type CandidateExperienceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CandidateExperience.
+     */
+    data: XOR<CandidateExperienceCreateInput, CandidateExperienceUncheckedCreateInput>
+  }
+
+  /**
+   * CandidateExperience createMany
+   */
+  export type CandidateExperienceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CandidateExperiences.
+     */
+    data: CandidateExperienceCreateManyInput | CandidateExperienceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CandidateExperience createManyAndReturn
+   */
+  export type CandidateExperienceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * The data used to create many CandidateExperiences.
+     */
+    data: CandidateExperienceCreateManyInput | CandidateExperienceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CandidateExperience update
+   */
+  export type CandidateExperienceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CandidateExperience.
+     */
+    data: XOR<CandidateExperienceUpdateInput, CandidateExperienceUncheckedUpdateInput>
+    /**
+     * Choose, which CandidateExperience to update.
+     */
+    where: CandidateExperienceWhereUniqueInput
+  }
+
+  /**
+   * CandidateExperience updateMany
+   */
+  export type CandidateExperienceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CandidateExperiences.
+     */
+    data: XOR<CandidateExperienceUpdateManyMutationInput, CandidateExperienceUncheckedUpdateManyInput>
+    /**
+     * Filter which CandidateExperiences to update
+     */
+    where?: CandidateExperienceWhereInput
+    /**
+     * Limit how many CandidateExperiences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CandidateExperience updateManyAndReturn
+   */
+  export type CandidateExperienceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * The data used to update CandidateExperiences.
+     */
+    data: XOR<CandidateExperienceUpdateManyMutationInput, CandidateExperienceUncheckedUpdateManyInput>
+    /**
+     * Filter which CandidateExperiences to update
+     */
+    where?: CandidateExperienceWhereInput
+    /**
+     * Limit how many CandidateExperiences to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CandidateExperience upsert
+   */
+  export type CandidateExperienceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CandidateExperience to update in case it exists.
+     */
+    where: CandidateExperienceWhereUniqueInput
+    /**
+     * In case the CandidateExperience found by the `where` argument doesn't exist, create a new CandidateExperience with this data.
+     */
+    create: XOR<CandidateExperienceCreateInput, CandidateExperienceUncheckedCreateInput>
+    /**
+     * In case the CandidateExperience was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CandidateExperienceUpdateInput, CandidateExperienceUncheckedUpdateInput>
+  }
+
+  /**
+   * CandidateExperience delete
+   */
+  export type CandidateExperienceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+    /**
+     * Filter which CandidateExperience to delete.
+     */
+    where: CandidateExperienceWhereUniqueInput
+  }
+
+  /**
+   * CandidateExperience deleteMany
+   */
+  export type CandidateExperienceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CandidateExperiences to delete
+     */
+    where?: CandidateExperienceWhereInput
+    /**
+     * Limit how many CandidateExperiences to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CandidateExperience without action
+   */
+  export type CandidateExperienceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CandidateExperience
+     */
+    select?: CandidateExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CandidateExperience
+     */
+    omit?: CandidateExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CandidateExperienceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10306,6 +11518,19 @@ export namespace Prisma {
   };
 
   export type CandidateSkillScalarFieldEnum = (typeof CandidateSkillScalarFieldEnum)[keyof typeof CandidateSkillScalarFieldEnum]
+
+
+  export const CandidateExperienceScalarFieldEnum: {
+    id: 'id',
+    company: 'company',
+    department: 'department',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    responsibility: 'responsibility',
+    candidateProfileId: 'candidateProfileId'
+  };
+
+  export type CandidateExperienceScalarFieldEnum = (typeof CandidateExperienceScalarFieldEnum)[keyof typeof CandidateExperienceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10523,6 +11748,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageListRelationFilter
     candidateEducation?: CandidateEducationListRelationFilter
     candidateSkills?: CandidateSkillListRelationFilter
+    candidateExperience?: CandidateExperienceListRelationFilter
   }
 
   export type CandidateProfileOrderByWithRelationInput = {
@@ -10540,6 +11766,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageOrderByRelationAggregateInput
     candidateEducation?: CandidateEducationOrderByRelationAggregateInput
     candidateSkills?: CandidateSkillOrderByRelationAggregateInput
+    candidateExperience?: CandidateExperienceOrderByRelationAggregateInput
   }
 
   export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -10560,6 +11787,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageListRelationFilter
     candidateEducation?: CandidateEducationListRelationFilter
     candidateSkills?: CandidateSkillListRelationFilter
+    candidateExperience?: CandidateExperienceListRelationFilter
   }, "id" | "userId">
 
   export type CandidateProfileOrderByWithAggregationInput = {
@@ -10866,6 +12094,71 @@ export namespace Prisma {
     skillName?: StringWithAggregatesFilter<"CandidateSkill"> | string
   }
 
+  export type CandidateExperienceWhereInput = {
+    AND?: CandidateExperienceWhereInput | CandidateExperienceWhereInput[]
+    OR?: CandidateExperienceWhereInput[]
+    NOT?: CandidateExperienceWhereInput | CandidateExperienceWhereInput[]
+    id?: StringFilter<"CandidateExperience"> | string
+    company?: StringFilter<"CandidateExperience"> | string
+    department?: StringFilter<"CandidateExperience"> | string
+    startDate?: DateTimeFilter<"CandidateExperience"> | Date | string
+    endDate?: DateTimeFilter<"CandidateExperience"> | Date | string
+    responsibility?: StringFilter<"CandidateExperience"> | string
+    candidateProfileId?: StringFilter<"CandidateExperience"> | string
+    candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
+  }
+
+  export type CandidateExperienceOrderByWithRelationInput = {
+    id?: SortOrder
+    company?: SortOrder
+    department?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    responsibility?: SortOrder
+    candidateProfileId?: SortOrder
+    candidateProfile?: CandidateProfileOrderByWithRelationInput
+  }
+
+  export type CandidateExperienceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CandidateExperienceWhereInput | CandidateExperienceWhereInput[]
+    OR?: CandidateExperienceWhereInput[]
+    NOT?: CandidateExperienceWhereInput | CandidateExperienceWhereInput[]
+    company?: StringFilter<"CandidateExperience"> | string
+    department?: StringFilter<"CandidateExperience"> | string
+    startDate?: DateTimeFilter<"CandidateExperience"> | Date | string
+    endDate?: DateTimeFilter<"CandidateExperience"> | Date | string
+    responsibility?: StringFilter<"CandidateExperience"> | string
+    candidateProfileId?: StringFilter<"CandidateExperience"> | string
+    candidateProfile?: XOR<CandidateProfileScalarRelationFilter, CandidateProfileWhereInput>
+  }, "id">
+
+  export type CandidateExperienceOrderByWithAggregationInput = {
+    id?: SortOrder
+    company?: SortOrder
+    department?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    responsibility?: SortOrder
+    candidateProfileId?: SortOrder
+    _count?: CandidateExperienceCountOrderByAggregateInput
+    _max?: CandidateExperienceMaxOrderByAggregateInput
+    _min?: CandidateExperienceMinOrderByAggregateInput
+  }
+
+  export type CandidateExperienceScalarWhereWithAggregatesInput = {
+    AND?: CandidateExperienceScalarWhereWithAggregatesInput | CandidateExperienceScalarWhereWithAggregatesInput[]
+    OR?: CandidateExperienceScalarWhereWithAggregatesInput[]
+    NOT?: CandidateExperienceScalarWhereWithAggregatesInput | CandidateExperienceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CandidateExperience"> | string
+    company?: StringWithAggregatesFilter<"CandidateExperience"> | string
+    department?: StringWithAggregatesFilter<"CandidateExperience"> | string
+    startDate?: DateTimeWithAggregatesFilter<"CandidateExperience"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"CandidateExperience"> | Date | string
+    responsibility?: StringWithAggregatesFilter<"CandidateExperience"> | string
+    candidateProfileId?: StringWithAggregatesFilter<"CandidateExperience"> | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -10947,6 +12240,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
     candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateInput = {
@@ -10963,6 +12257,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
     candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUpdateInput = {
@@ -10979,6 +12274,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
     candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateInput = {
@@ -10995,6 +12291,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
     candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileCreateManyInput = {
@@ -11280,6 +12577,75 @@ export namespace Prisma {
     skillName?: StringFieldUpdateOperationsInput | string
   }
 
+  export type CandidateExperienceCreateInput = {
+    id?: string
+    company: string
+    department: string
+    startDate: Date | string
+    endDate: Date | string
+    responsibility: string
+    candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateExperienceInput
+  }
+
+  export type CandidateExperienceUncheckedCreateInput = {
+    id?: string
+    company: string
+    department: string
+    startDate: Date | string
+    endDate: Date | string
+    responsibility: string
+    candidateProfileId: string
+  }
+
+  export type CandidateExperienceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    responsibility?: StringFieldUpdateOperationsInput | string
+    candidateProfile?: CandidateProfileUpdateOneRequiredWithoutCandidateExperienceNestedInput
+  }
+
+  export type CandidateExperienceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    responsibility?: StringFieldUpdateOperationsInput | string
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateExperienceCreateManyInput = {
+    id?: string
+    company: string
+    department: string
+    startDate: Date | string
+    endDate: Date | string
+    responsibility: string
+    candidateProfileId: string
+  }
+
+  export type CandidateExperienceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    responsibility?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateExperienceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    responsibility?: StringFieldUpdateOperationsInput | string
+    candidateProfileId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -11454,6 +12820,12 @@ export namespace Prisma {
     none?: CandidateSkillWhereInput
   }
 
+  export type CandidateExperienceListRelationFilter = {
+    every?: CandidateExperienceWhereInput
+    some?: CandidateExperienceWhereInput
+    none?: CandidateExperienceWhereInput
+  }
+
   export type CandidateLanguageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -11463,6 +12835,10 @@ export namespace Prisma {
   }
 
   export type CandidateSkillOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CandidateExperienceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -11700,6 +13076,36 @@ export namespace Prisma {
     skillName?: SortOrder
   }
 
+  export type CandidateExperienceCountOrderByAggregateInput = {
+    id?: SortOrder
+    company?: SortOrder
+    department?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    responsibility?: SortOrder
+    candidateProfileId?: SortOrder
+  }
+
+  export type CandidateExperienceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    company?: SortOrder
+    department?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    responsibility?: SortOrder
+    candidateProfileId?: SortOrder
+  }
+
+  export type CandidateExperienceMinOrderByAggregateInput = {
+    id?: SortOrder
+    company?: SortOrder
+    department?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    responsibility?: SortOrder
+    candidateProfileId?: SortOrder
+  }
+
   export type CandidateProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<CandidateProfileCreateWithoutUserInput, CandidateProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: CandidateProfileCreateOrConnectWithoutUserInput
@@ -11775,6 +13181,13 @@ export namespace Prisma {
     connect?: CandidateSkillWhereUniqueInput | CandidateSkillWhereUniqueInput[]
   }
 
+  export type CandidateExperienceCreateNestedManyWithoutCandidateProfileInput = {
+    create?: XOR<CandidateExperienceCreateWithoutCandidateProfileInput, CandidateExperienceUncheckedCreateWithoutCandidateProfileInput> | CandidateExperienceCreateWithoutCandidateProfileInput[] | CandidateExperienceUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateExperienceCreateOrConnectWithoutCandidateProfileInput | CandidateExperienceCreateOrConnectWithoutCandidateProfileInput[]
+    createMany?: CandidateExperienceCreateManyCandidateProfileInputEnvelope
+    connect?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+  }
+
   export type CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput = {
     create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
     connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
@@ -11794,6 +13207,13 @@ export namespace Prisma {
     connectOrCreate?: CandidateSkillCreateOrConnectWithoutCandidateProfileInput | CandidateSkillCreateOrConnectWithoutCandidateProfileInput[]
     createMany?: CandidateSkillCreateManyCandidateProfileInputEnvelope
     connect?: CandidateSkillWhereUniqueInput | CandidateSkillWhereUniqueInput[]
+  }
+
+  export type CandidateExperienceUncheckedCreateNestedManyWithoutCandidateProfileInput = {
+    create?: XOR<CandidateExperienceCreateWithoutCandidateProfileInput, CandidateExperienceUncheckedCreateWithoutCandidateProfileInput> | CandidateExperienceCreateWithoutCandidateProfileInput[] | CandidateExperienceUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateExperienceCreateOrConnectWithoutCandidateProfileInput | CandidateExperienceCreateOrConnectWithoutCandidateProfileInput[]
+    createMany?: CandidateExperienceCreateManyCandidateProfileInputEnvelope
+    connect?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
   }
 
   export type EnumGenderFieldUpdateOperationsInput = {
@@ -11854,6 +13274,20 @@ export namespace Prisma {
     deleteMany?: CandidateSkillScalarWhereInput | CandidateSkillScalarWhereInput[]
   }
 
+  export type CandidateExperienceUpdateManyWithoutCandidateProfileNestedInput = {
+    create?: XOR<CandidateExperienceCreateWithoutCandidateProfileInput, CandidateExperienceUncheckedCreateWithoutCandidateProfileInput> | CandidateExperienceCreateWithoutCandidateProfileInput[] | CandidateExperienceUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateExperienceCreateOrConnectWithoutCandidateProfileInput | CandidateExperienceCreateOrConnectWithoutCandidateProfileInput[]
+    upsert?: CandidateExperienceUpsertWithWhereUniqueWithoutCandidateProfileInput | CandidateExperienceUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+    createMany?: CandidateExperienceCreateManyCandidateProfileInputEnvelope
+    set?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    disconnect?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    delete?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    connect?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    update?: CandidateExperienceUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateExperienceUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+    updateMany?: CandidateExperienceUpdateManyWithWhereWithoutCandidateProfileInput | CandidateExperienceUpdateManyWithWhereWithoutCandidateProfileInput[]
+    deleteMany?: CandidateExperienceScalarWhereInput | CandidateExperienceScalarWhereInput[]
+  }
+
   export type CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput = {
     create?: XOR<CandidateLanguageCreateWithoutCandidateProfileInput, CandidateLanguageUncheckedCreateWithoutCandidateProfileInput> | CandidateLanguageCreateWithoutCandidateProfileInput[] | CandidateLanguageUncheckedCreateWithoutCandidateProfileInput[]
     connectOrCreate?: CandidateLanguageCreateOrConnectWithoutCandidateProfileInput | CandidateLanguageCreateOrConnectWithoutCandidateProfileInput[]
@@ -11894,6 +13328,20 @@ export namespace Prisma {
     update?: CandidateSkillUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateSkillUpdateWithWhereUniqueWithoutCandidateProfileInput[]
     updateMany?: CandidateSkillUpdateManyWithWhereWithoutCandidateProfileInput | CandidateSkillUpdateManyWithWhereWithoutCandidateProfileInput[]
     deleteMany?: CandidateSkillScalarWhereInput | CandidateSkillScalarWhereInput[]
+  }
+
+  export type CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileNestedInput = {
+    create?: XOR<CandidateExperienceCreateWithoutCandidateProfileInput, CandidateExperienceUncheckedCreateWithoutCandidateProfileInput> | CandidateExperienceCreateWithoutCandidateProfileInput[] | CandidateExperienceUncheckedCreateWithoutCandidateProfileInput[]
+    connectOrCreate?: CandidateExperienceCreateOrConnectWithoutCandidateProfileInput | CandidateExperienceCreateOrConnectWithoutCandidateProfileInput[]
+    upsert?: CandidateExperienceUpsertWithWhereUniqueWithoutCandidateProfileInput | CandidateExperienceUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+    createMany?: CandidateExperienceCreateManyCandidateProfileInputEnvelope
+    set?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    disconnect?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    delete?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    connect?: CandidateExperienceWhereUniqueInput | CandidateExperienceWhereUniqueInput[]
+    update?: CandidateExperienceUpdateWithWhereUniqueWithoutCandidateProfileInput | CandidateExperienceUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+    updateMany?: CandidateExperienceUpdateManyWithWhereWithoutCandidateProfileInput | CandidateExperienceUpdateManyWithWhereWithoutCandidateProfileInput[]
+    deleteMany?: CandidateExperienceScalarWhereInput | CandidateExperienceScalarWhereInput[]
   }
 
   export type CandidateLanguageCreateNestedManyWithoutLanguageInput = {
@@ -12114,6 +13562,20 @@ export namespace Prisma {
     update?: XOR<XOR<skillUpdateToOneWithWhereWithoutCandidateSkillsInput, skillUpdateWithoutCandidateSkillsInput>, skillUncheckedUpdateWithoutCandidateSkillsInput>
   }
 
+  export type CandidateProfileCreateNestedOneWithoutCandidateExperienceInput = {
+    create?: XOR<CandidateProfileCreateWithoutCandidateExperienceInput, CandidateProfileUncheckedCreateWithoutCandidateExperienceInput>
+    connectOrCreate?: CandidateProfileCreateOrConnectWithoutCandidateExperienceInput
+    connect?: CandidateProfileWhereUniqueInput
+  }
+
+  export type CandidateProfileUpdateOneRequiredWithoutCandidateExperienceNestedInput = {
+    create?: XOR<CandidateProfileCreateWithoutCandidateExperienceInput, CandidateProfileUncheckedCreateWithoutCandidateExperienceInput>
+    connectOrCreate?: CandidateProfileCreateOrConnectWithoutCandidateExperienceInput
+    upsert?: CandidateProfileUpsertWithoutCandidateExperienceInput
+    connect?: CandidateProfileWhereUniqueInput
+    update?: XOR<XOR<CandidateProfileUpdateToOneWithWhereWithoutCandidateExperienceInput, CandidateProfileUpdateWithoutCandidateExperienceInput>, CandidateProfileUncheckedUpdateWithoutCandidateExperienceInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -12317,6 +13779,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
     candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateWithoutUserInput = {
@@ -12332,6 +13795,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
     candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileCreateOrConnectWithoutUserInput = {
@@ -12363,6 +13827,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
     candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateWithoutUserInput = {
@@ -12378,6 +13843,7 @@ export namespace Prisma {
     candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
     candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type UserCreateWithoutCandidateProfileInput = {
@@ -12464,6 +13930,34 @@ export namespace Prisma {
 
   export type CandidateSkillCreateManyCandidateProfileInputEnvelope = {
     data: CandidateSkillCreateManyCandidateProfileInput | CandidateSkillCreateManyCandidateProfileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CandidateExperienceCreateWithoutCandidateProfileInput = {
+    id?: string
+    company: string
+    department: string
+    startDate: Date | string
+    endDate: Date | string
+    responsibility: string
+  }
+
+  export type CandidateExperienceUncheckedCreateWithoutCandidateProfileInput = {
+    id?: string
+    company: string
+    department: string
+    startDate: Date | string
+    endDate: Date | string
+    responsibility: string
+  }
+
+  export type CandidateExperienceCreateOrConnectWithoutCandidateProfileInput = {
+    where: CandidateExperienceWhereUniqueInput
+    create: XOR<CandidateExperienceCreateWithoutCandidateProfileInput, CandidateExperienceUncheckedCreateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateExperienceCreateManyCandidateProfileInputEnvelope = {
+    data: CandidateExperienceCreateManyCandidateProfileInput | CandidateExperienceCreateManyCandidateProfileInput[]
     skipDuplicates?: boolean
   }
 
@@ -12573,6 +14067,35 @@ export namespace Prisma {
     skillName?: StringFilter<"CandidateSkill"> | string
   }
 
+  export type CandidateExperienceUpsertWithWhereUniqueWithoutCandidateProfileInput = {
+    where: CandidateExperienceWhereUniqueInput
+    update: XOR<CandidateExperienceUpdateWithoutCandidateProfileInput, CandidateExperienceUncheckedUpdateWithoutCandidateProfileInput>
+    create: XOR<CandidateExperienceCreateWithoutCandidateProfileInput, CandidateExperienceUncheckedCreateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateExperienceUpdateWithWhereUniqueWithoutCandidateProfileInput = {
+    where: CandidateExperienceWhereUniqueInput
+    data: XOR<CandidateExperienceUpdateWithoutCandidateProfileInput, CandidateExperienceUncheckedUpdateWithoutCandidateProfileInput>
+  }
+
+  export type CandidateExperienceUpdateManyWithWhereWithoutCandidateProfileInput = {
+    where: CandidateExperienceScalarWhereInput
+    data: XOR<CandidateExperienceUpdateManyMutationInput, CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileInput>
+  }
+
+  export type CandidateExperienceScalarWhereInput = {
+    AND?: CandidateExperienceScalarWhereInput | CandidateExperienceScalarWhereInput[]
+    OR?: CandidateExperienceScalarWhereInput[]
+    NOT?: CandidateExperienceScalarWhereInput | CandidateExperienceScalarWhereInput[]
+    id?: StringFilter<"CandidateExperience"> | string
+    company?: StringFilter<"CandidateExperience"> | string
+    department?: StringFilter<"CandidateExperience"> | string
+    startDate?: DateTimeFilter<"CandidateExperience"> | Date | string
+    endDate?: DateTimeFilter<"CandidateExperience"> | Date | string
+    responsibility?: StringFilter<"CandidateExperience"> | string
+    candidateProfileId?: StringFilter<"CandidateExperience"> | string
+  }
+
   export type CandidateLanguageCreateWithoutLanguageInput = {
     level?: $Enums.Level
     candidateProfile: CandidateProfileCreateNestedOneWithoutCandidateLanguageInput
@@ -12622,6 +14145,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutCandidateProfileInput
     candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateWithoutCandidateLanguageInput = {
@@ -12637,6 +14161,7 @@ export namespace Prisma {
     openToWork?: boolean
     candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileCreateOrConnectWithoutCandidateLanguageInput = {
@@ -12681,6 +14206,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
     candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateWithoutCandidateLanguageInput = {
@@ -12696,6 +14222,7 @@ export namespace Prisma {
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type LanguageUpsertWithoutCandidateLanguageInput = {
@@ -12772,6 +14299,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutCandidateProfileInput
     candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateWithoutCandidateEducationInput = {
@@ -12787,6 +14315,7 @@ export namespace Prisma {
     openToWork?: boolean
     candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
     candidateSkills?: CandidateSkillUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileCreateOrConnectWithoutCandidateEducationInput = {
@@ -12835,6 +14364,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
     candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateWithoutCandidateEducationInput = {
@@ -12850,6 +14380,7 @@ export namespace Prisma {
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
     candidateSkills?: CandidateSkillUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type EducationUpsertWithoutCandidateEducationInput = {
@@ -12922,6 +14453,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutCandidateProfileInput
     candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
     candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileUncheckedCreateWithoutCandidateSkillsInput = {
@@ -12937,6 +14469,7 @@ export namespace Prisma {
     openToWork?: boolean
     candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
     candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateExperience?: CandidateExperienceUncheckedCreateNestedManyWithoutCandidateProfileInput
   }
 
   export type CandidateProfileCreateOrConnectWithoutCandidateSkillsInput = {
@@ -12981,6 +14514,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
     candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
     candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type CandidateProfileUncheckedUpdateWithoutCandidateSkillsInput = {
@@ -12996,6 +14530,7 @@ export namespace Prisma {
     openToWork?: BoolFieldUpdateOperationsInput | boolean
     candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
     candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateExperience?: CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileNestedInput
   }
 
   export type skillUpsertWithoutCandidateSkillsInput = {
@@ -13017,6 +14552,86 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
+  export type CandidateProfileCreateWithoutCandidateExperienceInput = {
+    id?: string
+    fullName: string
+    gender: $Enums.Gender
+    phone: string
+    cv: string
+    birthDate: Date | string
+    address: string
+    status?: boolean
+    openToWork?: boolean
+    user: UserCreateNestedOneWithoutCandidateProfileInput
+    candidateLanguage?: CandidateLanguageCreateNestedManyWithoutCandidateProfileInput
+    candidateEducation?: CandidateEducationCreateNestedManyWithoutCandidateProfileInput
+    candidateSkills?: CandidateSkillCreateNestedManyWithoutCandidateProfileInput
+  }
+
+  export type CandidateProfileUncheckedCreateWithoutCandidateExperienceInput = {
+    id?: string
+    userId: string
+    fullName: string
+    gender: $Enums.Gender
+    phone: string
+    cv: string
+    birthDate: Date | string
+    address: string
+    status?: boolean
+    openToWork?: boolean
+    candidateLanguage?: CandidateLanguageUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateEducation?: CandidateEducationUncheckedCreateNestedManyWithoutCandidateProfileInput
+    candidateSkills?: CandidateSkillUncheckedCreateNestedManyWithoutCandidateProfileInput
+  }
+
+  export type CandidateProfileCreateOrConnectWithoutCandidateExperienceInput = {
+    where: CandidateProfileWhereUniqueInput
+    create: XOR<CandidateProfileCreateWithoutCandidateExperienceInput, CandidateProfileUncheckedCreateWithoutCandidateExperienceInput>
+  }
+
+  export type CandidateProfileUpsertWithoutCandidateExperienceInput = {
+    update: XOR<CandidateProfileUpdateWithoutCandidateExperienceInput, CandidateProfileUncheckedUpdateWithoutCandidateExperienceInput>
+    create: XOR<CandidateProfileCreateWithoutCandidateExperienceInput, CandidateProfileUncheckedCreateWithoutCandidateExperienceInput>
+    where?: CandidateProfileWhereInput
+  }
+
+  export type CandidateProfileUpdateToOneWithWhereWithoutCandidateExperienceInput = {
+    where?: CandidateProfileWhereInput
+    data: XOR<CandidateProfileUpdateWithoutCandidateExperienceInput, CandidateProfileUncheckedUpdateWithoutCandidateExperienceInput>
+  }
+
+  export type CandidateProfileUpdateWithoutCandidateExperienceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    phone?: StringFieldUpdateOperationsInput | string
+    cv?: StringFieldUpdateOperationsInput | string
+    birthDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    openToWork?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutCandidateProfileNestedInput
+    candidateLanguage?: CandidateLanguageUpdateManyWithoutCandidateProfileNestedInput
+    candidateEducation?: CandidateEducationUpdateManyWithoutCandidateProfileNestedInput
+    candidateSkills?: CandidateSkillUpdateManyWithoutCandidateProfileNestedInput
+  }
+
+  export type CandidateProfileUncheckedUpdateWithoutCandidateExperienceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    phone?: StringFieldUpdateOperationsInput | string
+    cv?: StringFieldUpdateOperationsInput | string
+    birthDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    openToWork?: BoolFieldUpdateOperationsInput | boolean
+    candidateLanguage?: CandidateLanguageUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateEducation?: CandidateEducationUncheckedUpdateManyWithoutCandidateProfileNestedInput
+    candidateSkills?: CandidateSkillUncheckedUpdateManyWithoutCandidateProfileNestedInput
+  }
+
   export type CandidateLanguageCreateManyCandidateProfileInput = {
     level?: $Enums.Level
     languageName: string
@@ -13032,6 +14647,15 @@ export namespace Prisma {
 
   export type CandidateSkillCreateManyCandidateProfileInput = {
     skillName: string
+  }
+
+  export type CandidateExperienceCreateManyCandidateProfileInput = {
+    id?: string
+    company: string
+    department: string
+    startDate: Date | string
+    endDate: Date | string
+    responsibility: string
   }
 
   export type CandidateLanguageUpdateWithoutCandidateProfileInput = {
@@ -13083,6 +14707,33 @@ export namespace Prisma {
 
   export type CandidateSkillUncheckedUpdateManyWithoutCandidateProfileInput = {
     skillName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateExperienceUpdateWithoutCandidateProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    responsibility?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateExperienceUncheckedUpdateWithoutCandidateProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    responsibility?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CandidateExperienceUncheckedUpdateManyWithoutCandidateProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    responsibility?: StringFieldUpdateOperationsInput | string
   }
 
   export type CandidateLanguageCreateManyLanguageInput = {

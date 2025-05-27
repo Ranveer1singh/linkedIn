@@ -173,6 +173,16 @@ exports.Prisma.CandidateSkillScalarFieldEnum = {
   skillName: 'skillName'
 };
 
+exports.Prisma.CandidateExperienceScalarFieldEnum = {
+  id: 'id',
+  company: 'company',
+  department: 'department',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  responsibility: 'responsibility',
+  candidateProfileId: 'candidateProfileId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -218,7 +228,8 @@ exports.Prisma.ModelName = {
   Education: 'Education',
   CandidateEducation: 'CandidateEducation',
   skill: 'skill',
-  CandidateSkill: 'CandidateSkill'
+  CandidateSkill: 'CandidateSkill',
+  CandidateExperience: 'CandidateExperience'
 };
 
 /**

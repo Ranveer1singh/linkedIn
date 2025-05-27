@@ -42,6 +42,7 @@ model CandidateProfile {
   candidateLanguage CandidateLanguage[]
 candidateEducation CandidateEducation[]
 candidateSkills CandidateSkill[]
+candidateExperience CandidateExperience[]
 
 }
 enum Gender{
@@ -117,4 +118,15 @@ model CandidateSkill {
   skill skill @relation(fields : [skillName], references : [name])
   skillName String
   @@id([candidateProfileId, skillName])
+}
+/*=================================== candidateExperience MODEL ======================================*/
+model CandidateExperience { 
+ id String   @id @default(uuid())
+  company String
+  department String
+  startDate DateTime @db.Date
+  endDate DateTime @db.Date
+  responsibility String
+   candidateProfile CandidateProfile @relation(fields : [candidateProfileId], references : [id])
+  candidateProfileId String
 }
