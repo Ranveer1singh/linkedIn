@@ -10,4 +10,10 @@ const companyRoute= express.Router();
 
 companyRoute.post("/",asyncWrapper(verifyUSer),allowPermission("RECRUITER"),validateSchema(companySchema),asyncWrapper(companyController.addComapny));
 
+companyRoute.get("/",asyncWrapper(verifyUSer),allowPermission("RECRUITER"),asyncWrapper(companyController.list));
+
+companyRoute.get("/me",asyncWrapper(verifyUSer),asyncWrapper(companyController.myCompany));
+
+companyRoute.get("/:Id",asyncWrapper(verifyUSer),asyncWrapper(companyController.readOne));
+
 export default companyRoute;
