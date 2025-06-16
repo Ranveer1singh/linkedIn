@@ -51,6 +51,42 @@ class CompanyController {
             data : companyDetails
         })
     }
+
+    /**
+     * update company details
+     */
+    public async update(req : Request, res : Response) {
+        const {Id} = req.params
+         const companyDetails = await companyService.updateCompany(Id, req.body, req.currentUser)
+        res.status(HTTP_STATUS.OK).json({
+            message : "company details updated  succesfully",
+            data : companyDetails
+        })
+    }
+    /**
+     * update company details
+     */
+    public async actionONCompany(req : Request, res : Response) {
+        const {Id} = req.params
+        const {isApproved} = req.body
+         const companyDetails = await companyService.action(Id, isApproved)
+        res.status(HTTP_STATUS.OK).json({
+            message : "company details updated  succesfully",
+            data : companyDetails
+        })
+    }
+    /**
+     * update company details
+     */
+    public async deleteCompany(req : Request, res : Response) {
+        const {Id} = req.params
+       
+         const companyDetails = await companyService.delete(Id)
+        res.status(HTTP_STATUS.OK).json({
+            message : "company deleted succesfully",
+            // data : companyDetails
+        })
+    }
 }
 
 export const  companyController : CompanyController = new CompanyController()

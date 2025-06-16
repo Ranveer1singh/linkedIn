@@ -15,5 +15,8 @@ companyRoute.get("/",asyncWrapper(verifyUSer),allowPermission("RECRUITER"),async
 companyRoute.get("/me",asyncWrapper(verifyUSer),asyncWrapper(companyController.myCompany));
 
 companyRoute.get("/:Id",asyncWrapper(verifyUSer),asyncWrapper(companyController.readOne));
+companyRoute.patch("/:Id",asyncWrapper(verifyUSer),asyncWrapper(companyController.update));
+companyRoute.delete("/:Id",asyncWrapper(verifyUSer),asyncWrapper(companyController.deleteCompany));
+companyRoute.patch("/:Id/action",asyncWrapper(verifyUSer),asyncWrapper(companyController.actionONCompany));
 
 export default companyRoute;
