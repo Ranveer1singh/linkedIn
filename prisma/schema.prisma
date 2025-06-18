@@ -147,5 +147,15 @@ isApproved Boolean @default(false)
 
 mapLink String?
 address String?
+companyImage CompanyImage[]
 
 }
+
+
+/*=================================== Company IMAGE MODEL ======================================*/
+ model CompanyImage {
+  id String   @id @default(uuid())
+company Company @relation(fields : [companyId], references:[id])
+companyId String
+imageUrl String
+ }

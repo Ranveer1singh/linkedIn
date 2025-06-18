@@ -63,6 +63,11 @@ export type CandidateExperience = $Result.DefaultSelection<Prisma.$CandidateExpe
  * =================================== Company MODEL ======================================
  */
 export type Company = $Result.DefaultSelection<Prisma.$CompanyPayload>
+/**
+ * Model CompanyImage
+ * =================================== Company IMAGE MODEL ======================================
+ */
+export type CompanyImage = $Result.DefaultSelection<Prisma.$CompanyImagePayload>
 
 /**
  * Enums
@@ -344,6 +349,16 @@ export class PrismaClient<
     * ```
     */
   get company(): Prisma.CompanyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.companyImage`: Exposes CRUD operations for the **CompanyImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CompanyImages
+    * const companyImages = await prisma.companyImage.findMany()
+    * ```
+    */
+  get companyImage(): Prisma.CompanyImageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -793,7 +808,8 @@ export namespace Prisma {
     skill: 'skill',
     CandidateSkill: 'CandidateSkill',
     CandidateExperience: 'CandidateExperience',
-    Company: 'Company'
+    Company: 'Company',
+    CompanyImage: 'CompanyImage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -812,7 +828,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "skill" | "candidateSkill" | "candidateExperience" | "company"
+      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "skill" | "candidateSkill" | "candidateExperience" | "company" | "companyImage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1556,6 +1572,80 @@ export namespace Prisma {
           }
         }
       }
+      CompanyImage: {
+        payload: Prisma.$CompanyImagePayload<ExtArgs>
+        fields: Prisma.CompanyImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CompanyImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CompanyImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>
+          }
+          findFirst: {
+            args: Prisma.CompanyImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CompanyImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>
+          }
+          findMany: {
+            args: Prisma.CompanyImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>[]
+          }
+          create: {
+            args: Prisma.CompanyImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>
+          }
+          createMany: {
+            args: Prisma.CompanyImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CompanyImageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>[]
+          }
+          delete: {
+            args: Prisma.CompanyImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>
+          }
+          update: {
+            args: Prisma.CompanyImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.CompanyImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CompanyImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CompanyImageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>[]
+          }
+          upsert: {
+            args: Prisma.CompanyImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyImagePayload>
+          }
+          aggregate: {
+            args: Prisma.CompanyImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCompanyImage>
+          }
+          groupBy: {
+            args: Prisma.CompanyImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CompanyImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CompanyImageCountArgs<ExtArgs>
+            result: $Utils.Optional<CompanyImageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1650,6 +1740,7 @@ export namespace Prisma {
     candidateSkill?: CandidateSkillOmit
     candidateExperience?: CandidateExperienceOmit
     company?: CompanyOmit
+    companyImage?: CompanyImageOmit
   }
 
   /* Types for Logging */
@@ -1918,6 +2009,37 @@ export namespace Prisma {
    */
   export type SkillCountOutputTypeCountCandidateSkillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CandidateSkillWhereInput
+  }
+
+
+  /**
+   * Count Type CompanyCountOutputType
+   */
+
+  export type CompanyCountOutputType = {
+    companyImage: number
+  }
+
+  export type CompanyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    companyImage?: boolean | CompanyCountOutputTypeCountCompanyImageArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CompanyCountOutputType without action
+   */
+  export type CompanyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyCountOutputType
+     */
+    select?: CompanyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CompanyCountOutputType without action
+   */
+  export type CompanyCountOutputTypeCountCompanyImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompanyImageWhereInput
   }
 
 
@@ -11829,6 +11951,8 @@ export namespace Prisma {
     mapLink?: boolean
     address?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    companyImage?: boolean | Company$companyImageArgs<ExtArgs>
+    _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["company"]>
 
   export type CompanySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11878,6 +12002,8 @@ export namespace Prisma {
   export type CompanyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "teamSize" | "establishedDate" | "views" | "userId" | "websiteUrl" | "isApproved" | "mapLink" | "address", ExtArgs["result"]["company"]>
   export type CompanyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    companyImage?: boolean | Company$companyImageArgs<ExtArgs>
+    _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CompanyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -11890,6 +12016,7 @@ export namespace Prisma {
     name: "Company"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      companyImage: Prisma.$CompanyImagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12298,6 +12425,7 @@ export namespace Prisma {
   export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    companyImage<T extends Company$companyImageArgs<ExtArgs> = {}>(args?: Subset<T, Company$companyImageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12734,6 +12862,30 @@ export namespace Prisma {
   }
 
   /**
+   * Company.companyImage
+   */
+  export type Company$companyImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    where?: CompanyImageWhereInput
+    orderBy?: CompanyImageOrderByWithRelationInput | CompanyImageOrderByWithRelationInput[]
+    cursor?: CompanyImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CompanyImageScalarFieldEnum | CompanyImageScalarFieldEnum[]
+  }
+
+  /**
    * Company without action
    */
   export type CompanyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12749,6 +12901,1038 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CompanyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CompanyImage
+   */
+
+  export type AggregateCompanyImage = {
+    _count: CompanyImageCountAggregateOutputType | null
+    _min: CompanyImageMinAggregateOutputType | null
+    _max: CompanyImageMaxAggregateOutputType | null
+  }
+
+  export type CompanyImageMinAggregateOutputType = {
+    id: string | null
+    companyId: string | null
+    imageUrl: string | null
+  }
+
+  export type CompanyImageMaxAggregateOutputType = {
+    id: string | null
+    companyId: string | null
+    imageUrl: string | null
+  }
+
+  export type CompanyImageCountAggregateOutputType = {
+    id: number
+    companyId: number
+    imageUrl: number
+    _all: number
+  }
+
+
+  export type CompanyImageMinAggregateInputType = {
+    id?: true
+    companyId?: true
+    imageUrl?: true
+  }
+
+  export type CompanyImageMaxAggregateInputType = {
+    id?: true
+    companyId?: true
+    imageUrl?: true
+  }
+
+  export type CompanyImageCountAggregateInputType = {
+    id?: true
+    companyId?: true
+    imageUrl?: true
+    _all?: true
+  }
+
+  export type CompanyImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanyImage to aggregate.
+     */
+    where?: CompanyImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyImages to fetch.
+     */
+    orderBy?: CompanyImageOrderByWithRelationInput | CompanyImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CompanyImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CompanyImages
+    **/
+    _count?: true | CompanyImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CompanyImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CompanyImageMaxAggregateInputType
+  }
+
+  export type GetCompanyImageAggregateType<T extends CompanyImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateCompanyImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCompanyImage[P]>
+      : GetScalarType<T[P], AggregateCompanyImage[P]>
+  }
+
+
+
+
+  export type CompanyImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompanyImageWhereInput
+    orderBy?: CompanyImageOrderByWithAggregationInput | CompanyImageOrderByWithAggregationInput[]
+    by: CompanyImageScalarFieldEnum[] | CompanyImageScalarFieldEnum
+    having?: CompanyImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CompanyImageCountAggregateInputType | true
+    _min?: CompanyImageMinAggregateInputType
+    _max?: CompanyImageMaxAggregateInputType
+  }
+
+  export type CompanyImageGroupByOutputType = {
+    id: string
+    companyId: string
+    imageUrl: string
+    _count: CompanyImageCountAggregateOutputType | null
+    _min: CompanyImageMinAggregateOutputType | null
+    _max: CompanyImageMaxAggregateOutputType | null
+  }
+
+  type GetCompanyImageGroupByPayload<T extends CompanyImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CompanyImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CompanyImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CompanyImageGroupByOutputType[P]>
+            : GetScalarType<T[P], CompanyImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CompanyImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyId?: boolean
+    imageUrl?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["companyImage"]>
+
+  export type CompanyImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyId?: boolean
+    imageUrl?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["companyImage"]>
+
+  export type CompanyImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyId?: boolean
+    imageUrl?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["companyImage"]>
+
+  export type CompanyImageSelectScalar = {
+    id?: boolean
+    companyId?: boolean
+    imageUrl?: boolean
+  }
+
+  export type CompanyImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyId" | "imageUrl", ExtArgs["result"]["companyImage"]>
+  export type CompanyImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }
+  export type CompanyImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }
+  export type CompanyImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }
+
+  export type $CompanyImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CompanyImage"
+    objects: {
+      company: Prisma.$CompanyPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      companyId: string
+      imageUrl: string
+    }, ExtArgs["result"]["companyImage"]>
+    composites: {}
+  }
+
+  type CompanyImageGetPayload<S extends boolean | null | undefined | CompanyImageDefaultArgs> = $Result.GetResult<Prisma.$CompanyImagePayload, S>
+
+  type CompanyImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CompanyImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CompanyImageCountAggregateInputType | true
+    }
+
+  export interface CompanyImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CompanyImage'], meta: { name: 'CompanyImage' } }
+    /**
+     * Find zero or one CompanyImage that matches the filter.
+     * @param {CompanyImageFindUniqueArgs} args - Arguments to find a CompanyImage
+     * @example
+     * // Get one CompanyImage
+     * const companyImage = await prisma.companyImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CompanyImageFindUniqueArgs>(args: SelectSubset<T, CompanyImageFindUniqueArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CompanyImage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CompanyImageFindUniqueOrThrowArgs} args - Arguments to find a CompanyImage
+     * @example
+     * // Get one CompanyImage
+     * const companyImage = await prisma.companyImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CompanyImageFindUniqueOrThrowArgs>(args: SelectSubset<T, CompanyImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanyImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyImageFindFirstArgs} args - Arguments to find a CompanyImage
+     * @example
+     * // Get one CompanyImage
+     * const companyImage = await prisma.companyImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CompanyImageFindFirstArgs>(args?: SelectSubset<T, CompanyImageFindFirstArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanyImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyImageFindFirstOrThrowArgs} args - Arguments to find a CompanyImage
+     * @example
+     * // Get one CompanyImage
+     * const companyImage = await prisma.companyImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CompanyImageFindFirstOrThrowArgs>(args?: SelectSubset<T, CompanyImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CompanyImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CompanyImages
+     * const companyImages = await prisma.companyImage.findMany()
+     * 
+     * // Get first 10 CompanyImages
+     * const companyImages = await prisma.companyImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const companyImageWithIdOnly = await prisma.companyImage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CompanyImageFindManyArgs>(args?: SelectSubset<T, CompanyImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CompanyImage.
+     * @param {CompanyImageCreateArgs} args - Arguments to create a CompanyImage.
+     * @example
+     * // Create one CompanyImage
+     * const CompanyImage = await prisma.companyImage.create({
+     *   data: {
+     *     // ... data to create a CompanyImage
+     *   }
+     * })
+     * 
+     */
+    create<T extends CompanyImageCreateArgs>(args: SelectSubset<T, CompanyImageCreateArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CompanyImages.
+     * @param {CompanyImageCreateManyArgs} args - Arguments to create many CompanyImages.
+     * @example
+     * // Create many CompanyImages
+     * const companyImage = await prisma.companyImage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CompanyImageCreateManyArgs>(args?: SelectSubset<T, CompanyImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CompanyImages and returns the data saved in the database.
+     * @param {CompanyImageCreateManyAndReturnArgs} args - Arguments to create many CompanyImages.
+     * @example
+     * // Create many CompanyImages
+     * const companyImage = await prisma.companyImage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CompanyImages and only return the `id`
+     * const companyImageWithIdOnly = await prisma.companyImage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CompanyImageCreateManyAndReturnArgs>(args?: SelectSubset<T, CompanyImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CompanyImage.
+     * @param {CompanyImageDeleteArgs} args - Arguments to delete one CompanyImage.
+     * @example
+     * // Delete one CompanyImage
+     * const CompanyImage = await prisma.companyImage.delete({
+     *   where: {
+     *     // ... filter to delete one CompanyImage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CompanyImageDeleteArgs>(args: SelectSubset<T, CompanyImageDeleteArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CompanyImage.
+     * @param {CompanyImageUpdateArgs} args - Arguments to update one CompanyImage.
+     * @example
+     * // Update one CompanyImage
+     * const companyImage = await prisma.companyImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CompanyImageUpdateArgs>(args: SelectSubset<T, CompanyImageUpdateArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CompanyImages.
+     * @param {CompanyImageDeleteManyArgs} args - Arguments to filter CompanyImages to delete.
+     * @example
+     * // Delete a few CompanyImages
+     * const { count } = await prisma.companyImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CompanyImageDeleteManyArgs>(args?: SelectSubset<T, CompanyImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanyImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CompanyImages
+     * const companyImage = await prisma.companyImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CompanyImageUpdateManyArgs>(args: SelectSubset<T, CompanyImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanyImages and returns the data updated in the database.
+     * @param {CompanyImageUpdateManyAndReturnArgs} args - Arguments to update many CompanyImages.
+     * @example
+     * // Update many CompanyImages
+     * const companyImage = await prisma.companyImage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CompanyImages and only return the `id`
+     * const companyImageWithIdOnly = await prisma.companyImage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CompanyImageUpdateManyAndReturnArgs>(args: SelectSubset<T, CompanyImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CompanyImage.
+     * @param {CompanyImageUpsertArgs} args - Arguments to update or create a CompanyImage.
+     * @example
+     * // Update or create a CompanyImage
+     * const companyImage = await prisma.companyImage.upsert({
+     *   create: {
+     *     // ... data to create a CompanyImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CompanyImage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CompanyImageUpsertArgs>(args: SelectSubset<T, CompanyImageUpsertArgs<ExtArgs>>): Prisma__CompanyImageClient<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CompanyImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyImageCountArgs} args - Arguments to filter CompanyImages to count.
+     * @example
+     * // Count the number of CompanyImages
+     * const count = await prisma.companyImage.count({
+     *   where: {
+     *     // ... the filter for the CompanyImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends CompanyImageCountArgs>(
+      args?: Subset<T, CompanyImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CompanyImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CompanyImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CompanyImageAggregateArgs>(args: Subset<T, CompanyImageAggregateArgs>): Prisma.PrismaPromise<GetCompanyImageAggregateType<T>>
+
+    /**
+     * Group by CompanyImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CompanyImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CompanyImageGroupByArgs['orderBy'] }
+        : { orderBy?: CompanyImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CompanyImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCompanyImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CompanyImage model
+   */
+  readonly fields: CompanyImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CompanyImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CompanyImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CompanyImage model
+   */
+  interface CompanyImageFieldRefs {
+    readonly id: FieldRef<"CompanyImage", 'String'>
+    readonly companyId: FieldRef<"CompanyImage", 'String'>
+    readonly imageUrl: FieldRef<"CompanyImage", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CompanyImage findUnique
+   */
+  export type CompanyImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyImage to fetch.
+     */
+    where: CompanyImageWhereUniqueInput
+  }
+
+  /**
+   * CompanyImage findUniqueOrThrow
+   */
+  export type CompanyImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyImage to fetch.
+     */
+    where: CompanyImageWhereUniqueInput
+  }
+
+  /**
+   * CompanyImage findFirst
+   */
+  export type CompanyImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyImage to fetch.
+     */
+    where?: CompanyImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyImages to fetch.
+     */
+    orderBy?: CompanyImageOrderByWithRelationInput | CompanyImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanyImages.
+     */
+    cursor?: CompanyImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanyImages.
+     */
+    distinct?: CompanyImageScalarFieldEnum | CompanyImageScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyImage findFirstOrThrow
+   */
+  export type CompanyImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyImage to fetch.
+     */
+    where?: CompanyImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyImages to fetch.
+     */
+    orderBy?: CompanyImageOrderByWithRelationInput | CompanyImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanyImages.
+     */
+    cursor?: CompanyImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanyImages.
+     */
+    distinct?: CompanyImageScalarFieldEnum | CompanyImageScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyImage findMany
+   */
+  export type CompanyImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyImages to fetch.
+     */
+    where?: CompanyImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyImages to fetch.
+     */
+    orderBy?: CompanyImageOrderByWithRelationInput | CompanyImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CompanyImages.
+     */
+    cursor?: CompanyImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyImages.
+     */
+    skip?: number
+    distinct?: CompanyImageScalarFieldEnum | CompanyImageScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyImage create
+   */
+  export type CompanyImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CompanyImage.
+     */
+    data: XOR<CompanyImageCreateInput, CompanyImageUncheckedCreateInput>
+  }
+
+  /**
+   * CompanyImage createMany
+   */
+  export type CompanyImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CompanyImages.
+     */
+    data: CompanyImageCreateManyInput | CompanyImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CompanyImage createManyAndReturn
+   */
+  export type CompanyImageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * The data used to create many CompanyImages.
+     */
+    data: CompanyImageCreateManyInput | CompanyImageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CompanyImage update
+   */
+  export type CompanyImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CompanyImage.
+     */
+    data: XOR<CompanyImageUpdateInput, CompanyImageUncheckedUpdateInput>
+    /**
+     * Choose, which CompanyImage to update.
+     */
+    where: CompanyImageWhereUniqueInput
+  }
+
+  /**
+   * CompanyImage updateMany
+   */
+  export type CompanyImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CompanyImages.
+     */
+    data: XOR<CompanyImageUpdateManyMutationInput, CompanyImageUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanyImages to update
+     */
+    where?: CompanyImageWhereInput
+    /**
+     * Limit how many CompanyImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanyImage updateManyAndReturn
+   */
+  export type CompanyImageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * The data used to update CompanyImages.
+     */
+    data: XOR<CompanyImageUpdateManyMutationInput, CompanyImageUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanyImages to update
+     */
+    where?: CompanyImageWhereInput
+    /**
+     * Limit how many CompanyImages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CompanyImage upsert
+   */
+  export type CompanyImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CompanyImage to update in case it exists.
+     */
+    where: CompanyImageWhereUniqueInput
+    /**
+     * In case the CompanyImage found by the `where` argument doesn't exist, create a new CompanyImage with this data.
+     */
+    create: XOR<CompanyImageCreateInput, CompanyImageUncheckedCreateInput>
+    /**
+     * In case the CompanyImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CompanyImageUpdateInput, CompanyImageUncheckedUpdateInput>
+  }
+
+  /**
+   * CompanyImage delete
+   */
+  export type CompanyImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
+    /**
+     * Filter which CompanyImage to delete.
+     */
+    where: CompanyImageWhereUniqueInput
+  }
+
+  /**
+   * CompanyImage deleteMany
+   */
+  export type CompanyImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanyImages to delete
+     */
+    where?: CompanyImageWhereInput
+    /**
+     * Limit how many CompanyImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanyImage without action
+   */
+  export type CompanyImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyImage
+     */
+    select?: CompanyImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyImage
+     */
+    omit?: CompanyImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyImageInclude<ExtArgs> | null
   }
 
 
@@ -12874,6 +14058,15 @@ export namespace Prisma {
   };
 
   export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+  export const CompanyImageScalarFieldEnum: {
+    id: 'id',
+    companyId: 'companyId',
+    imageUrl: 'imageUrl'
+  };
+
+  export type CompanyImageScalarFieldEnum = (typeof CompanyImageScalarFieldEnum)[keyof typeof CompanyImageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -13535,6 +14728,7 @@ export namespace Prisma {
     mapLink?: StringNullableFilter<"Company"> | string | null
     address?: StringNullableFilter<"Company"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    companyImage?: CompanyImageListRelationFilter
   }
 
   export type CompanyOrderByWithRelationInput = {
@@ -13550,6 +14744,7 @@ export namespace Prisma {
     mapLink?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
+    companyImage?: CompanyImageOrderByRelationAggregateInput
   }
 
   export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -13568,6 +14763,7 @@ export namespace Prisma {
     mapLink?: StringNullableFilter<"Company"> | string | null
     address?: StringNullableFilter<"Company"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    companyImage?: CompanyImageListRelationFilter
   }, "id">
 
   export type CompanyOrderByWithAggregationInput = {
@@ -13604,6 +14800,51 @@ export namespace Prisma {
     isApproved?: BoolWithAggregatesFilter<"Company"> | boolean
     mapLink?: StringNullableWithAggregatesFilter<"Company"> | string | null
     address?: StringNullableWithAggregatesFilter<"Company"> | string | null
+  }
+
+  export type CompanyImageWhereInput = {
+    AND?: CompanyImageWhereInput | CompanyImageWhereInput[]
+    OR?: CompanyImageWhereInput[]
+    NOT?: CompanyImageWhereInput | CompanyImageWhereInput[]
+    id?: StringFilter<"CompanyImage"> | string
+    companyId?: StringFilter<"CompanyImage"> | string
+    imageUrl?: StringFilter<"CompanyImage"> | string
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+  }
+
+  export type CompanyImageOrderByWithRelationInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    imageUrl?: SortOrder
+    company?: CompanyOrderByWithRelationInput
+  }
+
+  export type CompanyImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CompanyImageWhereInput | CompanyImageWhereInput[]
+    OR?: CompanyImageWhereInput[]
+    NOT?: CompanyImageWhereInput | CompanyImageWhereInput[]
+    companyId?: StringFilter<"CompanyImage"> | string
+    imageUrl?: StringFilter<"CompanyImage"> | string
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+  }, "id">
+
+  export type CompanyImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    imageUrl?: SortOrder
+    _count?: CompanyImageCountOrderByAggregateInput
+    _max?: CompanyImageMaxOrderByAggregateInput
+    _min?: CompanyImageMinOrderByAggregateInput
+  }
+
+  export type CompanyImageScalarWhereWithAggregatesInput = {
+    AND?: CompanyImageScalarWhereWithAggregatesInput | CompanyImageScalarWhereWithAggregatesInput[]
+    OR?: CompanyImageScalarWhereWithAggregatesInput[]
+    NOT?: CompanyImageScalarWhereWithAggregatesInput | CompanyImageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CompanyImage"> | string
+    companyId?: StringWithAggregatesFilter<"CompanyImage"> | string
+    imageUrl?: StringWithAggregatesFilter<"CompanyImage"> | string
   }
 
   export type UserCreateInput = {
@@ -14109,6 +15350,7 @@ export namespace Prisma {
     mapLink?: string | null
     address?: string | null
     user: UserCreateNestedOneWithoutCompaniesInput
+    companyImage?: CompanyImageCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateInput = {
@@ -14123,6 +15365,7 @@ export namespace Prisma {
     isApproved?: boolean
     mapLink?: string | null
     address?: string | null
+    companyImage?: CompanyImageUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUpdateInput = {
@@ -14137,6 +15380,7 @@ export namespace Prisma {
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutCompaniesNestedInput
+    companyImage?: CompanyImageUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateInput = {
@@ -14151,6 +15395,7 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    companyImage?: CompanyImageUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyCreateManyInput = {
@@ -14192,6 +15437,47 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CompanyImageCreateInput = {
+    id?: string
+    imageUrl: string
+    company: CompanyCreateNestedOneWithoutCompanyImageInput
+  }
+
+  export type CompanyImageUncheckedCreateInput = {
+    id?: string
+    companyId: string
+    imageUrl: string
+  }
+
+  export type CompanyImageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    company?: CompanyUpdateOneRequiredWithoutCompanyImageNestedInput
+  }
+
+  export type CompanyImageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyImageCreateManyInput = {
+    id?: string
+    companyId: string
+    imageUrl: string
+  }
+
+  export type CompanyImageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyImageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -14675,6 +15961,16 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type CompanyImageListRelationFilter = {
+    every?: CompanyImageWhereInput
+    some?: CompanyImageWhereInput
+    none?: CompanyImageWhereInput
+  }
+
+  export type CompanyImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CompanyCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -14741,6 +16037,29 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type CompanyScalarRelationFilter = {
+    is?: CompanyWhereInput
+    isNot?: CompanyWhereInput
+  }
+
+  export type CompanyImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    imageUrl?: SortOrder
+  }
+
+  export type CompanyImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    imageUrl?: SortOrder
+  }
+
+  export type CompanyImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    imageUrl?: SortOrder
   }
 
   export type CandidateProfileCreateNestedOneWithoutUserInput = {
@@ -15261,6 +16580,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type CompanyImageCreateNestedManyWithoutCompanyInput = {
+    create?: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput> | CompanyImageCreateWithoutCompanyInput[] | CompanyImageUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyImageCreateOrConnectWithoutCompanyInput | CompanyImageCreateOrConnectWithoutCompanyInput[]
+    createMany?: CompanyImageCreateManyCompanyInputEnvelope
+    connect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+  }
+
+  export type CompanyImageUncheckedCreateNestedManyWithoutCompanyInput = {
+    create?: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput> | CompanyImageCreateWithoutCompanyInput[] | CompanyImageUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyImageCreateOrConnectWithoutCompanyInput | CompanyImageCreateOrConnectWithoutCompanyInput[]
+    createMany?: CompanyImageCreateManyCompanyInputEnvelope
+    connect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -15275,6 +16608,48 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCompaniesInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCompaniesInput, UserUpdateWithoutCompaniesInput>, UserUncheckedUpdateWithoutCompaniesInput>
+  }
+
+  export type CompanyImageUpdateManyWithoutCompanyNestedInput = {
+    create?: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput> | CompanyImageCreateWithoutCompanyInput[] | CompanyImageUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyImageCreateOrConnectWithoutCompanyInput | CompanyImageCreateOrConnectWithoutCompanyInput[]
+    upsert?: CompanyImageUpsertWithWhereUniqueWithoutCompanyInput | CompanyImageUpsertWithWhereUniqueWithoutCompanyInput[]
+    createMany?: CompanyImageCreateManyCompanyInputEnvelope
+    set?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    disconnect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    delete?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    connect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    update?: CompanyImageUpdateWithWhereUniqueWithoutCompanyInput | CompanyImageUpdateWithWhereUniqueWithoutCompanyInput[]
+    updateMany?: CompanyImageUpdateManyWithWhereWithoutCompanyInput | CompanyImageUpdateManyWithWhereWithoutCompanyInput[]
+    deleteMany?: CompanyImageScalarWhereInput | CompanyImageScalarWhereInput[]
+  }
+
+  export type CompanyImageUncheckedUpdateManyWithoutCompanyNestedInput = {
+    create?: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput> | CompanyImageCreateWithoutCompanyInput[] | CompanyImageUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyImageCreateOrConnectWithoutCompanyInput | CompanyImageCreateOrConnectWithoutCompanyInput[]
+    upsert?: CompanyImageUpsertWithWhereUniqueWithoutCompanyInput | CompanyImageUpsertWithWhereUniqueWithoutCompanyInput[]
+    createMany?: CompanyImageCreateManyCompanyInputEnvelope
+    set?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    disconnect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    delete?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    connect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+    update?: CompanyImageUpdateWithWhereUniqueWithoutCompanyInput | CompanyImageUpdateWithWhereUniqueWithoutCompanyInput[]
+    updateMany?: CompanyImageUpdateManyWithWhereWithoutCompanyInput | CompanyImageUpdateManyWithWhereWithoutCompanyInput[]
+    deleteMany?: CompanyImageScalarWhereInput | CompanyImageScalarWhereInput[]
+  }
+
+  export type CompanyCreateNestedOneWithoutCompanyImageInput = {
+    create?: XOR<CompanyCreateWithoutCompanyImageInput, CompanyUncheckedCreateWithoutCompanyImageInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutCompanyImageInput
+    connect?: CompanyWhereUniqueInput
+  }
+
+  export type CompanyUpdateOneRequiredWithoutCompanyImageNestedInput = {
+    create?: XOR<CompanyCreateWithoutCompanyImageInput, CompanyUncheckedCreateWithoutCompanyImageInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutCompanyImageInput
+    upsert?: CompanyUpsertWithoutCompanyImageInput
+    connect?: CompanyWhereUniqueInput
+    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutCompanyImageInput, CompanyUpdateWithoutCompanyImageInput>, CompanyUncheckedUpdateWithoutCompanyImageInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -15542,6 +16917,7 @@ export namespace Prisma {
     isApproved?: boolean
     mapLink?: string | null
     address?: string | null
+    companyImage?: CompanyImageCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateWithoutUserInput = {
@@ -15555,6 +16931,7 @@ export namespace Prisma {
     isApproved?: boolean
     mapLink?: string | null
     address?: string | null
+    companyImage?: CompanyImageUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyCreateOrConnectWithoutUserInput = {
@@ -16458,6 +17835,26 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCompaniesInput, UserUncheckedCreateWithoutCompaniesInput>
   }
 
+  export type CompanyImageCreateWithoutCompanyInput = {
+    id?: string
+    imageUrl: string
+  }
+
+  export type CompanyImageUncheckedCreateWithoutCompanyInput = {
+    id?: string
+    imageUrl: string
+  }
+
+  export type CompanyImageCreateOrConnectWithoutCompanyInput = {
+    where: CompanyImageWhereUniqueInput
+    create: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput>
+  }
+
+  export type CompanyImageCreateManyCompanyInputEnvelope = {
+    data: CompanyImageCreateManyCompanyInput | CompanyImageCreateManyCompanyInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutCompaniesInput = {
     update: XOR<UserUpdateWithoutCompaniesInput, UserUncheckedUpdateWithoutCompaniesInput>
     create: XOR<UserCreateWithoutCompaniesInput, UserUncheckedCreateWithoutCompaniesInput>
@@ -16489,6 +17886,103 @@ export namespace Prisma {
     candidateProfile?: CandidateProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
+  export type CompanyImageUpsertWithWhereUniqueWithoutCompanyInput = {
+    where: CompanyImageWhereUniqueInput
+    update: XOR<CompanyImageUpdateWithoutCompanyInput, CompanyImageUncheckedUpdateWithoutCompanyInput>
+    create: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput>
+  }
+
+  export type CompanyImageUpdateWithWhereUniqueWithoutCompanyInput = {
+    where: CompanyImageWhereUniqueInput
+    data: XOR<CompanyImageUpdateWithoutCompanyInput, CompanyImageUncheckedUpdateWithoutCompanyInput>
+  }
+
+  export type CompanyImageUpdateManyWithWhereWithoutCompanyInput = {
+    where: CompanyImageScalarWhereInput
+    data: XOR<CompanyImageUpdateManyMutationInput, CompanyImageUncheckedUpdateManyWithoutCompanyInput>
+  }
+
+  export type CompanyImageScalarWhereInput = {
+    AND?: CompanyImageScalarWhereInput | CompanyImageScalarWhereInput[]
+    OR?: CompanyImageScalarWhereInput[]
+    NOT?: CompanyImageScalarWhereInput | CompanyImageScalarWhereInput[]
+    id?: StringFilter<"CompanyImage"> | string
+    companyId?: StringFilter<"CompanyImage"> | string
+    imageUrl?: StringFilter<"CompanyImage"> | string
+  }
+
+  export type CompanyCreateWithoutCompanyImageInput = {
+    id?: string
+    name: string
+    description: string
+    teamSize?: number
+    establishedDate: Date | string
+    views?: number
+    websiteUrl: string
+    isApproved?: boolean
+    mapLink?: string | null
+    address?: string | null
+    user: UserCreateNestedOneWithoutCompaniesInput
+  }
+
+  export type CompanyUncheckedCreateWithoutCompanyImageInput = {
+    id?: string
+    name: string
+    description: string
+    teamSize?: number
+    establishedDate: Date | string
+    views?: number
+    userId: string
+    websiteUrl: string
+    isApproved?: boolean
+    mapLink?: string | null
+    address?: string | null
+  }
+
+  export type CompanyCreateOrConnectWithoutCompanyImageInput = {
+    where: CompanyWhereUniqueInput
+    create: XOR<CompanyCreateWithoutCompanyImageInput, CompanyUncheckedCreateWithoutCompanyImageInput>
+  }
+
+  export type CompanyUpsertWithoutCompanyImageInput = {
+    update: XOR<CompanyUpdateWithoutCompanyImageInput, CompanyUncheckedUpdateWithoutCompanyImageInput>
+    create: XOR<CompanyCreateWithoutCompanyImageInput, CompanyUncheckedCreateWithoutCompanyImageInput>
+    where?: CompanyWhereInput
+  }
+
+  export type CompanyUpdateToOneWithWhereWithoutCompanyImageInput = {
+    where?: CompanyWhereInput
+    data: XOR<CompanyUpdateWithoutCompanyImageInput, CompanyUncheckedUpdateWithoutCompanyImageInput>
+  }
+
+  export type CompanyUpdateWithoutCompanyImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    teamSize?: IntFieldUpdateOperationsInput | number
+    establishedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    websiteUrl?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    mapLink?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutCompaniesNestedInput
+  }
+
+  export type CompanyUncheckedUpdateWithoutCompanyImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    teamSize?: IntFieldUpdateOperationsInput | number
+    establishedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    websiteUrl?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    mapLink?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type CompanyCreateManyUserInput = {
     id?: string
     name: string
@@ -16513,6 +18007,7 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    companyImage?: CompanyImageUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateWithoutUserInput = {
@@ -16526,6 +18021,7 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    companyImage?: CompanyImageUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateManyWithoutUserInput = {
@@ -16711,6 +18207,26 @@ export namespace Prisma {
 
   export type CandidateSkillUncheckedUpdateManyWithoutSkillInput = {
     candidateProfileId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyImageCreateManyCompanyInput = {
+    id?: string
+    imageUrl: string
+  }
+
+  export type CompanyImageUpdateWithoutCompanyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyImageUncheckedUpdateWithoutCompanyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyImageUncheckedUpdateManyWithoutCompanyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
   }
 
 

@@ -60,7 +60,7 @@ class CompanyService {
     }
 
 
-    private async findCompany(companyId: string, userId: string): Promise<Company> {
+    public async findCompany(companyId: string, userId: string): Promise<Company> {
         const company = await prisma.company.findFirst({
             where: {
                 id: companyId,
