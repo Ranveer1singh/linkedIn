@@ -1,6 +1,6 @@
 import multer from "multer"
 import path from "path"
-
+import fs from "fs/promises"
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -14,4 +14,11 @@ const storage = multer.diskStorage({
   }
 })
 
+export async function deleteImage(imageUrl : string){
+  const uploadPath = "company-image"
+    const uploadDir = path.join(__dirname, "../../../uplaods", uploadPath)
+
+    await fs.unlink(uploadDir)
+
+}
 export const uploadCompanyImage = multer({ storage: storage })

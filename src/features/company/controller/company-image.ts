@@ -14,6 +14,14 @@ class CompanyImageController {
             message : "Add image done"
         })
     }
+    public async listImage(req:Request, res : Response) {
+        const {companyId} = req.params
+        const list = await companyImageService.readAll(companyId)
+        res.status(HTTP_STATUS.CREATE).json({
+            message : "Add image done",
+            data : list
+        })
+    }
 }
 
 export const companyImageController : CompanyImageController = new CompanyImageController()
