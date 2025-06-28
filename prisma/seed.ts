@@ -1,4 +1,4 @@
- import { Education, Language, PrismaClient, skill } from "../generated/prisma"
+ import { Education, Industry, Language, PrismaClient, skill } from "../generated/prisma"
  const prisma = new PrismaClient()
 
  async function main(){
@@ -48,6 +48,24 @@ async function createSkills() {
         data
     })
 }
+async function createIndustries() {
+    const data : Industry[]= [
+  { "name": "Information Technology" },
+  { "name": "Healthcare & Pharmaceuticals" },
+  { "name": "Finance & Banking" },
+  { "name": "Automobile Industry" },
+  { "name": "Telecommunications" },
+  { "name": "Retail & E-commerce" },
+  { "name": "Energy & Utilities" },
+  { "name": "Real Estate & Construction" },
+  { "name": "Media & Entertainment" },
+  { "name": "Aerospace & Defense" }
+]
+
+    await prisma.industry.createMany({
+        data
+    })
+}
 
 
 
@@ -55,6 +73,6 @@ async function createSkills() {
 //  main()
 //  .then()
 //  .catch((err) => console.log(err))
- createSkills()
+ createIndustries()
  .then()
  .catch((err) => console.log(err))

@@ -148,7 +148,7 @@ isApproved Boolean @default(false)
 mapLink String?
 address String?
 companyImage CompanyImage[]
-
+companyIndustry CompanyIndustry[]
 }
 
 
@@ -158,4 +158,22 @@ companyImage CompanyImage[]
 company Company @relation(fields : [companyId], references:[id])
 companyId String
 imageUrl String
+ }
+/*=================================== INDUSTRY MODEL ======================================*/
+ model Industry {
+  name String @id
+companyIndustry CompanyIndustry[]
+ }
+
+/*===================================COMPNAY INDUSTRY MODEL ======================================*/
+
+ model CompanyIndustry {
+
+  company Company @relation(fields : [companyId], references: [id])
+  companyId String
+
+  industry Industry @relation(fields : [industryName], references : [name])
+  industryName String
+  @@id([companyId, industryName])
+
  }
