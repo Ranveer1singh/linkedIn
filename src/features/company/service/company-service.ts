@@ -1,6 +1,6 @@
 import prisma from "~/prisma";
 import { ICompany } from "../interface/company";
-import { InternalServerException } from "~/globals/cores/error.core";
+import { InternalServerException, NotFoundException } from "~/globals/cores/error.core";
 import { date } from "joi";
 import { Company, Prisma } from "generated/prisma";
 import { getPaginationAndFilter } from "~/globals/helpers/paginatio-filter";
@@ -67,7 +67,7 @@ class CompanyService {
                 userId
             }
         })
-        if (!company) throw new Error('Company not found')
+        if (!company) throw new NotFoundException('Company not found')
         return company
     }
 
