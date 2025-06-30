@@ -177,3 +177,7 @@ companyIndustry CompanyIndustry[]
   @@id([companyId, industryName])
 
  }
+/*===================================COMPNAY JOb ROle  MODEL ======================================*/
+model JobRole{
+  name String @id
+}
