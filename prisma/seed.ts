@@ -1,4 +1,4 @@
- import { Education, Industry, Language, PrismaClient, skill } from "../generated/prisma"
+ import { Education, Industry, JobRole, Language, PrismaClient, skill } from "../generated/prisma"
  const prisma = new PrismaClient()
 
  async function main(){
@@ -66,6 +66,44 @@ async function createIndustries() {
         data
     })
 }
+async function createRoles() {
+    const data : JobRole[]=  [
+  { name: "Backend Developer" },
+  { name: "Full Stack Developer" },
+  { name: "Node.js Developer" },
+  { name: "JavaScript Developer" },
+  { name: "TypeScript Developer" },
+  { name: "API Developer" },
+  { name: "Database Developer" },
+  { name: "Software Engineer" },
+  { name: "Web Developer" },
+  { name: "Cloud Developer" },
+  { name: "Software Engineer – Backend" },
+  { name: "Platform Engineer" },
+  { name: "DevOps Engineer" },
+  { name: "Solution Architect" },
+  { name: "System Design Engineer" },
+  { name: "Integration Engineer" },
+  { name: "Technical Lead" },
+  { name: "Product Engineer" },
+  { name: "Project Engineer" },
+  { name: "Software Development Engineer (SDE)" },
+  { name: "Engineering Manager" },
+  { name: "Database Administrator (DBA)" },
+  { name: "Data Engineer" },
+  { name: "PostgreSQL Developer" },
+  { name: "Database Architect" },
+  { name: "Prisma ORM Specialist" },
+  { name: "API Integration Engineer" },
+  { name: "RESTful Services Developer" },
+  { name: "Microservices Developer" },
+  { name: "Authentication & Security Engineer" }
+];
+
+    await prisma.jobRole.createMany({
+        data
+    })
+}
 
 
 
@@ -73,6 +111,6 @@ async function createIndustries() {
 //  main()
 //  .then()
 //  .catch((err) => console.log(err))
- createIndustries()
+ createRoles()
  .then()
  .catch((err) => console.log(err))
