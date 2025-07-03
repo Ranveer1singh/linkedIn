@@ -23,6 +23,7 @@ model User {
  status  Boolean @default(true)
  candidateProfile CandidateProfile?
  companies Company[]
+ job JOb[]
 }
 
 /*=================================== Candidate MODEL ======================================*/
@@ -149,6 +150,7 @@ mapLink String?
 address String?
 companyImage CompanyImage[]
 companyIndustry CompanyIndustry[]
+job JOb[]
 }
 
 
@@ -180,4 +182,31 @@ companyIndustry CompanyIndustry[]
 /*===================================COMPNAY JOb ROle  MODEL ======================================*/
 model JobRole{
   name String @id
+  job JOb[]
+}
+/*===================================COMPANY JOb MODEL ======================================*/
+
+enum JobStatus{
+  PENDING
+  ACTIVE
+  EXPIRED
+
+}
+model JOb{
+  id String @id @default(uuid())
+  company Company @relation(fields : [companyId], references : [id])
+  companyId String
+  jobRole JobRole @relation(fields : [jobRoleName], references : [name])
+  jobRoleName String
+  postBy User @relation(fields : [postById], references : [id])
+  postById String
+  title String
+  description String
+  status JobStatus @default(PENDING)
+  minSalary Float
+  maxSalary Float
+  totalViews Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime? @updatedAt
+
 }
