@@ -7,7 +7,8 @@ import { allowPermission } from "~/middleware/allowPermission";
 const candidateSkillRoute= express.Router();
 
 candidateSkillRoute.post("/",asyncWrapper(verifyUSer), asyncWrapper(candidateSkillController.addSkill));
-candidateSkillRoute.get("/",asyncWrapper(verifyUSer),allowPermission("Admin"), asyncWrapper(candidateSkillController.findSkill));
+// candidateSkillRoute.get("/",asyncWrapper(verifyUSer),allowPermission("Admin"), asyncWrapper(candidateSkillController.findSkill));
+candidateSkillRoute.get("/",asyncWrapper(verifyUSer), asyncWrapper(candidateSkillController.findSkill));
 candidateSkillRoute.get("/me",asyncWrapper(verifyUSer), asyncWrapper(candidateSkillController.mySkill));
 candidateSkillRoute.delete("/:skillName",asyncWrapper(verifyUSer), asyncWrapper(candidateSkillController.deleteSkill));
 

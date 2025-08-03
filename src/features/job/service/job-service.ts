@@ -113,5 +113,15 @@ public async findOne(companyId : string , userId : string){
     if(!job) throw new NotFoundException('job not found')
         return job
 }
+public async findByJobId(jobId : string , userId : string){
+    const job = await prisma.jOb.findFirst({
+        where : {
+            id : jobId,
+            postById : userId
+        }
+    })
+    if(!job) throw new NotFoundException('job not found')
+        return job
+}
 }
 export const jobService = new JobService()
